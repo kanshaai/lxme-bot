@@ -25,6 +25,7 @@ COMPANY_BACKSTORY = (
     f'and solutions available on {COMPANY_DOMAIN}, including any innovations and key features.'
 )
 
+
 # Initialize the SerperDevTool with company-specific search settings
 class CompanySerperDevTool(SerperDevTool):
     def search(self, query):
@@ -143,7 +144,7 @@ def process_query(user_query):
     save_chat_history()
 
 # Chat input at the bottom of the page
-user_input = st.chat_input("Enter your question about ANZ Banking:")
+user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
 
 if user_input:
     process_query(user_input)
