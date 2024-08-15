@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
@@ -24,20 +25,18 @@ COMPANY_BACKSTORY = (
     f'and solutions available on lxme.in, including any innovations and key features.'
 )
 
+
 # Initialize the SerperDevTool with company-specific search settings
 class CompanySerperDevTool(SerperDevTool):
     def search(self, query):
-        # Add a prefix to filter results to company-specific content
         company_query = f"site:{COMPANY_DOMAIN} {query}"
         results = super().search(company_query)
-        # Filter results to include only company-specific content
         relevant_results = [result for result in results if COMPANY_DOMAIN in result.get('link', '')]
         return relevant_results
 
-# Initialize the customized search tool
 search_tool = CompanySerperDevTool()
 
-# Company Information Agent setup
+# Agent setups
 company_info_agent = Agent(
     role=COMPANY_ROLE,
     goal=COMPANY_GOAL,
@@ -47,7 +46,6 @@ company_info_agent = Agent(
     tools=[search_tool]
 )
 
-# Out-of-Context Agent setup
 out_of_context_agent = Agent(
     role='Context Checker',
     goal=f'Determine if a question is relevant to {COMPANY_NAME} and politely decline if not.',
@@ -60,7 +58,7 @@ out_of_context_agent = Agent(
     )
 )
 
-# Centralized Task for determining user query context and responding appropriately
+# Centralized Task
 centralized_task = Task(
     description=(
         f'Determine if the user query is related to {COMPANY_NAME} and respond appropriately. '
@@ -95,43 +93,58 @@ centralized_crew = Crew(
 st.title(f"{COMPANY_NAME} Information Assistant")
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
 
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# Function to save the chat history to a file
+def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
+    with open(filename, "a") as file:
+        for message in st.session_state.messages:
+            file.write(f"Role: {message['role']}\n")
+            file.write(f"Content: {message['content']}\n")
+            file.write("-" * 40 + "\n")
+
+# Function to handle log downloads
+def download_logs():
+    log_file = f"{COMPANY_NAME}.txt"
+    if Path(log_file).exists():
+        # Prompt the user to download the file
+        st.download_button(
+            label="Download Logs",
+            data=open(log_file, "rb").read(),
+            file_name=log_file,
+            mime="text/plain"
+        )
+    else:
+        st.write("No logs found.")
+
 # Function to process user query and display result
 def process_query(user_query):
-    with st.spinner("Processing your input..."):
-        result = centralized_crew.kickoff(inputs={'user_query': user_query})
-        st.markdown(f"*Response:* {result}", unsafe_allow_html=True)
-        # Generate dynamic relevant questions
-        relevant_questions = generate_dynamic_questions(user_query)
-        display_relevant_questions(relevant_questions)
+    if user_query.lower() == "give me the logs 420":
+        download_logs()
+        return  # Exit the function to avoid processing the query further
 
-# Function to generate dynamic relevant questions
-def generate_dynamic_questions(user_query):
-    # Example: Extract keywords and suggest related questions
-    keywords = extract_keywords(user_query)
-    relevant_questions = [f"What else can you tell me about {keyword} at {COMPANY_NAME}?" for keyword in keywords]
-    return relevant_questions
+    with st.chat_message("user"):
+        st.markdown(user_query)
+    st.session_state.messages.append({"role": "user", "content": user_query})
+    
+    with st.chat_message("assistant"):
+        with st.spinner("Processing your input..."):
+            result = centralized_crew.kickoff(inputs={'user_query': user_query})
+            st.markdown(result)
+    st.session_state.messages.append({"role": "assistant", "content": result})
 
-# Function to extract keywords (simplistic approach)
-def extract_keywords(query):
-    words = re.findall(r'\w+', query)
-    common_words = {'what', 'is', 'the', 'of', 'in', 'to', 'and', 'a', 'about'}
-    keywords = [word.capitalize() for word in words if word.lower() not in common_words]
-    # Return the most common keywords or terms
-    return [word for word, count in Counter(keywords).most_common(3)]
+    # Save chat history to file
+    save_chat_history()
 
-# Function to display relevant questions
-def display_relevant_questions(relevant_questions):
-    st.markdown("### Relevant Questions:")
-    for question in relevant_questions:
-        if st.button(question):
-            process_query(question)
+# Chat input at the bottom of the page
+user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
 
-# User input form
-with st.form("query_form"):
-    user_input = st.text_area(f"Enter your question about {COMPANY_NAME}:", height=150)
-    submit_button = st.form_submit_button(label="Submit")
-
-# Process form submission
-if submit_button and user_input:
+if user_input:
     process_query(user_input)
-
