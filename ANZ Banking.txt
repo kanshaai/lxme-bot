@@ -1,0 +1,6 @@
+Role: user
+Content: founders
+----------------------------------------
+Role: assistant
+Content: ANZ Banking Group, officially known as the Australia and New Zealand Banking Group Limited, traces its origins back to the early 19th century. The bank's foundation can be attributed to George Kinnear, a young Scottish entrepreneur who established the first branch of the Bank of Australasia in Sydney in 1835. This marked the beginning of what would eventually become ANZ Banking Group. Over the years, ANZ has grown through various mergers and acquisitions, including a significant merger in 1970 between the Australia and New Zealand Bank Limited and the English, Scottish and Australian Bank Limited. Today, ANZ is one of the largest banks in Australia and New Zealand, providing a wide range of banking and financial services.
+----------------------------------------
