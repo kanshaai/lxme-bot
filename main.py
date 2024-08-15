@@ -3,6 +3,8 @@ import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
+from collections import Counter
+import re
 
 # Load environment variables from .env file
 load_dotenv()
@@ -12,8 +14,8 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "Lxme"
-COMPANY_DOMAIN = "lxme.in"
+COMPANY_NAME = "Axi"
+COMPANY_DOMAIN = "axi.com"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
 COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on lxme.in.'
 COMPANY_BACKSTORY = (
@@ -21,8 +23,6 @@ COMPANY_BACKSTORY = (
     f'You provide detailed information about their products, services, '
     f'and solutions available on lxme.in, including any innovations and key features.'
 )
-
-
 
 # Initialize the SerperDevTool with company-specific search settings
 class CompanySerperDevTool(SerperDevTool):
@@ -93,9 +93,45 @@ centralized_crew = Crew(
 
 # Streamlit UI
 st.title(f"{COMPANY_NAME} Information Assistant")
-user_input = st.text_area(f"Enter your question about {COMPANY_NAME}:")
+st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
 
-if user_input:
+# Function to process user query and display result
+def process_query(user_query):
     with st.spinner("Processing your input..."):
-        result = centralized_crew.kickoff(inputs={'user_query': user_input})
-        st.write(result)
+        result = centralized_crew.kickoff(inputs={'user_query': user_query})
+        st.markdown(f"*Response:* {result}", unsafe_allow_html=True)
+        # Generate dynamic relevant questions
+        relevant_questions = generate_dynamic_questions(user_query)
+        display_relevant_questions(relevant_questions)
+
+# Function to generate dynamic relevant questions
+def generate_dynamic_questions(user_query):
+    # Example: Extract keywords and suggest related questions
+    keywords = extract_keywords(user_query)
+    relevant_questions = [f"What else can you tell me about {keyword} at {COMPANY_NAME}?" for keyword in keywords]
+    return relevant_questions
+
+# Function to extract keywords (simplistic approach)
+def extract_keywords(query):
+    words = re.findall(r'\w+', query)
+    common_words = {'what', 'is', 'the', 'of', 'in', 'to', 'and', 'a', 'about'}
+    keywords = [word.capitalize() for word in words if word.lower() not in common_words]
+    # Return the most common keywords or terms
+    return [word for word, count in Counter(keywords).most_common(3)]
+
+# Function to display relevant questions
+def display_relevant_questions(relevant_questions):
+    st.markdown("### Relevant Questions:")
+    for question in relevant_questions:
+        if st.button(question):
+            process_query(question)
+
+# User input form
+with st.form("query_form"):
+    user_input = st.text_area(f"Enter your question about {COMPANY_NAME}:", height=150)
+    submit_button = st.form_submit_button(label="Submit")
+
+# Process form submission
+if submit_button and user_input:
+    process_query(user_input)
+
