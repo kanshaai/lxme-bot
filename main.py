@@ -24,20 +24,19 @@ COMPANY_BACKSTORY = (
 
 
 
+
+
 # Initialize the SerperDevTool with company-specific search settings
 class CompanySerperDevTool(SerperDevTool):
     def search(self, query):
-        # Add a prefix to filter results to company-specific content
         company_query = f"site:{COMPANY_DOMAIN} {query}"
         results = super().search(company_query)
-        # Filter results to include only company-specific content
         relevant_results = [result for result in results if COMPANY_DOMAIN in result.get('link', '')]
         return relevant_results
 
-# Initialize the customized search tool
 search_tool = CompanySerperDevTool()
 
-# Company Information Agent setup
+# Agent setups
 company_info_agent = Agent(
     role=COMPANY_ROLE,
     goal=COMPANY_GOAL,
@@ -47,7 +46,6 @@ company_info_agent = Agent(
     tools=[search_tool]
 )
 
-# Out-of-Context Agent setup
 out_of_context_agent = Agent(
     role='Context Checker',
     goal=f'Determine if a question is relevant to {COMPANY_NAME} and politely decline if not.',
@@ -60,7 +58,7 @@ out_of_context_agent = Agent(
     )
 )
 
-# Centralized Task for determining user query context and responding appropriately
+# Centralized Task
 centralized_task = Task(
     description=(
         f'Determine if the user query is related to {COMPANY_NAME} and respond appropriately. '
@@ -93,9 +91,60 @@ centralized_crew = Crew(
 
 # Streamlit UI
 st.title(f"{COMPANY_NAME} Information Assistant")
-user_input = st.text_area(f"Enter your question about {COMPANY_NAME}:")
+st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
+
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# Function to save the chat history to a file
+def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
+    with open(filename, "a") as file:
+        for message in st.session_state.messages:
+            file.write(f"Role: {message['role']}\n")
+            file.write(f"Content: {message['content']}\n")
+            file.write("-" * 40 + "\n")
+
+# Function to handle log downloads
+def download_logs():
+    log_file = f"{COMPANY_NAME}.txt"
+    if Path(log_file).exists():
+        # Prompt the user to download the file
+        st.download_button(
+            label="Download Logs",
+            data=open(log_file, "rb").read(),
+            file_name=log_file,
+            mime="text/plain"
+        )
+    else:
+        st.write("No logs found.")
+
+# Function to process user query and display result
+def process_query(user_query):
+    if user_query.lower() == "give me the logs 420":
+        download_logs()
+        return  # Exit the function to avoid processing the query further
+
+    with st.chat_message("user"):
+        st.markdown(user_query)
+    st.session_state.messages.append({"role": "user", "content": user_query})
+    
+    with st.chat_message("assistant"):
+        with st.spinner("Processing your input..."):
+            result = centralized_crew.kickoff(inputs={'user_query': user_query})
+            st.markdown(result)
+    st.session_state.messages.append({"role": "assistant", "content": result})
+
+    # Save chat history to file
+    save_chat_history()
+
+# Chat input at the bottom of the page
+user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
 
 if user_input:
-    with st.spinner("Processing your input..."):
-        result = centralized_crew.kickoff(inputs={'user_query': user_input})
-        st.write(result)
+    process_query(user_input)
