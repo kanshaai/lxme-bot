@@ -14,14 +14,14 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "Axi"
-COMPANY_DOMAIN = "axi.com"
+COMPANY_NAME = "ANZ Banking"
+COMPANY_DOMAIN = "anz.com.au"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on lxme.in.'
+COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on {COMPANY_DOMAIN}.'
 COMPANY_BACKSTORY = (
     f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
     f'You provide detailed information about their products, services, '
-    f'and solutions available on lxme.in, including any innovations and key features.'
+    f'and solutions available on {COMPANY_DOMAIN}, including any innovations and key features.'
 )
 
 # Initialize the SerperDevTool with company-specific search settings
@@ -134,4 +134,3 @@ with st.form("query_form"):
 # Process form submission
 if submit_button and user_input:
     process_query(user_input)
-
