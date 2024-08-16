@@ -1,3 +1,4 @@
+import json
 import os
 import streamlit as st
 from crewai import Agent, Task, Crew, Process
@@ -61,12 +62,14 @@ out_of_context_agent = Agent(
 # Centralized Task
 centralized_task = Task(
     description=(
-        f'Determine if the user query is related to {COMPANY_NAME} and respond appropriately. '
+        f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately. '
         f'If the query is about {COMPANY_NAME}, provide a detailed and informative response. '
-        f'If the query is out of context, respond politely indicating that only {COMPANY_NAME}-related information is provided. '
-        f'User query: {{user_query}}'
+        f'Respond in JSON format with two keys: "answer" and "questions". '
+        f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions '
+        f'that are relevant to {COMPANY_NAME}.'
+        f'Ensure the response is in valid JSON format.'
     ),
-    expected_output=f'A detailed response based on the context of the user query, focusing on {COMPANY_NAME} information.',
+    expected_output='A JSON object containing "answer" and "questions".',
     agent=Agent(
         role=f'{COMPANY_NAME} Information Bot',
         goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
@@ -124,7 +127,11 @@ def download_logs():
     else:
         st.write("No logs found.")
 
-# Function to process user query and display result
+
+def process_follow_up(question):
+    st.session_state.messages.append({"role": "user", "content": question})
+    process_query(question)  # Reprocess the follow-up question
+
 def process_query(user_query):
     if user_query.lower() == "give me the logs 420":
         download_logs()
@@ -137,7 +144,28 @@ def process_query(user_query):
     with st.chat_message("assistant"):
         with st.spinner("Processing your input..."):
             result = centralized_crew.kickoff(inputs={'user_query': user_query})
-            st.markdown(result)
+            try:
+                # Remove potential markdown code block syntax
+                cleaned_result = str(result).strip('```json').strip()
+                # Parse JSON response
+                parsed_result = json.loads(cleaned_result)
+                answer = parsed_result.get("answer", "")
+                questions = parsed_result.get("questions", [])
+                st.markdown(f"{answer}")
+                
+                # Use session state to manage follow-up question state
+                if "follow_up" not in st.session_state:
+                    st.session_state.follow_up = None
+
+                # Create buttons for follow-up questions
+                for question in questions:
+                    if st.button(question):
+                        st.session_state.follow_up = question
+                        process_follow_up(question)  # Process the selected follow-up question
+
+            except json.JSONDecodeError:
+                st.markdown(f"**Error parsing JSON:**\n{result}")
+
     st.session_state.messages.append({"role": "assistant", "content": result})
 
     # Save chat history to file
