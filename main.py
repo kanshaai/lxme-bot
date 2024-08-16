@@ -69,7 +69,7 @@ centralized_task = Task(
         f'that are relevant to {COMPANY_NAME}.'
         f'Ensure the response is in valid JSON format.'
     ),
-    expected_output='A JSON object containing "answer" and "questions".',
+    expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
     agent=Agent(
         role=f'{COMPANY_NAME} Information Bot',
         goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
@@ -128,11 +128,10 @@ def download_logs():
         st.write("No logs found.")
 
 
-def process_follow_up(question):
-    st.session_state.messages.append({"role": "user", "content": question})
-    process_query(question)  # Reprocess the follow-up question
 
+# Function to process user query
 def process_query(user_query):
+    st.session_state.follow_up_questions = []
     if user_query.lower() == "give me the logs 420":
         download_logs()
         return  # Exit the function to avoid processing the query further
@@ -141,32 +140,30 @@ def process_query(user_query):
         st.markdown(user_query)
     st.session_state.messages.append({"role": "user", "content": user_query})
     
+    answer = ""  # Initialize the answer variable
+
     with st.chat_message("assistant"):
         with st.spinner("Processing your input..."):
             result = centralized_crew.kickoff(inputs={'user_query': user_query})
             try:
                 # Remove potential markdown code block syntax
-                cleaned_result = str(result).strip('```json').strip()
+                cleaned_result = str(json.loads(result.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+                print(json.loads(result.model_dump_json())['raw'])
                 # Parse JSON response
                 parsed_result = json.loads(cleaned_result)
                 answer = parsed_result.get("answer", "")
                 questions = parsed_result.get("questions", [])
                 st.markdown(f"{answer}")
-                
-                # Use session state to manage follow-up question state
-                if "follow_up" not in st.session_state:
-                    st.session_state.follow_up = None
 
-                # Create buttons for follow-up questions
-                for question in questions:
-                    if st.button(question):
-                        st.session_state.follow_up = question
-                        process_follow_up(question)  # Process the selected follow-up question
+                # Update follow-up questions in session state
+                st.session_state.follow_up_questions = questions
 
-            except json.JSONDecodeError:
+            except json.JSONDecodeError as e:
+                print(e)
                 st.markdown(f"**Error parsing JSON:**\n{result}")
+                answer = "There was an error processing your request."
 
-    st.session_state.messages.append({"role": "assistant", "content": result})
+    st.session_state.messages.append({"role": "assistant", "content": answer})
 
     # Save chat history to file
     save_chat_history()
@@ -176,3 +173,9 @@ user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
 
 if user_input:
     process_query(user_input)
+
+# Handle follow-up questions
+if "follow_up_questions" in st.session_state:
+    for question in st.session_state.follow_up_questions:
+        if st.button(question):
+            process_query(question)
