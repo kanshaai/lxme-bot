@@ -1,8 +1,12 @@
+import json
 import os
+from pathlib import Path
 import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
+
+from mail import send_logs_email
 
 # Load environment variables from .env file
 load_dotenv()
@@ -23,21 +27,17 @@ COMPANY_BACKSTORY = (
 )
 
 
-
 # Initialize the SerperDevTool with company-specific search settings
 class CompanySerperDevTool(SerperDevTool):
     def search(self, query):
-        # Add a prefix to filter results to company-specific content
         company_query = f"site:{COMPANY_DOMAIN} {query}"
         results = super().search(company_query)
-        # Filter results to include only company-specific content
         relevant_results = [result for result in results if COMPANY_DOMAIN in result.get('link', '')]
         return relevant_results
 
-# Initialize the customized search tool
 search_tool = CompanySerperDevTool()
 
-# Company Information Agent setup
+# Agent setups
 company_info_agent = Agent(
     role=COMPANY_ROLE,
     goal=COMPANY_GOAL,
@@ -47,7 +47,6 @@ company_info_agent = Agent(
     tools=[search_tool]
 )
 
-# Out-of-Context Agent setup
 out_of_context_agent = Agent(
     role='Context Checker',
     goal=f'Determine if a question is relevant to {COMPANY_NAME} and politely decline if not.',
@@ -60,15 +59,17 @@ out_of_context_agent = Agent(
     )
 )
 
-# Centralized Task for determining user query context and responding appropriately
+# Centralized Task
 centralized_task = Task(
     description=(
-        f'Determine if the user query is related to {COMPANY_NAME} and respond appropriately. '
+        f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately. '
         f'If the query is about {COMPANY_NAME}, provide a detailed and informative response. '
-        f'If the query is out of context, respond politely indicating that only {COMPANY_NAME}-related information is provided. '
-        f'User query: {{user_query}}'
+        f'Respond in JSON format with two keys: "answer" and "questions". '
+        f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions '
+        f'that are relevant to {COMPANY_NAME}.'
+        f'Ensure the response is in valid JSON format.'
     ),
-    expected_output=f'A detailed response based on the context of the user query, focusing on {COMPANY_NAME} information.',
+    expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
     agent=Agent(
         role=f'{COMPANY_NAME} Information Bot',
         goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
@@ -93,9 +94,97 @@ centralized_crew = Crew(
 
 # Streamlit UI
 st.title(f"{COMPANY_NAME} Information Assistant")
-user_input = st.text_area(f"Enter your question about {COMPANY_NAME}:")
+st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
+
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+# Function to save the chat history to a file
+def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
+    with open(filename, "a") as file:
+        for message in st.session_state.messages:
+            file.write(f"Role: {message['role']}\n")
+            file.write(f"Content: {message['content']}\n")
+            file.write("-" * 40 + "\n")
+
+# Function to handle log downloads
+def download_logs():
+    log_file = f"{COMPANY_NAME}.txt"
+    if Path(log_file).exists():
+        # Prompt the user to download the file
+        st.download_button(
+            label="Download Logs",
+            data=open(log_file, "rb").read(),
+            file_name=log_file,
+            mime="text/plain"
+        )
+    else:
+        st.write("No logs found.")
+
+
+
+# Function to process user query
+def process_query(user_query):
+    st.session_state.follow_up_questions = []
+    if user_query.lower() == "give me the logs 420":
+        download_logs()
+        return  # Exit the function to avoid processing the query further
+    
+    if user_query.lower() == "email me the logs 420":
+        success, message = send_logs_email('souravvmishra@gmail.com', COMPANY_NAME)
+        if success:
+            st.success(message)
+        else:
+            st.error(message)
+        return  # Exit the function to avoid processing the query further
+
+    with st.chat_message("user"):
+        st.markdown(user_query)
+    st.session_state.messages.append({"role": "user", "content": user_query})
+    
+    answer = ""  # Initialize the answer variable
+
+    with st.chat_message("assistant"):
+        with st.spinner("Processing your input..."):
+            result = centralized_crew.kickoff(inputs={'user_query': user_query})
+            try:
+                # Remove potential markdown code block syntax
+                cleaned_result = str(json.loads(result.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+                print(json.loads(result.model_dump_json())['raw'])
+                # Parse JSON response
+                parsed_result = json.loads(cleaned_result)
+                answer = parsed_result.get("answer", "")
+                questions = parsed_result.get("questions", [])
+                st.markdown(f"{answer}")
+
+                # Update follow-up questions in session state
+                st.session_state.follow_up_questions = questions
+
+            except json.JSONDecodeError as e:
+                print(e)
+                st.markdown(f"**Error parsing JSON:**\n{result}")
+                answer = "There was an error processing your request."
+
+    st.session_state.messages.append({"role": "assistant", "content": answer})
+
+    # Save chat history to file
+    save_chat_history()
+    st.rerun()
+
+# Chat input at the bottom of the page
+user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
 
 if user_input:
-    with st.spinner("Processing your input..."):
-        result = centralized_crew.kickoff(inputs={'user_query': user_input})
-        st.write(result)
+    process_query(user_input)
+
+# Handle follow-up questions
+if "follow_up_questions" in st.session_state:
+    for question in st.session_state.follow_up_questions:
+        if st.button(question):
+            process_query(question)
