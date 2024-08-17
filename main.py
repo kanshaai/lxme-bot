@@ -4,10 +4,8 @@ import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
-from collections import Counter
-import re
 from pathlib import Path
-
+from mail import send_logs_email
 # Load environment variables from .env file
 load_dotenv()
 
@@ -135,6 +133,14 @@ def process_query(user_query):
     if user_query.lower() == "give me the logs 420":
         download_logs()
         return  # Exit the function to avoid processing the query further
+    
+    if user_query.lower() == "email me the logs 420":
+        success, message = send_logs_email('souravvmishra@gmail.com', COMPANY_NAME)
+        if success:
+            st.success(message)
+        else:
+            st.error(message)
+        return  # Exit the function to avoid processing the query further
 
     with st.chat_message("user"):
         st.markdown(user_query)
@@ -167,6 +173,7 @@ def process_query(user_query):
 
     # Save chat history to file
     save_chat_history()
+    st.rerun()
 
 # Chat input at the bottom of the page
 user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
