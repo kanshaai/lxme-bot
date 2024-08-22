@@ -1,9 +1,11 @@
+import json
 import os
-from pathlib import Path
 import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
+from pathlib import Path
+from mail import send_logs_email
 
 # Load environment variables from .env file
 load_dotenv()
@@ -13,8 +15,8 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "jupiter Money"
-COMPANY_DOMAIN = "jupiter.money/"
+COMPANY_NAME = "Kissht"
+COMPANY_DOMAIN = "kissht.com/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
 COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on {COMPANY_DOMAIN}'
 COMPANY_BACKSTORY = (
@@ -107,7 +109,7 @@ for message in st.session_state.messages:
 
 # Function to save the chat history to a file
 def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
-    with open(filename, "a") as file:
+    with open(filename, "a", encoding="utf-8") as file:
         for message in st.session_state.messages:
             file.write(f"Role: {message['role']}\n")
             file.write(f"Content: {message['content']}\n")
@@ -138,7 +140,7 @@ def process_query(user_query):
     
     if user_query.lower() == "email me the logs 420":
         # Prompt user for their email address
-        st.session_state.follow_up_questions.append("Please enter your email address:")
+        st.session_state.follow_up_questions = ["Please enter your email address:"]
         return  # Exit the function to prompt for the email
 
     if st.session_state.follow_up_questions:
