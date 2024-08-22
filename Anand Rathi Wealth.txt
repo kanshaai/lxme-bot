@@ -1,0 +1,22 @@
+Role: user
+Content: tell about yourself
+----------------------------------------
+Role: assistant
+Content: There was an error processing your request.
+----------------------------------------
+Role: user
+Content: tell about yourself
+----------------------------------------
+Role: assistant
+Content: There was an error processing your request.
+----------------------------------------
+Role: user
+Content: tell about yourself
+----------------------------------------
+Role: assistant
+Content: Anand Rathi Wealth is a leading financial services firm in India, offering a broad range of services including trading platforms, various financial instruments, multiple account types, and robust market analysis tools. The company provides advanced trading platforms such as Trade Mobi (mobile app), Trade X'press (web-based platform), and Trade X'. These platforms are designed to cater to different trading needs, offering ease of access and comprehensive features for trading and investment.
+
+In terms of financial instruments, Anand Rathi Wealth offers a wide array including equities, derivatives, commodities, mutual funds, and bonds. They also provide investment services for high net-worth individuals (HNIs) and tailor-made wealth management solutions.
+
+For account types, Anand Rathi Wealth offers free demat and trading accounts, making it easier for clients to start their investment journey. Additionally, they provide extensive research and advisory services, including market research, stock research reports, and detailed analysis to help clients make informed investment decisions.
+----------------------------------------
