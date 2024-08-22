@@ -129,18 +129,35 @@ def download_logs():
 
 # Function to process user query
 def process_query(user_query):
-    st.session_state.follow_up_questions = []
+    st.session_state.follow_up_questions = st.session_state.get("follow_up_questions", [])
     if user_query.lower() == "give me the logs 420":
         download_logs()
         return  # Exit the function to avoid processing the query further
     
     if user_query.lower() == "email me the logs 420":
-        success, message = send_logs_email('souravvmishra@gmail.com', COMPANY_NAME)
-        if success:
-            st.success(message)
-        else:
-            st.error(message)
-        return  # Exit the function to avoid processing the query further
+        # Prompt user for their email address
+        st.session_state.follow_up_questions.append("Please enter your email address:")
+        return  # Exit the function to prompt for the email
+
+    if st.session_state.follow_up_questions:
+        # If there's a follow-up question, check the user's response
+        last_question = st.session_state.follow_up_questions.pop(0)
+ 
+        
+        if "Please enter your email address:" in last_question:
+            with st.chat_message("user"):
+              st.markdown(user_query)
+            st.session_state.messages.append({"role": "user", "content": user_query})
+            
+            email = user_query  # Treat the user's response as the email address
+            success, message = send_logs_email(email, COMPANY_NAME)
+
+            if success:
+                st.success(message)
+                
+            else:
+                st.error(message)
+            return # Exit the function to avoid processing the query further
 
     with st.chat_message("user"):
         st.markdown(user_query)

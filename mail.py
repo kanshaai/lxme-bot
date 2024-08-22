@@ -4,7 +4,7 @@ import requests
 
 
 def send_logs_email(to_email, COMPANY_NAME):
-    api_endpoint = "https://kansha-ai-backend-2.azurewebsites.net/kansha_ai/api/"  # Replace with your actual API endpoint
+    api_endpoint = "https://kansha.ai/api/"  # Replace with your actual API endpoint
     
     # Read the log file
     log_file = f"{COMPANY_NAME}.txt"
@@ -29,7 +29,7 @@ def send_logs_email(to_email, COMPANY_NAME):
     # Send the request to the API
     try:
         response = requests.post(
-            api_endpoint + "mail/",
+            api_endpoint + "sendMail/",
             json={
                 "to_email": to_email,
                 "mail_body": mail_body,
