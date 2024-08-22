@@ -62,12 +62,14 @@ out_of_context_agent = Agent(
 # Centralized Task
 centralized_task = Task(
     description=(
-        f'Determine if the user query is related to {COMPANY_NAME} and respond appropriately. '
+        f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately. '
         f'If the query is about {COMPANY_NAME}, provide a detailed and informative response. '
-        f'If the query is out of context, respond politely indicating that only {COMPANY_NAME}-related information is provided. '
-        f'User query: {{user_query}}'
+        f'Respond in JSON format with two keys: "answer" and "questions". '
+        f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions '
+        f'that are relevant to {COMPANY_NAME}.'
+        f'Ensure the response is in valid JSON format.'
     ),
-    expected_output=f'A detailed response based on the context of the user query, focusing on {COMPANY_NAME} information.',
+    expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
     agent=Agent(
         role=f'{COMPANY_NAME} Information Bot',
         goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
@@ -125,27 +127,81 @@ def download_logs():
     else:
         st.write("No logs found.")
 
-# Function to process user query and display result
+
+
+# Function to process user query
 def process_query(user_query):
+    st.session_state.follow_up_questions = st.session_state.get("follow_up_questions", [])
     if user_query.lower() == "give me the logs 420":
         download_logs()
         return  # Exit the function to avoid processing the query further
+    
+    if user_query.lower() == "email me the logs 420":
+        # Prompt user for their email address
+        st.session_state.follow_up_questions.append("Please enter your email address:")
+        return  # Exit the function to prompt for the email
+
+    if st.session_state.follow_up_questions:
+        # If there's a follow-up question, check the user's response
+        last_question = st.session_state.follow_up_questions.pop(0)
+ 
+        
+        if "Please enter your email address:" in last_question:
+            with st.chat_message("user"):
+              st.markdown(user_query)
+            st.session_state.messages.append({"role": "user", "content": user_query})
+            
+            email = user_query  # Treat the user's response as the email address
+            success, message = send_logs_email(email, COMPANY_NAME)
+
+            if success:
+                st.success(message)
+                
+            else:
+                st.error(message)
+            return # Exit the function to avoid processing the query further
 
     with st.chat_message("user"):
         st.markdown(user_query)
     st.session_state.messages.append({"role": "user", "content": user_query})
     
+    answer = ""  # Initialize the answer variable
+
     with st.chat_message("assistant"):
         with st.spinner("Processing your input..."):
             result = centralized_crew.kickoff(inputs={'user_query': user_query})
-            st.markdown(result)
-    st.session_state.messages.append({"role": "assistant", "content": result})
+            try:
+                # Remove potential markdown code block syntax
+                cleaned_result = str(json.loads(result.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+                print(json.loads(result.model_dump_json())['raw'])
+                # Parse JSON response
+                parsed_result = json.loads(cleaned_result)
+                answer = parsed_result.get("answer", "")
+                questions = parsed_result.get("questions", [])
+                st.markdown(f"{answer}")
+
+                # Update follow-up questions in session state
+                st.session_state.follow_up_questions = questions
+
+            except json.JSONDecodeError as e:
+                print(e)
+                st.markdown(f"**Error parsing JSON:**\n{result}")
+                answer = "There was an error processing your request."
+
+    st.session_state.messages.append({"role": "assistant", "content": answer})
 
     # Save chat history to file
     save_chat_history()
+    st.rerun()
 
 # Chat input at the bottom of the page
 user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
 
 if user_input:
     process_query(user_input)
+
+# Handle follow-up questions
+if "follow_up_questions" in st.session_state:
+    for question in st.session_state.follow_up_questions:
+        if st.button(question):
+            process_query(question)
