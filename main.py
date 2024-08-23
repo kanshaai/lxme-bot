@@ -16,8 +16,8 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "Lxme"
-COMPANY_DOMAIN = "lxme.in"
+COMPANY_NAME = "UOB"
+COMPANY_DOMAIN = "uob.com.sg/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
 COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on lxme.in.'
 COMPANY_BACKSTORY = (
@@ -104,32 +104,32 @@ body {
 
 /* Change the color of the main title */
 h1 {
-    color: #bf1f61;
+    color: #004585;
 }
 
 /* Style the chat messages */
 .chat-message.user {
     background-color: #ffcccb;
-    color: #bf1f61;
-    border: 2px solid #bf1f61;
+    color: #004585;
+    border: 2px solid #004585;
 }
 
 .chat-message.assistant {
     background-color: #ffffcc;
-    color: #bf1f61;
-    border: 2px solid #bf1f61;
+    color: #004585;
+    border: 2px solid #004585;
 }
 
 /* Style the input box at the bottom */
 .stTextInput > div {
     background-color: #ffcccb;
     border-radius: 5px;
-    color: #bf1f61;
+    color: #004585;
 }
 
 /* Style the buttons */
 button {
-    background-color: #bf1f61;
+    background-color: #004585;
     color: #fff;
    
     border: none;
@@ -137,20 +137,20 @@ button {
 }
 
 .st-emotion-cache-1ghhuty{
-background-color: #bf1f61;
+background-color: #004585;
 }
 
 .st-emotion-cache-bho8sy{
-background-color: black;
+background-color: red;
 }
 /* Style the spinner */
 .stSpinner > div {
-    border-top-color: #bf1f61;
+    border-top-color: #004585;
 }
 
 /* Style the download button */
 .stDownloadButton {
-    background-color: #bf1f61;
+    background-color: #004585;
     color: #fff;
     border-radius: 5px;
 }
@@ -168,8 +168,8 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
-    <h1 style="color:black;">
-        L<span style="color:#bf1f61;">X</span>ME Customer Support
+    <h1 style="color:#dc3545;">
+        <span style="color:#004585;">UOB</span> Customer Support
     </h1>
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
