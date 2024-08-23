@@ -1,6 +1,0 @@
-Role: user
-Content: tell me about you
-----------------------------------------
-Role: assistant
-Content: UOB, through its subsidiary UOB Kay Hian, offers a range of trading platforms and financial instruments to cater to different types of investors. The primary platform provided is UTRADE, which allows users to trade a variety of financial instruments including stocks, ETFs, forex, CFDs, bonds, and unit trusts. UTRADE is accessible on both desktop and mobile devices, providing flexibility for traders. Additionally, UOB offers futures trading through platforms like J-Trader, specifically for Bursa Malaysia. The account types available provide flexibility and control over cash funds, ensuring that investors can manage their portfolios effectively. To aid in market analysis, UOB provides advanced tools and insightful research through the UTRADE platform, helping clients make informed trading decisions.
-----------------------------------------

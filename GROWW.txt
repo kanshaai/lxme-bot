@@ -1,0 +1,10 @@
+Role: user
+Content: tell me about the bot
+----------------------------------------
+Role: assistant
+Content: Groww is a comprehensive investment platform that allows users to invest in various financial instruments such as stocks, mutual funds, ETFs, and IPOs. It offers a user-friendly interface suitable for both beginners and experienced traders. Groww provides different types of accounts, including Demat and trading accounts, which facilitate seamless transactions in the stock market. 
+
+One of the standout features of Groww is its robust market analysis tools, which include real-time technical charts, various types of charts like candlestick and line charts, and advanced analytics tools. These tools help traders make informed decisions by providing insights into market trends and price movements. In addition to this, Groww offers educational resources to help users understand market dynamics and investment strategies. 
+
+Overall, Groww aims to simplify the investment process while offering powerful tools for market analysis and trading.
+----------------------------------------
