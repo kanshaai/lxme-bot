@@ -169,7 +169,7 @@ st.markdown(custom_css, unsafe_allow_html=True)
 # Streamlit UI
 st.markdown("""
     <h1 style="color:black;">
-        L<span style="color:#bf1f61;">X</span>ME customer support
+        L<span style="color:#bf1f61;">X</span>ME Customer Support
     </h1>
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
