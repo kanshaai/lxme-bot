@@ -172,9 +172,12 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
-    <h1 style="color:#dc3545;">
-        <span style="color:#ffc107;">AXI</span> Customer Support
-    </h1>
+          
+    <img class="logo-footer" style=margin-right:3%; src="https://d2tpnh780x5es.cloudfront.net/rebrand-prod/onla2r0j/logo-red2.svg" alt="AxiCorp">        
+    <h4 style="color:#ffc107;">
+           Customer Support
+    </h4>
+  
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
 
