@@ -1,0 +1,12 @@
+Role: user
+Content: tell me about AXI
+----------------------------------------
+Role: assistant
+Content: Axi is a global online FX and CFD trading company that provides a range of trading platforms, financial instruments, account types, and market analysis tools. Axi offers the MetaTrader 4 (MT4) and MetaTrader 5 (MT5) trading platforms, which are renowned for their robust features, including advanced charting tools, automated trading capabilities, and a wide range of technical analysis indicators. These platforms are available on desktop, web, and mobile devices, ensuring that traders can access the markets from anywhere at any time.
+
+In terms of financial instruments, Axi allows traders to invest in forex, commodities, indices, cryptocurrencies, and stocks. This diverse range of instruments enables traders to build a varied portfolio and take advantage of different market conditions.
+
+Axi offers different account types to cater to the needs of various traders, including Standard, Pro, and Elite accounts. Each account type has its own set of features and benefits, such as different spreads, commissions, and minimum deposit requirements.
+
+For market analysis, Axi provides a suite of tools to help traders make informed decisions. These tools include economic calendars, market news, technical analysis reports, and trading signals. Additionally, Axi offers educational resources such as webinars, tutorials, and articles to help traders improve their trading skills and knowledge.
+----------------------------------------
