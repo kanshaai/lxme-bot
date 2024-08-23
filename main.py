@@ -92,8 +92,86 @@ centralized_crew = Crew(
     process=Process.sequential
 )
 
+
+
+# Define custom CSS
+custom_css = """
+<style>
+/* Change the background color of the entire app */
+body {
+    background-color: #ffe6f2;
+}
+
+/* Change the color of the main title */
+h1 {
+    color: #bf1f61;
+}
+
+/* Style the chat messages */
+.chat-message.user {
+    background-color: #ffcccb;
+    color: #bf1f61;
+    border: 2px solid #bf1f61;
+}
+
+.chat-message.assistant {
+    background-color: #ffffcc;
+    color: #bf1f61;
+    border: 2px solid #bf1f61;
+}
+
+/* Style the input box at the bottom */
+.stTextInput > div {
+    background-color: #ffcccb;
+    border-radius: 5px;
+    color: #bf1f61;
+}
+
+/* Style the buttons */
+button {
+    background-color: #bf1f61;
+    color: #fff;
+   
+    border: none;
+    border-radius: 5px;
+}
+
+.st-emotion-cache-1ghhuty{
+background-color: #bf1f61;
+}
+
+.st-emotion-cache-bho8sy{
+background-color: black;
+}
+/* Style the spinner */
+.stSpinner > div {
+    border-top-color: #bf1f61;
+}
+
+/* Style the download button */
+.stDownloadButton {
+    background-color: #bf1f61;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.black-text {
+    
+    color: black;
+    
+}
+</style>
+"""
+
+# Inject the custom CSS
+st.markdown(custom_css, unsafe_allow_html=True)
+
 # Streamlit UI
-st.title(f"{COMPANY_NAME} Information Assistant")
+st.markdown("""
+    <h1 style="color:#bf1f61;">
+        L<span style="color:black;">X</span>ME Information Assistant
+    </h1>
+""", unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
 
 # Initialize chat history
