@@ -16,8 +16,8 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "GROWW"
-COMPANY_DOMAIN = "groww.in/"
+COMPANY_NAME = "ICICI Health Insurance"
+COMPANY_DOMAIN = "icicilombard.com/health-insurance/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
 COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on lxme.in.'
 COMPANY_BACKSTORY = (
@@ -104,32 +104,32 @@ body {
 
 /* Change the color of the main title */
 h1 {
-    color: #00b386;
+    color: #f26624;
 }
 
 /* Style the chat messages */
 .chat-message.user {
     background-color: #ffcccb;
-    color: #00b386;
-    border: 2px solid #00b386;
+    color: #f26624;
+    border: 2px solid #f26624;
 }
 
 .chat-message.assistant {
     background-color: #ffffcc;
-    color: #00b386;
-    border: 2px solid #00b386;
+    color: #f26624;
+    border: 2px solid #f26624;
 }
 
 /* Style the input box at the bottom */
 .stTextInput > div {
     background-color: #ffcccb;
     border-radius: 5px;
-    color: #00b386;
+    color: #f26624;
 }
 
 /* Style the buttons */
 button {
-    background-color: #00b386;
+    background-color: #f26624;
     color: #fff;
    
     border: none;
@@ -137,20 +137,20 @@ button {
 }
 
 .st-emotion-cache-1ghhuty{
-background-color: #00b386;
+background-color: #f26624;
 }
 
 .st-emotion-cache-bho8sy{
-background-color: #5367ff;
+background-color: #00305a;
 }
 /* Style the spinner */
 .stSpinner > div {
-    border-top-color: #00b386;
+    border-top-color: #f26624;
 }
 
 /* Style the download button */
 .stDownloadButton {
-    background-color: #00b386;
+    background-color: #f26624;
     color: #fff;
     border-radius: 5px;
 }
@@ -169,8 +169,8 @@ st.markdown(custom_css, unsafe_allow_html=True)
 # Streamlit UI
 st.markdown("""
             
-    <h1 style="color:#5367ff;">
-        <span style="color:#00b386;">GROWW</span> Customer Support
+    <h1 style="color:#00305a;">
+        <span style="color:#f26624;">ICICI</span> Customer Support
     </h1>
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)

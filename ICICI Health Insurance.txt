@@ -1,0 +1,6 @@
+Role: user
+Content: tell me about you
+----------------------------------------
+Role: assistant
+Content: ICICI Health Insurance offers a variety of health insurance plans designed to cover medical expenses for individuals and families. They provide comprehensive coverage options, including hospitalization, pre and post-hospitalization expenses, daycare treatments, and more. ICICI Lombard, part of ICICI Group, is one of the leading providers of health insurance in India. Some of the popular health insurance plans include ICICI Lombard Complete Health Insurance, ICICI Lombard Health Shield 360, and ICICI Lombard Befit plan. These plans also offer additional benefits like teleconsultation, pharmacy expenses, and wellness programs.
+----------------------------------------
