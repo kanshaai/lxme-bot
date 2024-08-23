@@ -14,8 +14,8 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "jupiter Money"
-COMPANY_DOMAIN = "jupiter.money/"
+COMPANY_NAME = "UOB Singapore"
+COMPANY_DOMAIN = "uobgroup.com/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
 COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on {COMPANY_DOMAIN}'
 COMPANY_BACKSTORY = (

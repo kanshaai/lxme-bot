@@ -1,0 +1,6 @@
+Role: user
+Content: tell me about yourself
+----------------------------------------
+Role: assistant
+Content: UOB Singapore offers a wide range of financial services and products through its various trading platforms and tools. The main trading platform is UTRADE, which allows users to trade a variety of financial instruments including stocks, ETFs, forex, CFDs, bonds, and unit trusts. UOB also provides comprehensive market analysis tools and timely investment insights through platforms like UOB TMRW, which help investors capture timely opportunities and make informed decisions. Additionally, UOB offers different types of trading accounts such as individual securities trading accounts and contracts for difference (CFD) accounts to cater to the diverse needs of investors.
+----------------------------------------
