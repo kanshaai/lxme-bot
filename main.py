@@ -16,8 +16,8 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "Axi"
-COMPANY_DOMAIN = "axi.com/"
+COMPANY_NAME = "OONA"
+COMPANY_DOMAIN = "oona-insurance.com/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
 COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on lxme.in.'
 COMPANY_BACKSTORY = (
@@ -104,32 +104,32 @@ body {
 
 /* Change the color of the main title */
 h1 {
-    color: #dc3545;
+    color: #9b51e0;
 }
 
 /* Style the chat messages */
 .chat-message.user {
     background-color: #ffcccb;
-    color: #dc3545;
-    border: 2px solid #dc3545;
+    color: #9b51e0;
+    border: 2px solid #9b51e0;
 }
 
 .chat-message.assistant {
     background-color: #ffffcc;
-    color: #dc3545;
-    border: 2px solid #dc3545;
+    color: #9b51e0;
+    border: 2px solid #9b51e0;
 }
 
 /* Style the input box at the bottom */
 .stTextInput > div {
     background-color: #ffcccb;
     border-radius: 5px;
-    color: #dc3545;
+    color: #9b51e0;
 }
 
 /* Style the buttons */
 button {
-    background-color: #dc3545;
+    background-color: #9b51e0;
     color: #fff;
    
     border: none;
@@ -137,26 +137,26 @@ button {
 }
 
 .st-emotion-cache-1ghhuty{
-background-color: #dc3545;
+background-color: #9b51e0;
 }
 
 .st-emotion-cache-bho8sy{
-background-color: #ffc107;
+background-color: #ff6900;
 }
 /* Style the spinner */
 .stSpinner > div {
-    border-top-color: #dc3545;
+    border-top-color: #9b51e0;
 }
 
 /* Style the download button */
 .stDownloadButton {
-    background-color: #dc3545;
+    background-color: #9b51e0;
     color: #fff;
     border-radius: 5px;
 }
 
 .st-emotion-cache-1dp5vir{
-background-image: linear-gradient(90deg, rgb(255, 75, 75), rgb(255, 253, 128));
+background-image: linear-gradient(90deg, rgb(155, 81, 224), rgb(155, 81, 224));
 }
 
 .black-text {
@@ -172,11 +172,10 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
-          
-    <img class="logo-footer" style=margin-right:3%; src="https://d2tpnh780x5es.cloudfront.net/rebrand-prod/onla2r0j/logo-red2.svg" alt="AxiCorp">        
-    <h4 style="color:#ffc107;">
-           Customer Support
-    </h4>
+      
+    <h1 style="color:#9b51e0;">
+           OONA Customer Support
+    </h1>
   
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)

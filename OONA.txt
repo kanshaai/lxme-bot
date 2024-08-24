@@ -1,0 +1,6 @@
+Role: user
+Content: Tell me about your company
+----------------------------------------
+Role: assistant
+Content: OONA is a comprehensive trading platform that offers a variety of financial instruments, including forex, commodities, and indices. The platform is designed to cater to both beginners and experienced traders. OONA provides robust market analysis tools to help traders identify potential trading opportunities and minimize risks. The platform emphasizes user-friendly interfaces and advanced trading features, making it a popular choice among traders. OONA offers different account types tailored to meet the specific needs of its users, ensuring a customized trading experience.
+----------------------------------------
