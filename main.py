@@ -16,8 +16,8 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "OONA"
-COMPANY_DOMAIN = "oona-insurance.com/"
+COMPANY_NAME = "FLIP"
+COMPANY_DOMAIN = "flip.id/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
 COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on lxme.in.'
 COMPANY_BACKSTORY = (
@@ -104,32 +104,32 @@ body {
 
 /* Change the color of the main title */
 h1 {
-    color: #9b51e0;
+    color: #FD6542;
 }
 
 /* Style the chat messages */
 .chat-message.user {
     background-color: #ffcccb;
-    color: #9b51e0;
-    border: 2px solid #9b51e0;
+    color: #FD6542;
+    border: 2px solid #FD6542;
 }
 
 .chat-message.assistant {
     background-color: #ffffcc;
-    color: #9b51e0;
-    border: 2px solid #9b51e0;
+    color: #FD6542;
+    border: 2px solid #FD6542;
 }
 
 /* Style the input box at the bottom */
 .stTextInput > div {
     background-color: #ffcccb;
     border-radius: 5px;
-    color: #9b51e0;
+    color: #FD6542;
 }
 
 /* Style the buttons */
 button {
-    background-color: #9b51e0;
+    background-color: #FD6542;
     color: #fff;
    
     border: none;
@@ -137,7 +137,7 @@ button {
 }
 
 .st-emotion-cache-1ghhuty{
-background-color: #9b51e0;
+background-color: #FD6542;
 }
 
 .st-emotion-cache-bho8sy{
@@ -145,12 +145,12 @@ background-color: #ff6900;
 }
 /* Style the spinner */
 .stSpinner > div {
-    border-top-color: #9b51e0;
+    border-top-color: #FD6542;
 }
 
 /* Style the download button */
 .stDownloadButton {
-    background-color: #9b51e0;
+    background-color: #FD6542;
     color: #fff;
     border-radius: 5px;
 }
@@ -172,10 +172,11 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
+    <img alt="flip logo" src="https://storage.googleapis.com/dot-flip-dev/media-library/logo_lg_430b708631/logo_lg_430b708631.svg" loading="lazy" style = 'width:60px; margin-top:10%;' >
       
-    <h1 style="color:#9b51e0;">
-           OONA Customer Support
-    </h1>
+    <h4 style="color:#FD6542;">
+           Customer Support
+    </h4>
   
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)

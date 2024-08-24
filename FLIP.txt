@@ -1,0 +1,6 @@
+Role: user
+Content: tell me about you
+----------------------------------------
+Role: assistant
+Content: FLIP, provided by Geojit Financial Services, is a comprehensive trading platform designed to offer users a robust and flexible trading experience. It is known for its reliability, speed, and security. FLIP Mobile allows users to trade in various financial instruments such as equities, IPOs, bonds, and futures. The platform is equipped with powerful tools and features to help investors make informed decisions, including portfolio monitoring, position management, and market analysis tools. The app is available on both Android and iOS platforms.
+----------------------------------------
