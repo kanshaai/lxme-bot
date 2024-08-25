@@ -77,7 +77,7 @@ centralized_task = Task(
         memory=True,
         backstory=(
             f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-            f'about {COMPANY_NAME}\'s trading platforms, financial instruments, account types, and market analysis tools. '
+            f'about {COMPANY_NAME}\'s trading platforms, learning platform. '
             f'You only respond to queries related to {COMPANY_NAME}.'
         ),
         tools=[search_tool],
