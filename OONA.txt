@@ -1,6 +1,24 @@
 Role: user
-Content: Tell me about your company
+Content: please tell me about yourself
 ----------------------------------------
 Role: assistant
-Content: OONA is a comprehensive trading platform that offers a variety of financial instruments, including forex, commodities, and indices. The platform is designed to cater to both beginners and experienced traders. OONA provides robust market analysis tools to help traders identify potential trading opportunities and minimize risks. The platform emphasizes user-friendly interfaces and advanced trading features, making it a popular choice among traders. OONA offers different account types tailored to meet the specific needs of its users, ensuring a customized trading experience.
+Content: OONA is a comprehensive trading platform that offers a variety of financial instruments, including forex, commodities, and indices. The platform is equipped with powerful market analysis tools to help traders identify potential trading opportunities. OONA provides different account types to cater to the needs of various traders, from beginners to advanced professionals. Additionally, the platform offers various technical analysis tools to enhance trading strategies and minimize risks.
+----------------------------------------
+Role: user
+Content: please tell me about yourself
+----------------------------------------
+Role: assistant
+Content: OONA is a comprehensive trading platform that offers a variety of financial instruments, including forex, commodities, and indices. The platform is equipped with powerful market analysis tools to help traders identify potential trading opportunities. OONA provides different account types to cater to the needs of various traders, from beginners to advanced professionals. Additionally, the platform offers various technical analysis tools to enhance trading strategies and minimize risks.
+----------------------------------------
+Role: user
+Content: tell me about yourself
+----------------------------------------
+Role: assistant
+Content: OONA appears to be primarily an insurance provider rather than a trading platform. OONA Insurance aims to be a leading digital general insurance platform in Southeast Asia, focusing on large, profitable, and fast-growing lines of business. It offers a range of insurance options and is driven by a buy-and-build strategy with significant equity commitment.
+----------------------------------------
+Role: user
+Content: who are you
+----------------------------------------
+Role: assistant
+Content: OONA is a digital general insurance platform focused on providing comprehensive and affordable coverage in Southeast Asia. It aims to leverage market-leading technology to significantly enhance customer experience. Backed by Warburg Pincus, OONA plans to expand its reach and invest in building a new tech stack for better service delivery.
 ----------------------------------------

@@ -19,11 +19,12 @@ os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 COMPANY_NAME = "OONA"
 COMPANY_DOMAIN = "oona-insurance.com/"
 COMPANY_ROLE = f'{COMPANY_NAME} Insurance Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on lxme.in.'
+COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} Insurance'
 COMPANY_BACKSTORY = (
     f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
     f'You provide detailed information about their products, services, '
     f'and solutions available on oona-insurance.com, including any innovations and key features.'
+    f'It is an insurance company'
    
 )
 
