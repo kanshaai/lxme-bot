@@ -23,7 +23,7 @@ COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} 
 COMPANY_BACKSTORY = (
     f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
     f'You provide detailed information about their products, services, '
-    f'and solutions available on lxme.in, including any innovations and key features.'
+    f'and solutions available on oona-insurance.com, including any innovations and key features.'
 )
 
 
