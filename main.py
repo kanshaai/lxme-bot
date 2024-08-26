@@ -1,13 +1,11 @@
 import json
 import os
-from pathlib import Path
 import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
-
+from pathlib import Path
 from mail import send_logs_email
-
 # Load environment variables from .env file
 load_dotenv()
 
@@ -16,14 +14,14 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "Axi"
-COMPANY_DOMAIN = "axi.com/"
+COMPANY_NAME = "M2P"
+COMPANY_DOMAIN = "m2pfintech.com/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on lxme.in.'
+COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on {COMPANY_DOMAIN}.'
 COMPANY_BACKSTORY = (
     f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
     f'You provide detailed information about their products, services, '
-    f'and solutions available on lxme.in, including any innovations and key features.'
+    f'and solutions available on {COMPANY_DOMAIN}, including any innovations and key features.'
 )
 
 
@@ -77,7 +75,7 @@ centralized_task = Task(
         memory=True,
         backstory=(
             f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-            f'about {COMPANY_NAME}\'s trading platforms, learning platform. '
+            f'about {COMPANY_NAME}\'s banking solution, lending solutin, credit cards, multiplatform, events, resources and their custom APIs '
             f'You only respond to queries related to {COMPANY_NAME}.'
         ),
         tools=[search_tool],
@@ -92,93 +90,8 @@ centralized_crew = Crew(
     process=Process.sequential
 )
 
-
-
-# Define custom CSS
-custom_css = """
-<style>
-/* Change the background color of the entire app */
-body {
-    background-color: #ffe6f2;
-}
-
-/* Change the color of the main title */
-h1 {
-    color: #dc3545;
-}
-
-/* Style the chat messages */
-.chat-message.user {
-    background-color: #ffcccb;
-    color: #dc3545;
-    border: 2px solid #dc3545;
-}
-
-.chat-message.assistant {
-    background-color: #ffffcc;
-    color: #dc3545;
-    border: 2px solid #dc3545;
-}
-
-/* Style the input box at the bottom */
-.stTextInput > div {
-    background-color: #ffcccb;
-    border-radius: 5px;
-    color: #dc3545;
-}
-
-/* Style the buttons */
-button {
-    background-color: #dc3545;
-    color: #fff;
-   
-    border: none;
-    border-radius: 5px;
-}
-
-.st-emotion-cache-1ghhuty{
-background-color: #dc3545;
-}
-
-.st-emotion-cache-bho8sy{
-background-color: #ffc107;
-}
-/* Style the spinner */
-.stSpinner > div {
-    border-top-color: #dc3545;
-}
-
-/* Style the download button */
-.stDownloadButton {
-    background-color: #dc3545;
-    color: #fff;
-    border-radius: 5px;
-}
-
-.st-emotion-cache-1dp5vir{
-background-image: linear-gradient(90deg, rgb(255, 75, 75), rgb(255, 253, 128));
-}
-
-.black-text {
-    
-    color: black;
-    
-}
-</style>
-"""
-
-# Inject the custom CSS
-st.markdown(custom_css, unsafe_allow_html=True)
-
 # Streamlit UI
-st.markdown("""
-          
-    <img class="logo-footer" style=margin-right:3%; src="https://d2tpnh780x5es.cloudfront.net/rebrand-prod/onla2r0j/logo-red2.svg" alt="AxiCorp">        
-    <h4 style="color:#ffc107;">
-           Customer Support
-    </h4>
-  
-""", unsafe_allow_html=True)
+st.title(f"{COMPANY_NAME} Information Assistant")
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
 
 # Initialize chat history

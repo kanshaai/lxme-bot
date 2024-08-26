@@ -1,0 +1,6 @@
+Role: user
+Content: Hey tell me about yourself
+----------------------------------------
+Role: assistant
+Content: M2P is a leading fintech enabler that provides a wide range of solutions for banking, lending, credit cards, multi-platform integrations, and custom APIs. Their services are designed to help financial institutions and businesses to innovate and offer seamless financial services. M2P's banking solutions include core banking systems, payment processing, and digital banking platforms. Their lending solutions cover various types of loans and credit facilities, while their credit card solutions offer end-to-end card issuance and management. M2P also supports multi-platform integrations, allowing businesses to connect with various financial services through APIs. Additionally, M2P hosts events and provides resources to keep their clients updated with the latest trends and technologies in the fintech industry.
+----------------------------------------
