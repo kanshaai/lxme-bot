@@ -1,11 +1,13 @@
 import json
 import os
+from pathlib import Path
 import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
-from pathlib import Path
+
 from mail import send_logs_email
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -17,11 +19,11 @@ os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 COMPANY_NAME = "M2P"
 COMPANY_DOMAIN = "m2pfintech.com/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on {COMPANY_DOMAIN}.'
+COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on m2pfintech.com.'
 COMPANY_BACKSTORY = (
     f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
     f'You provide detailed information about their products, services, '
-    f'and solutions available on {COMPANY_DOMAIN}, including any innovations and key features.'
+    f'and solutions available on m2pfintech.com, including any innovations and key features.'
 )
 
 
@@ -90,8 +92,92 @@ centralized_crew = Crew(
     process=Process.sequential
 )
 
+
+
+# Define custom CSS
+custom_css = """
+<style>
+/* Change the background color of the entire app */
+body {
+    background-color: #ffe6f2;
+}
+
+/* Change the color of the main title */
+h1 {
+    color: #dc3545;
+}
+
+/* Style the chat messages */
+.chat-message.user {
+    background-color: #ffcccb;
+    color: #dc3545;
+    border: 2px solid #dc3545;
+}
+
+.chat-message.assistant {
+    background-color: #ffffcc;
+    color: #dc3545;
+    border: 2px solid #dc3545;
+}
+
+/* Style the input box at the bottom */
+.stTextInput > div {
+    background-color: #ffcccb;
+    border-radius: 5px;
+    color: #dc3545;
+}
+
+/* Style the buttons */
+button {
+    background-color: #dc3545;
+    color: #fff;
+   
+    border: none;
+    border-radius: 5px;
+}
+
+.st-emotion-cache-1ghhuty{
+background-color: #dc3545;
+}
+
+.st-emotion-cache-bho8sy{
+background-color: #bd2025;
+}
+/* Style the spinner */
+.stSpinner > div {
+    border-top-color: #dc3545;
+}
+
+/* Style the download button */
+.stDownloadButton {
+    background-color: #dc3545;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.st-emotion-cache-1dp5vir{
+background-image: linear-gradient(90deg, rgb(255, 75, 75), rgb(255, 253, 128));
+}
+
+.black-text {
+    
+    color: black;
+    
+}
+</style>
+"""
+
+# Inject the custom CSS
+st.markdown(custom_css, unsafe_allow_html=True)
+
 # Streamlit UI
-st.title(f"{COMPANY_NAME} Information Assistant")
+st.markdown("""
+          
+   <img alt="m2pfintech" loading="lazy" width="60" height="60" decoding="async" data-nimg="1" style="color:transparent; margin-top:2%;" src="https://m2p-website-static-files.s3.ap-south-1.amazonaws.com/images/m2p-logo.png">  <h4 style="color:#bd2025;">
+           Customer Support
+    </h4>
+  
+""", unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
 
 # Initialize chat history
