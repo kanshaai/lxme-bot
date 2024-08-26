@@ -5,6 +5,7 @@ from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
 from pathlib import Path
+from mail import send_logs_email
 
 # Load environment variables from .env file
 load_dotenv()
