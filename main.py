@@ -1,16 +1,8 @@
-import os
-from dotenv import load_dotenv
+import requests
 import streamlit as st
 from chatbot import render_chatbot
 
-
-# Load environment variables from .env file
-load_dotenv()
-
-# Set up the environment keys
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
-
+st.set_page_config(layout="wide")
 
 # Define custom CSS
 custom_css = """
@@ -36,13 +28,6 @@ h1 {
     background-color: #ffffcc;
     color: #bf1f61;
     border: 2px solid #bf1f61;
-}
-
-/* Style the input box at the bottom */
-.stTextInput > div {
-    background-color: #ffcccb;
-    border-radius: 5px;
-    color: #bf1f61;
 }
 
 /* Style the buttons */
@@ -83,15 +68,45 @@ background-color: black;
 
 st.markdown(custom_css, unsafe_allow_html=True)
 
-if "company_name" not in st.session_state:
+def start_chat():
+    company_name = st.session_state.name_input
+    company_website = st.session_state.website_input
+    if len(company_name.strip()) == 0 or len(company_website.strip()) == 0:
+        st.error("Please enter a company name and website.")
+        return
+    try:
+        response = requests.head(company_website, allow_redirects=True)
+        valid_url = response.status_code == 200
+    except requests.exceptions.RequestException:
+        valid_url = False
+    if not valid_url:
+        st.error("Please provide a valid company website. This one cannot be accessed.")
+        return
+    st.session_state.chat_started = True
+    st.session_state.company_name = company_name
+    st.session_state.company_website = company_website
+    
+
+if "chat_started" not in st.session_state:
     st.session_state.messages = []
+    
     st.title("Instant demo chatbot for your own company")
-    company_name = st.text_input("Company name")
-    company_website = st.text_input("Company website")
-    st.button("Create chatbot", on_click=lambda: st.session_state.update(company_name=company_name, company_website=company_website))
+    left, _, _ = st.columns(3)
+    with left:
+        hide_enter = """
+        <style>
+        div[data-testid="InputInstructions"] > span:nth-child(1) {
+            visibility: hidden;
+        }
+        </style>
+        """
+        st.markdown(hide_enter, unsafe_allow_html=True)
+        company_name = st.text_input("Company name", key="name_input")
+        company_website = st.text_input("Company website", key="website_input", help="Provide a valid url to your companies website to retrieve written information, such as FAQ or documentation.")
+    st.button("Create chatbot", on_click=lambda: start_chat())
 else:
     # Display chat messages from history on app rerun
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
-    render_chatbot(st.session_state["company_name"], st.session_state["company_website"])
+    render_chatbot(st.session_state.company_name, st.session_state.company_website)
