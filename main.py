@@ -1,10 +1,13 @@
 import json
 import os
+import openai
 from pathlib import Path
 import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
+from pytube import YouTube, Channel
+
 
 from mail import send_logs_email
 
@@ -27,13 +30,21 @@ COMPANY_BACKSTORY = (
 )
 
 
+
+
 # Initialize the SerperDevTool with company-specific search settings
 class CompanySerperDevTool(SerperDevTool):
     def search(self, query):
+        # Search the company website
+        print('pratjam weas jeejjs')
         company_query = f"site:{COMPANY_DOMAIN} {query}"
         results = super().search(company_query)
+        print('wsefwd')
+        print(results)
         relevant_results = [result for result in results if COMPANY_DOMAIN in result.get('link', '')]
-        return relevant_results
+        
+
+        return results
 
 search_tool = CompanySerperDevTool()
 
@@ -69,7 +80,7 @@ centralized_task = Task(
         f'that are relevant to {COMPANY_NAME}.'
         f'Ensure the response is in valid JSON format.'
     ),
-    expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
+    expected_output='A JSON object containing "answer", and "questions" without any unescaped newline characters and without any codeblock. It should also have all the links of youtube and blogs it thought during the proccess of searching in json as "links". Make sure to not add links to "answer". The response should be able to pass JSON.loads() without any error. ',
     agent=Agent(
         role=f'{COMPANY_NAME} Information Bot',
         goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
@@ -77,7 +88,7 @@ centralized_task = Task(
         memory=True,
         backstory=(
             f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-            f'about {COMPANY_NAME}\'s trading platforms, learning platform. '
+            f'about {COMPANY_NAME}\'s trading platforms, learning platform.'
             f'You only respond to queries related to {COMPANY_NAME}.'
         ),
         tools=[search_tool],
@@ -173,6 +184,7 @@ st.markdown(custom_css, unsafe_allow_html=True)
 # Streamlit UI
 st.markdown("""
           
+          
     <img class="logo-footer" style=margin-right:3%; src="https://d2tpnh780x5es.cloudfront.net/rebrand-prod/onla2r0j/logo-red2.svg" alt="AxiCorp">        
     <h4 style="color:#ffc107;">
            Customer Support
@@ -189,6 +201,27 @@ if "messages" not in st.session_state:
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
+
+
+def check_links(links, user_query):
+    web_links = []
+    youtube_links = []
+    youtube_response = ""
+    for link in links:
+       if COMPANY_DOMAIN in link or "linkedin.com" in link:
+           web_links.append(link)
+       if "youtube.com" in link and "watch" in link:
+          
+          youtube_links.append(link)
+   
+       
+               
+
+               
+               
+    
+    return web_links, youtube_links
+           
 
 # Function to save the chat history to a file
 def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
@@ -250,7 +283,7 @@ def process_query(user_query):
         st.markdown(user_query)
     st.session_state.messages.append({"role": "user", "content": user_query})
     
-    answer = ""  # Initialize the answer variable
+    final_answer = ""  # Initialize the answer variable
 
     with st.chat_message("assistant"):
         with st.spinner("Processing your input..."):
@@ -262,8 +295,30 @@ def process_query(user_query):
                 # Parse JSON response
                 parsed_result = json.loads(cleaned_result)
                 answer = parsed_result.get("answer", "")
+                links = parsed_result.get("links", "")
+                web, youtube = check_links(links, user_query)
                 questions = parsed_result.get("questions", [])
-                st.markdown(f"{answer}")
+                link_text = " "
+                
+                if len(youtube)>0:
+                    
+                    link_text += '\nHere some youtube references\n' + '\n'
+                    for link in youtube:
+                    
+                         link_text += '\n' + link + '\n' +','
+                    
+                
+                if len(web)>0:
+                    link_text += '\nHere some web references\n' + '\n'
+                    for link in web:
+                        
+                        link_text += '\n' + link + ','
+                    
+
+
+                
+                final_answer = answer + '\n\nFor your reference:\n' + link_text
+                
 
                 # Update follow-up questions in session state
                 st.session_state.follow_up_questions = questions
@@ -273,7 +328,9 @@ def process_query(user_query):
                 st.markdown(f"**Error parsing JSON:**\n{result}")
                 answer = "There was an error processing your request."
 
-    st.session_state.messages.append({"role": "assistant", "content": answer})
+    st.session_state.messages.append({"role": "assistant", "content": final_answer})
+    
+    
 
     # Save chat history to file
     save_chat_history()
