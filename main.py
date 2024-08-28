@@ -1,12 +1,12 @@
 import json
 import os
-import openai
+
 from pathlib import Path
 import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
-from pytube import YouTube, Channel
+
 
 
 from mail import send_logs_email
