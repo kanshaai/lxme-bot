@@ -42,23 +42,23 @@ def download_logs():
         st.write("No logs found.")"""
 
 
-def init_crew(company_name, company_url):
+def init_crew(name, website, products=''):
     # Company-specific details
-    COMPANY_ROLE = f'{company_name} Information Specialist'
-    COMPANY_GOAL = f'Provide accurate and detailed information about {company_name} products, services, and solutions available on lxme.in.'
+    COMPANY_ROLE = f'{name} Information Specialist'
+    COMPANY_GOAL = f'Provide accurate and detailed information about {name} products, services, and solutions available on {website}.'
     COMPANY_BACKSTORY = (
-        f'You are a knowledgeable specialist in {company_name}\'s offerings. '
+        f'You are a knowledgeable specialist in {name}\'s offerings. '
         f'You provide detailed information about their products, services, '
-        f'and solutions available on lxme.in, including any innovations and key features.'
+        f'and solutions available on {website}, including any innovations and key features, {products}.'
     )
 
 
     # Initialize the SerperDevTool with company-specific search settings
     class CompanySerperDevTool(SerperDevTool):
         def search(self, query):
-            company_query = f"site:{company_url} {query}"
+            company_query = f"site:{website} {query}"
             results = super().search(company_query)
-            relevant_results = [result for result in results if company_url in result.get('link', '')]
+            relevant_results = [result for result in results if website in result.get('link', '')]
             return relevant_results
 
     search_tool = CompanySerperDevTool()
@@ -75,36 +75,36 @@ def init_crew(company_name, company_url):
 
     out_of_context_agent = Agent(
         role='Context Checker',
-        goal=f'Determine if a question is relevant to {company_name} and politely decline if not.',
+        goal=f'Determine if a question is relevant to {name} and politely decline if not.',
         verbose=True,
         memory=True,
         backstory=(
-            f'You are responsible for determining if a question is relevant to {company_name}. '
+            f'You are responsible for determining if a question is relevant to {name}. '
             f'If the question is not related, you respond politely indicating that the question is out of context and '
-            f'that only {company_name}-related information is provided.'
+            f'that only {name}-related information is provided.'
         )
     )
 
     # Centralized Task
     centralized_task = Task(
         description=(
-            f'Determine if the {{user_query}} is related to {company_name} and respond appropriately. '
-            f'If the query is about {company_name}, provide a detailed and informative response. '
+            f'Determine if the {{user_query}} is related to {name} and respond appropriately. '
+            f'If the query is about {name}, provide a detailed and informative response. '
             f'Respond in JSON format with two keys: "answer" and "questions". '
             f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions '
-            f'that are relevant to {company_name}.'
+            f'that are relevant to {name}.'
             f'Ensure the response is in valid JSON format.'
         ),
         expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
         agent=Agent(
-            role=f'{company_name} Information Bot',
-            goal=f'Provide comprehensive information about {company_name} and its offerings.',
+            role=f'{name} Information Bot',
+            goal=f'Provide comprehensive information about {name} and its offerings.',
             verbose=True,
             memory=True,
             backstory=(
-                f'You are an intelligent bot specializing in {company_name} information. You provide detailed responses '
-                f'about {company_name}\'s trading platforms, financial instruments, account types, and market analysis tools. '
-                f'You only respond to queries related to {company_name}.'
+                f'You are an intelligent bot specializing in {name} information. You provide detailed responses '
+                f'about {name}\'s {products}. '
+                f'You only respond to queries related to {name}.'
             ),
             tools=[search_tool],
             allow_delegation=True
@@ -122,7 +122,7 @@ def init_crew(company_name, company_url):
 
 
 # Function to process user query
-def process_query(user_query, company_name, company_url):
+def process_query(user_query, name, website, products):
     st.session_state.follow_up_questions = []
     """if user_query.lower() == "give me the logs 420":
         download_logs()
@@ -144,7 +144,7 @@ def process_query(user_query, company_name, company_url):
 
     with st.chat_message("assistant"):
         with st.spinner("Processing your input..."):
-            centralized_crew = init_crew(company_name, company_url)
+            centralized_crew = init_crew(name, website, products)
             result = centralized_crew.kickoff(inputs={'user_query': user_query})
             try:
                 # Remove potential markdown code block syntax
@@ -167,19 +167,19 @@ def process_query(user_query, company_name, company_url):
     st.session_state.messages.append({"role": "assistant", "content": answer})
 
     # Save chat history to file
-    save_chat_history(f"{company_name}.txt")
+    save_chat_history(f"{name}.txt")
     st.rerun()
 
 
-def render_chatbot(company_name, company_url):
+def render_chatbot(name, website, products):
     # Chat input at the bottom of the page
-    user_input = st.chat_input(f"Enter your question about {company_name}:")
+    user_input = st.chat_input(f"Enter your question about {name}:")
 
     if user_input:
-        process_query(user_input, company_name, company_url)
+        process_query(user_input, name, website, products)
 
     # Handle follow-up questions
     if "follow_up_questions" in st.session_state:
         for question in st.session_state.follow_up_questions:
             if st.button(question):
-                process_query(question, company_name, company_url)
+                process_query(question, name, website, products)

@@ -80,11 +80,12 @@ def start_chat():
     except requests.exceptions.RequestException:
         valid_url = False
     if not valid_url:
-        st.error("Please provide a valid company website. This one cannot be accessed.")
+        st.error("Please provide a valid company website, in the form http://www.---- This one cannot be accessed.")
         return
     st.session_state.chat_started = True
-    st.session_state.company_name = company_name
-    st.session_state.company_website = company_website
+    st.session_state.name = company_name
+    st.session_state.website = company_website
+    st.session_state.products = st.session_state.products_input
     
 
 if "chat_started" not in st.session_state:
@@ -102,11 +103,12 @@ if "chat_started" not in st.session_state:
         """
         st.markdown(hide_enter, unsafe_allow_html=True)
         company_name = st.text_input("Company name", key="name_input")
-        company_website = st.text_input("Company website", key="website_input", help="Provide a valid url to your companies website to retrieve written information, such as FAQ or documentation.")
+        website = st.text_input("Website", key="website_input", help="Provide a valid url to your companies website to retrieve written information, such as FAQ or documentation.")
+        products = st.text_input("Products & services", help="List briefly the main products or services your company offers (optional).", key="products_input")
     st.button("Create chatbot", on_click=lambda: start_chat())
 else:
     # Display chat messages from history on app rerun
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
-    render_chatbot(st.session_state.company_name, st.session_state.company_website)
+    render_chatbot(st.session_state.name, st.session_state.website, st.session_state.products)
