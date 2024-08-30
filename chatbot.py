@@ -42,14 +42,14 @@ def download_logs():
         st.write("No logs found.")"""
 
 
-def init_crew(name, website, products=''):
+def init_crew(name, website):
     # Company-specific details
     COMPANY_ROLE = f'{name} Information Specialist'
     COMPANY_GOAL = f'Provide accurate and detailed information about {name} products, services, and solutions available on {website}.'
     COMPANY_BACKSTORY = (
         f'You are a knowledgeable specialist in {name}\'s offerings. '
         f'You provide detailed information about their products, services, '
-        f'and solutions available on {website}, including any innovations and key features, {products}.'
+        f'and solutions available on {website}, including any innovations and key features.'
     )
 
 
@@ -103,7 +103,7 @@ def init_crew(name, website, products=''):
             memory=True,
             backstory=(
                 f'You are an intelligent bot specializing in {name} information. You provide detailed responses '
-                f'about {name}\'s {products}. '
+                f'about {name}. '
                 f'You only respond to queries related to {name}.'
             ),
             tools=[search_tool],
@@ -122,7 +122,7 @@ def init_crew(name, website, products=''):
 
 
 # Function to process user query
-def process_query(user_query, name, website, products):
+def process_query(user_query, name, website):
     st.session_state.follow_up_questions = []
     """if user_query.lower() == "give me the logs 420":
         download_logs()
@@ -144,7 +144,7 @@ def process_query(user_query, name, website, products):
 
     with st.chat_message("assistant"):
         with st.spinner("Processing your input..."):
-            centralized_crew = init_crew(name, website, products)
+            centralized_crew = init_crew(name, website)
             result = centralized_crew.kickoff(inputs={'user_query': user_query})
             try:
                 # Remove potential markdown code block syntax
@@ -171,15 +171,15 @@ def process_query(user_query, name, website, products):
     st.rerun()
 
 
-def render_chatbot(name, website, products):
+def render_chatbot(name, website):
     # Chat input at the bottom of the page
     user_input = st.chat_input(f"Enter your question about {name}:")
 
     if user_input:
-        process_query(user_input, name, website, products)
+        process_query(user_input, name, website)
 
     # Handle follow-up questions
     if "follow_up_questions" in st.session_state:
         for question in st.session_state.follow_up_questions:
             if st.button(question):
-                process_query(question, name, website, products)
+                process_query(question, name, website)
