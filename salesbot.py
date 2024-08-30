@@ -11,9 +11,12 @@ from mail import send_logs_email
 # Company-specific details
 COMPANY_NAME = "OONA"
 COMPANY_DOMAIN = "oona-insurance.com/"
-COMPANY_ROLE = f'{COMPANY_NAME} Insurance Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} Insurance. You are an insurance platform'
-COMPANY_BACKSTORY = (f'You are a knowledgeable specialist in {COMPANY_NAME}\'s Insurance.')
+COMPANY_ROLE = f'{COMPANY_NAME} Insurance Sales Agent'
+COMPANY_GOAL = f'''Provide accurate and detailed information about {COMPANY_NAME} Insurance. 
+You are a sales agent, whose role it is to guide prospective clients into purchasing an insurance. 
+Answer any questions the prospect may have, and try to make them purchase an insurance, without being pushy and exaggerated.
+Make sure to understand the prospects context and needs, to suggest the most suitable plan.'''
+COMPANY_BACKSTORY = (f'You are a sales agent in {COMPANY_NAME}\'s Insurance.')
 
 
 def init_crew():
@@ -62,12 +65,13 @@ def init_crew():
         expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
         agent=Agent(
             role=f'{COMPANY_NAME} Information Bot',
-            goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
+            goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings, while helping prospective clients make a purchase decision.',
             verbose=True,
             memory=True,
             backstory=(
-                f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-                f'about {COMPANY_NAME}\'s insurances '
+                f'You are an intelligent sales agent specializing in {COMPANY_NAME} information. You provide detailed responses '
+                f'about {COMPANY_NAME}\'s insurances, with the objective of helping prospective clients get sufficient information to make a purchase.'
+                f'Do not push to make a sale in the first interaction, first fully understand the clients needs and suggest appropriate insurance plans.'
                 f'You only respond to queries related to {COMPANY_NAME}.'
             ),
             tools=[search_tool],
@@ -171,6 +175,11 @@ def salesbot():
         st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
     with right:
         st.button("Background info", on_click=lambda: st.session_state.update(page="infopage"))
+
+    # Display chat messages from history on app rerun
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
     # Chat input at the bottom of the page
     user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")

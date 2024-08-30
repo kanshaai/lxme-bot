@@ -84,17 +84,18 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Initialize chat history
 if "messages" not in st.session_state:
-    st.session_state.messages = []
-
+    st.session_state.messages = [{"role": "assistant", "content": "Hello! How can I help you today?"}]
+if "follow_up_questions" not in st.session_state:
+    st.session_state.follow_up_questions = [
+        "Tell me about your products",
+        "What are your prices?",
+        "In which countries are you available?"
+    ]
 if "page" not in st.session_state:
     st.session_state.page = "salesbot"
 
 
 if st.session_state.page == "salesbot":
-    # Display chat messages from history on app rerun
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
     salesbot()
 else:
     infopage()
