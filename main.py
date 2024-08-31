@@ -19,14 +19,16 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "ICICI Health Insurance"
-COMPANY_DOMAIN = "icicilombard.com/health-insurance/"
-COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on icicilombard.com/health-insurance/.'
+COMPANY_NAME = "OONA"
+COMPANY_DOMAIN = "oona-insurance.com/"
+COMPANY_ROLE = f'{COMPANY_NAME} Insurance Information Specialist'
+COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} Insurance. You are not a trading platform, you are an insurance platform'
 COMPANY_BACKSTORY = (
-    f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
-    f'You provide detailed information about their products, services, '
-    f'and solutions available on icicilombard.com/health-insurance/, including any innovations and key features.'
+    f'You are a knowledgeable specialist in {COMPANY_NAME}\'s Insurance. '
+   
+    f'It is an insurance company not a trading platform'
+    
+   
 )
 
 
@@ -85,7 +87,7 @@ centralized_task = Task(
         memory=True,
         backstory=(
             f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-            f'about {COMPANY_NAME}\'s health insurance, policies and boosters. '
+            f'about {COMPANY_NAME}\'s insurances. '
             f'You only respond to queries related to {COMPANY_NAME}.'
         ),
         tools=[search_tool],
@@ -112,32 +114,32 @@ body {
 
 /* Change the color of the main title */
 h1 {
-    color: #f26624;
+    color: #9b51e0;
 }
 
 /* Style the chat messages */
 .chat-message.user {
     background-color: #ffcccb;
-    color: #f26624;
-    border: 2px solid #f26624;
+    color: #9b51e0;
+    border: 2px solid #9b51e0;
 }
 
 .chat-message.assistant {
     background-color: #ffffcc;
-    color: #f26624;
-    border: 2px solid #f26624;
+    color: #9b51e0;
+    border: 2px solid #9b51e0;
 }
 
 /* Style the input box at the bottom */
 .stTextInput > div {
     background-color: #ffcccb;
     border-radius: 5px;
-    color: #f26624;
+    color: #9b51e0;
 }
 
 /* Style the buttons */
 button {
-    background-color: #f26624;
+    background-color: #9b51e0;
     color: #fff;
    
     border: none;
@@ -145,22 +147,26 @@ button {
 }
 
 .st-emotion-cache-1ghhuty{
-background-color: #f26624;
+background-color: #9b51e0;
 }
 
 .st-emotion-cache-bho8sy{
-background-color: #00305a;
+background-color: #ff6900;
 }
 /* Style the spinner */
 .stSpinner > div {
-    border-top-color: #f26624;
+    border-top-color: #9b51e0;
 }
 
 /* Style the download button */
 .stDownloadButton {
-    background-color: #f26624;
+    background-color: #9b51e0;
     color: #fff;
     border-radius: 5px;
+}
+
+.st-emotion-cache-1dp5vir{
+background-image: linear-gradient(90deg, rgb(155, 81, 224), rgb(155, 81, 224));
 }
 
 .black-text {
@@ -176,10 +182,11 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
-            
-    <h1 style="color:#00305a;">
-        <span style="color:#f26624;">ICICI Health Insurance</span> Customer Support
+      
+    <h1 style="color:#9b51e0;">
+           OONA Customer Support
     </h1>
+  
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
 
