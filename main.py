@@ -19,16 +19,15 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "M2P"
-COMPANY_DOMAIN = "m2pfintech.com/"
+COMPANY_NAME = "ICICI Health Insurance"
+COMPANY_DOMAIN = "icicilombard.com/health-insurance/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on m2pfintech.com.'
+COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on icicilombard.com/health-insurance/.'
 COMPANY_BACKSTORY = (
     f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
     f'You provide detailed information about their products, services, '
-    f'and solutions available on m2pfintech.com, including any innovations and key features.'
+    f'and solutions available on icicilombard.com/health-insurance/, including any innovations and key features.'
 )
-
 
 
 # Initialize the SerperDevTool with company-specific search settings
@@ -87,7 +86,7 @@ centralized_task = Task(
         memory=True,
         backstory=(
             f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-            f'about {COMPANY_NAME}\'s banking solution, lending solutin, credit cards, multiplatform, events, resources and their custom APIs '
+            f'about {COMPANY_NAME}\'s health insurance, policies and boosters. '
             f'You only respond to queries related to {COMPANY_NAME}.'
         ),
         tools=[search_tool],
@@ -114,32 +113,32 @@ body {
 
 /* Change the color of the main title */
 h1 {
-    color: #dc3545;
+    color: #f26624;
 }
 
 /* Style the chat messages */
 .chat-message.user {
     background-color: #ffcccb;
-    color: #dc3545;
-    border: 2px solid #dc3545;
+    color: #f26624;
+    border: 2px solid #f26624;
 }
 
 .chat-message.assistant {
     background-color: #ffffcc;
-    color: #dc3545;
-    border: 2px solid #dc3545;
+    color: #f26624;
+    border: 2px solid #f26624;
 }
 
 /* Style the input box at the bottom */
 .stTextInput > div {
     background-color: #ffcccb;
     border-radius: 5px;
-    color: #dc3545;
+    color: #f26624;
 }
 
 /* Style the buttons */
 button {
-    background-color: #dc3545;
+    background-color: #f26624;
     color: #fff;
    
     border: none;
@@ -147,26 +146,22 @@ button {
 }
 
 .st-emotion-cache-1ghhuty{
-background-color: #dc3545;
+background-color: #f26624;
 }
 
 .st-emotion-cache-bho8sy{
-background-color: #bd2025;
+background-color: #00305a;
 }
 /* Style the spinner */
 .stSpinner > div {
-    border-top-color: #dc3545;
+    border-top-color: #f26624;
 }
 
 /* Style the download button */
 .stDownloadButton {
-    background-color: #dc3545;
+    background-color: #f26624;
     color: #fff;
     border-radius: 5px;
-}
-
-.st-emotion-cache-1dp5vir{
-background-image: linear-gradient(90deg, rgb(255, 75, 75), rgb(255, 253, 128));
 }
 
 .black-text {
@@ -182,11 +177,10 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
-          
-   <img alt="m2pfintech" loading="lazy" width="60" height="60" decoding="async" data-nimg="1" style="color:transparent; margin-top:2%;" src="https://m2p-website-static-files.s3.ap-south-1.amazonaws.com/images/m2p-logo.png">  <h4 style="color:#bd2025;">
-           Customer Support
-    </h4>
-  
+            
+    <h1 style="color:#00305a;">
+        <span style="color:#f26624;">ICICI Health Insurance</span> Customer Support
+    </h1>
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
 
