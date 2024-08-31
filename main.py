@@ -19,14 +19,14 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "UOB"
-COMPANY_DOMAIN = "uob.com.sg/"
+COMPANY_NAME = "GROWW"
+COMPANY_DOMAIN = "groww.in/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on uob.com.s.'
+COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on groww.in.'
 COMPANY_BACKSTORY = (
     f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
     f'You provide detailed information about their products, services, '
-    f'and solutions available on uob.com.sg, including any innovations and key features.'
+    f'and solutions available on groww.in, including any innovations and key features.'
 )
 
 
@@ -87,7 +87,7 @@ centralized_task = Task(
         memory=True,
         backstory=(
             f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-            f'about {COMPANY_NAME}\'s banking solutions, Investements, account types, and solutions. '
+            f'about {COMPANY_NAME}\'s trading platforms, Direct mutual fund investement, and online demat. '
             f'You only respond to queries related to {COMPANY_NAME}.'
         ),
         tools=[search_tool],
@@ -114,32 +114,32 @@ body {
 
 /* Change the color of the main title */
 h1 {
-    color: #004585;
+    color: #00b386;
 }
 
 /* Style the chat messages */
 .chat-message.user {
     background-color: #ffcccb;
-    color: #004585;
-    border: 2px solid #004585;
+    color: #00b386;
+    border: 2px solid #00b386;
 }
 
 .chat-message.assistant {
     background-color: #ffffcc;
-    color: #004585;
-    border: 2px solid #004585;
+    color: #00b386;
+    border: 2px solid #00b386;
 }
 
 /* Style the input box at the bottom */
 .stTextInput > div {
     background-color: #ffcccb;
     border-radius: 5px;
-    color: #004585;
+    color: #00b386;
 }
 
 /* Style the buttons */
 button {
-    background-color: #004585;
+    background-color: #00b386;
     color: #fff;
    
     border: none;
@@ -147,20 +147,20 @@ button {
 }
 
 .st-emotion-cache-1ghhuty{
-background-color: #004585;
+background-color: #00b386;
 }
 
 .st-emotion-cache-bho8sy{
-background-color: red;
+background-color: #5367ff;
 }
 /* Style the spinner */
 .stSpinner > div {
-    border-top-color: #004585;
+    border-top-color: #00b386;
 }
 
 /* Style the download button */
 .stDownloadButton {
-    background-color: #004585;
+    background-color: #00b386;
     color: #fff;
     border-radius: 5px;
 }
@@ -178,8 +178,9 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
-    <h1 style="color:#dc3545;">
-        <span style="color:#004585;">UOB</span> Customer Support
+            
+    <h1 style="color:#5367ff;">
+        <span style="color:#00b386;">GROWW</span> Customer Support
     </h1>
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
