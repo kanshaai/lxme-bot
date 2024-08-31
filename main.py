@@ -19,16 +19,15 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "Lxme"
-COMPANY_DOMAIN = "lxme.in"
+COMPANY_NAME = "M2P"
+COMPANY_DOMAIN = "m2pfintech.com/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on lxme.in.'
+COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on m2pfintech.com.'
 COMPANY_BACKSTORY = (
     f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
     f'You provide detailed information about their products, services, '
-    f'and solutions available on lxme.in, including any innovations and key features.'
+    f'and solutions available on m2pfintech.com, including any innovations and key features.'
 )
-
 
 
 
@@ -88,7 +87,7 @@ centralized_task = Task(
         memory=True,
         backstory=(
             f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-            f'about {COMPANY_NAME}\'s trading platforms, financial instruments, account types, and market analysis tools. '
+            f'about {COMPANY_NAME}\'s banking solution, lending solutin, credit cards, multiplatform, events, resources and their custom APIs '
             f'You only respond to queries related to {COMPANY_NAME}.'
         ),
         tools=[search_tool],
@@ -115,32 +114,32 @@ body {
 
 /* Change the color of the main title */
 h1 {
-    color: #bf1f61;
+    color: #dc3545;
 }
 
 /* Style the chat messages */
 .chat-message.user {
     background-color: #ffcccb;
-    color: #bf1f61;
-    border: 2px solid #bf1f61;
+    color: #dc3545;
+    border: 2px solid #dc3545;
 }
 
 .chat-message.assistant {
     background-color: #ffffcc;
-    color: #bf1f61;
-    border: 2px solid #bf1f61;
+    color: #dc3545;
+    border: 2px solid #dc3545;
 }
 
 /* Style the input box at the bottom */
 .stTextInput > div {
     background-color: #ffcccb;
     border-radius: 5px;
-    color: #bf1f61;
+    color: #dc3545;
 }
 
 /* Style the buttons */
 button {
-    background-color: #bf1f61;
+    background-color: #dc3545;
     color: #fff;
    
     border: none;
@@ -148,22 +147,26 @@ button {
 }
 
 .st-emotion-cache-1ghhuty{
-background-color: #bf1f61;
+background-color: #dc3545;
 }
 
 .st-emotion-cache-bho8sy{
-background-color: black;
+background-color: #bd2025;
 }
 /* Style the spinner */
 .stSpinner > div {
-    border-top-color: #bf1f61;
+    border-top-color: #dc3545;
 }
 
 /* Style the download button */
 .stDownloadButton {
-    background-color: #bf1f61;
+    background-color: #dc3545;
     color: #fff;
     border-radius: 5px;
+}
+
+.st-emotion-cache-1dp5vir{
+background-image: linear-gradient(90deg, rgb(255, 75, 75), rgb(255, 253, 128));
 }
 
 .black-text {
@@ -179,9 +182,11 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
-    <h1 style="color:black;">
-        L<span style="color:#bf1f61;">X</span>ME Customer Support
-    </h1>
+          
+   <img alt="m2pfintech" loading="lazy" width="60" height="60" decoding="async" data-nimg="1" style="color:transparent; margin-top:2%;" src="https://m2p-website-static-files.s3.ap-south-1.amazonaws.com/images/m2p-logo.png">  <h4 style="color:#bd2025;">
+           Customer Support
+    </h4>
+  
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
 

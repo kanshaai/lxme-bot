@@ -1,0 +1,24 @@
+Role: user
+Content: tell me about 
+----------------------------------------
+Role: assistant
+Content: M2P Fintech provides a comprehensive suite of financial solutions tailored for fintechs, banks, and businesses. Their offerings include custom APIs for a variety of services such as banking, lending, payments, and credit cards. M2P's banking solutions encompass core banking systems, neobanking, and investment options, all designed to enhance digital banking experiences. Their lending solutions cater to both personal and business needs, providing seamless integration and robust infrastructure. M2P also excels in credit card solutions, enabling the creation and issuance of customizable physical and virtual cards with top-notch security and compliance features. Additionally, M2P supports multi-platform integration, ensuring their solutions are versatile and adaptable to various business models. They also host events and provide resources to keep clients updated with the latest in fintech innovations. M2P's custom APIs are the backbone of their offerings, allowing for tailored solutions that meet specific business requirements.
+
+For your reference:
+ 
+Here some youtube references
+
+
+https://www.youtube.com/watch?v=Bjq58t236VE
+,
+Here some web references
+
+
+https://m2pfintech.com/,
+https://developers.m2pfintech.com/,
+https://m2pfintech.com/credit-cards/,
+https://m2pfintech.com/neobanking/,
+https://m2pfintech.com/turing-core-banking/,
+https://in.linkedin.com/company/m2pfintech,
+https://www.linkedin.com/posts/m2pfintech_m2p-fintech-simplified-banking-lending-activity-7214655638734262273-2HJM,
+----------------------------------------
