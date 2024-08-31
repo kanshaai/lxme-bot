@@ -34,11 +34,10 @@ COMPANY_BACKSTORY = (
 class CompanySerperDevTool(SerperDevTool):
     def search(self, query):
         # Search the company website
-        print('pratjam weas jeejjs')
+        
         company_query = f"site:{COMPANY_DOMAIN} {query}"
         results = super().search(company_query)
-        print('wsefwd')
-        print(results)
+    
         relevant_results = [result for result in results if COMPANY_DOMAIN in result.get('link', '')]
         
 
@@ -199,7 +198,7 @@ def check_links(links, user_query):
     youtube_links = []
     youtube_response = ""
     for link in links:
-       if COMPANY_DOMAIN in link or "linkedin.com" in link:
+       if COMPANY_DOMAIN in link:
            web_links.append(link)
        if "youtube.com" in link and "watch" in link:
           
