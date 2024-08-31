@@ -19,14 +19,14 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "GROWW"
-COMPANY_DOMAIN = "groww.in/"
+COMPANY_NAME = "FLIP"
+COMPANY_DOMAIN = "flip.id/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on groww.in.'
+COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on flip.id.'
 COMPANY_BACKSTORY = (
     f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
     f'You provide detailed information about their products, services, '
-    f'and solutions available on groww.in, including any innovations and key features.'
+    f'and solutions available on flip.id, including any innovations and key features.'
 )
 
 
@@ -87,7 +87,7 @@ centralized_task = Task(
         memory=True,
         backstory=(
             f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-            f'about {COMPANY_NAME}\'s trading platforms, Direct mutual fund investement, and online demat. '
+            f'about {COMPANY_NAME}\'s financial services '
             f'You only respond to queries related to {COMPANY_NAME}.'
         ),
         tools=[search_tool],
@@ -114,32 +114,32 @@ body {
 
 /* Change the color of the main title */
 h1 {
-    color: #00b386;
+    color: #FD6542;
 }
 
 /* Style the chat messages */
 .chat-message.user {
     background-color: #ffcccb;
-    color: #00b386;
-    border: 2px solid #00b386;
+    color: #FD6542;
+    border: 2px solid #FD6542;
 }
 
 .chat-message.assistant {
     background-color: #ffffcc;
-    color: #00b386;
-    border: 2px solid #00b386;
+    color: #FD6542;
+    border: 2px solid #FD6542;
 }
 
 /* Style the input box at the bottom */
 .stTextInput > div {
     background-color: #ffcccb;
     border-radius: 5px;
-    color: #00b386;
+    color: #FD6542;
 }
 
 /* Style the buttons */
 button {
-    background-color: #00b386;
+    background-color: #FD6542;
     color: #fff;
    
     border: none;
@@ -147,22 +147,26 @@ button {
 }
 
 .st-emotion-cache-1ghhuty{
-background-color: #00b386;
+background-color: #FD6542;
 }
 
 .st-emotion-cache-bho8sy{
-background-color: #5367ff;
+background-color: #ff6900;
 }
 /* Style the spinner */
 .stSpinner > div {
-    border-top-color: #00b386;
+    border-top-color: #FD6542;
 }
 
 /* Style the download button */
 .stDownloadButton {
-    background-color: #00b386;
+    background-color: #FD6542;
     color: #fff;
     border-radius: 5px;
+}
+
+.st-emotion-cache-1dp5vir{
+background-image: linear-gradient(90deg, rgb(155, 81, 224), rgb(155, 81, 224));
 }
 
 .black-text {
@@ -178,10 +182,12 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
-            
-    <h1 style="color:#5367ff;">
-        <span style="color:#00b386;">GROWW</span> Customer Support
-    </h1>
+    <img alt="flip logo" src="https://storage.googleapis.com/dot-flip-dev/media-library/logo_lg_430b708631/logo_lg_430b708631.svg" loading="lazy" style = 'width:60px; margin-top:10%;' >
+      
+    <h4 style="color:#FD6542;">
+           Customer Support
+    </h4>
+  
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
 
