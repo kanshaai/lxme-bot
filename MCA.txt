@@ -1,0 +1,27 @@
+Role: user
+Content: Tell me about the latest MCA Update
+----------------------------------------
+Role: assistant
+Content: The latest update from the Ministry of Corporate Affairs (MCA) includes several significant changes and introductions as of 2023. The MCA has launched the third set of Company Forms covering 9 forms including MSME, BEN-2, and MGT-6. Additionally, the MCA has introduced the Master Data Services Beta Version in V-3 for testing purposes. Another significant update is the release of 56 new company forms, which led to the MCA portal being temporarily unavailable. Furthermore, the MCA has notified two major amendments to rules under the Companies Act, 2013, as of October 27, 2023. The web-form PAS-7 Form is now deployed on the MCA-21 Portal, and stakeholders can file requisite details according to the Companies (Prospectus and Allotment of Securities) Rules. The MCA has also mandated audit trails starting from April 1, 2023, as part of its ongoing efforts to ensure transparency and compliance in corporate governance.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.mca.gov.in/content/mca/global/en/notifications-tender/news-updates/updates.html,
+----------------------------------------
+Role: user
+Content: When A person shall be deemed to be the relative of another
+----------------------------------------
+Role: assistant
+Content: Under the Ministry of Corporate Affairs (MCA), the term 'relative' is defined in the context of related party disclosures and other regulatory requirements. According to the Companies Act, 1956 and its subsequent amendments, a person shall be deemed to be a relative of another if they fall under the specific categories outlined in the Act. These categories typically include immediate family members such as spouse, parents, siblings, and children. The exact definition and implications can vary based on the specific provisions of the Act and related notifications by the MCA.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.mca.gov.in/Ministry/notification/pdf/AS_18.pdf,
+https://www.mca.gov.in/Ministry/pdf/Companies_Act_1956_13jun2011.pdf,
+----------------------------------------
