@@ -84,13 +84,7 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Initialize chat history
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": "Hello! How can I help you today?"}]
-if "follow_up_questions" not in st.session_state:
-    st.session_state.follow_up_questions = [
-        "Tell me about your products",
-        "What are your prices?",
-        "In which countries are you available?"
-    ]
+    st.session_state.messages = [{"role": "assistant", "content": "Hello! How can I help you today? Select an insurance category, or type your question below:"}]
 if "page" not in st.session_state:
     st.session_state.page = "salesbot"
 

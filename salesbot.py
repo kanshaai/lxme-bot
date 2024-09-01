@@ -1,132 +1,92 @@
 import json
-import os
-from pathlib import Path
 import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
-from mail import send_logs_email
-
-
-
-# Company-specific details
-COMPANY_NAME = "OONA"
-COMPANY_DOMAIN = "oona-insurance.com/"
-COMPANY_ROLE = f'{COMPANY_NAME} Insurance Sales Agent'
-COMPANY_GOAL = f'''Provide accurate and detailed information about {COMPANY_NAME} Insurance. 
-You are a sales agent, whose role it is to guide prospective clients into purchasing an insurance. 
-Answer any questions the prospect may have, and try to make them purchase an insurance, without being pushy and exaggerated.
-Make sure to understand the prospects context and needs, to suggest the most suitable plan.'''
-COMPANY_BACKSTORY = (f'You are a sales agent in {COMPANY_NAME}\'s Insurance.')
 
 
 def init_crew():
-    # Initialize the SerperDevTool with company-specific search settings
     class CompanySerperDevTool(SerperDevTool):
         def search(self, query):
-            company_query = f"site:{COMPANY_DOMAIN} {query}"
+            company_query = f"site:https://www.oona-insurance.com {query}"
             results = super().search(company_query)
-            relevant_results = [result for result in results if COMPANY_DOMAIN in result.get('link', '')]
+            relevant_results = [result for result in results if 'https://www.oona-insurance.com' in result.get('link', '')]
             return relevant_results
 
     search_tool = CompanySerperDevTool()
 
-    # Agent setups
-    company_info_agent = Agent(
-        role=COMPANY_ROLE,
-        goal=COMPANY_GOAL,
-        verbose=True,
-        memory=True,
-        backstory=COMPANY_BACKSTORY,
-        tools=[search_tool]
+    # Define agents
+    info_agent = Agent(
+        role='Information Agent',
+        goal='Retrieve the correct answer for {user_query} from internet search. Just search the web once, and give the best answer you can. Do not keep searching further after the first time.',
+        backstory='You are responsible for providing the most accurate information.',
+        tools=[search_tool],
+        verbose=True
     )
 
-    out_of_context_agent = Agent(
-        role='Context Checker',
-        goal=f'Determine if a question is relevant to {COMPANY_NAME} and politely decline if not.',
+    context_agent = Agent(
+        role='Context Validation Agent',
+        goal='Determine if the asked question is relevant to Oona Insurance, politely decline otherwise.',
         verbose=True,
         memory=True,
-        backstory=(
-            f'You are responsible for determining if a question is relevant to {COMPANY_NAME}. '
-            f'If the question is not related, you respond politely indicating that the question is out of context and '
-            f'that only {COMPANY_NAME}-related information is provided.'
-        )
+        backstory='''You are responsible for determining if a question is relevant to Oona Insurance. If the question is not related, 
+you respond politely indicating that the question is out of context and that only Oona Insurance related information is provided.'''
     )
 
-    # Centralized Task
+    conversation_agent = Agent(
+        role='Conversation Control Agent',
+        goal='Check what is the best next step in the conversation. Choose between continuing the conversation with salesbot, escalating the matter to a human, or ready to offer a product.',
+        backstory='''You help guide a sales conversation that a prospective customer has with Oona sales bot. You decide in which direction the conversation should go next.
+If the conversation is following a normal course, with informed questions and answers, you should continue the conversation.
+If the assistant sales bot is not able to help the user, you should escalate the matter to a human.
+If the user seems satisfied enough with the answers and is ready to make a purchase, you should offer a product.''',
+        verbose=True
+    )
+
+
     centralized_task = Task(
-        description=(
-            f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately. '
-            f'If the query is about {COMPANY_NAME}, provide a detailed and informative response. '
-            f'Respond in JSON format with two keys: "answer" and "questions". '
-            f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions '
-            f'that are relevant to {COMPANY_NAME}.'
-            f'Ensure the response is in valid JSON format.'
-        ),
-        expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
+        description=f'You get a conversation with one or multiple messages between the user and the assistant. Do the following tasks:'
+        f'First, determine if {{user_query}} is relevant to Oona Insurance, by asking the context validator agent, and respond appropriately.'
+        f'Second, check what should happen with the conversation after this answer. Conversation: {{conversation}}. Ask the conversation control agent if the conversation should continue, it should escalate to a human, or you offer a product.'
+        f'If the query is about Oona Insurance and the conversation should continue, provide a detailed and informative response, by asking the information agent to search the web and retrieve information.'
+        f'If the conversation should be escalated or a product offer, simply provide an appropriate final response, without providing any additional information.',
+        expected_output='''A JSON object containing "answer" and "control". "answer" should contain text with the answer to follow the conversation, and "control" one out of three categories: 'continue', 'human' or 'product'.
+    Output json without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.''',
         agent=Agent(
-            role=f'{COMPANY_NAME} Information Bot',
-            goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings, while helping prospective clients make a purchase decision.',
+            role='Oona Insurance Sales Bot',
+            goal=f'Manage a sales conversation about Oona Insurance and its offerings.',
             verbose=True,
             memory=True,
-            backstory=(
-                f'You are an intelligent sales agent specializing in {COMPANY_NAME} information. You provide detailed responses '
-                f'about {COMPANY_NAME}\'s insurances, with the objective of helping prospective clients get sufficient information to make a purchase.'
-                f'Do not push to make a sale in the first interaction, first fully understand the clients needs and suggest appropriate insurance plans.'
-                f'You only respond to queries related to {COMPANY_NAME}.'
-            ),
+            backstory=('''You are an intelligent bot specializing in Oona Insurance information. You provide detailed responses about Oona Insurance. 
+    You only respond to queries related to Oona Insurance. Delegate tasks to helpers as needed. Always check if the user query is relevant to Oona Insurance.
+    Always check with the conversation control agent to see what the next step in the conversation should be. If additional information is required to give your answer, ask the information agent.
+    Formulate your final answer so that it is always appropriate to present the user.'''),
             tools=[search_tool],
             allow_delegation=True
         )
     )
 
-    # Centralized Crew setup
-    centralized_crew = Crew(
-        agents=[company_info_agent, out_of_context_agent],
+    info_agent.allow_delegation = False
+    context_agent.allow_delegation = False
+    conversation_agent.allow_delegation = False
+
+    conversation_crew = Crew(
+        agents=[context_agent, info_agent, conversation_agent],
         tasks=[centralized_task],
-        process=Process.sequential
+        process=Process.sequential  # Executes tasks in sequence
     )
 
-    return centralized_crew
+    return conversation_crew
 
 
-# Function to save the chat history to a file
-def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
-    with open(filename, "a") as file:
-        for message in st.session_state.messages:
-            file.write(f"Role: {message['role']}\n")
-            file.write(f"Content: {message['content']}\n")
-            file.write("-" * 40 + "\n")
-
-# Function to handle log downloads
-def download_logs():
-    log_file = f"{COMPANY_NAME}.txt"
-    if Path(log_file).exists():
-        # Prompt the user to download the file
-        st.download_button(
-            label="Download Logs",
-            data=open(log_file, "rb").read(),
-            file_name=log_file,
-            mime="text/plain"
-        )
-    else:
-        st.write("No logs found.")
+def conversation_history():
+    history = ''
+    for message in st.session_state.messages:
+        history += f"{message['role']}: {message['content']}\n"
+    return history
 
 
 # Function to process user query
 def process_query(user_query):
-    st.session_state.follow_up_questions = []
-    if user_query.lower() == "give me the logs 420":
-        download_logs()
-        return  # Exit the function to avoid processing the query further
-    
-    if user_query.lower() == "email me the logs 420":
-        success, message = send_logs_email('souravvmishra@gmail.com', COMPANY_NAME)
-        if success:
-            st.success(message)
-        else:
-            st.error(message)
-        return  # Exit the function to avoid processing the query further
-
     with st.chat_message("user"):
         st.markdown(user_query)
     st.session_state.messages.append({"role": "user", "content": user_query})
@@ -136,7 +96,8 @@ def process_query(user_query):
     with st.chat_message("assistant"):
         with st.spinner("Processing your input..."):
             crew = init_crew()
-            result = crew.kickoff(inputs={'user_query': user_query})
+            # MAKE CONVERSATION HISTORY
+            result = crew.kickoff(inputs={'user_query': user_query, 'conversation': conversation_history()})
             try:
                 # Remove potential markdown code block syntax
                 cleaned_result = str(json.loads(result.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
@@ -144,11 +105,11 @@ def process_query(user_query):
                 # Parse JSON response
                 parsed_result = json.loads(cleaned_result)
                 answer = parsed_result.get("answer", "")
-                questions = parsed_result.get("questions", [])
+                control = parsed_result.get("control", "")
                 st.markdown(f"{answer}")
 
                 # Update follow-up questions in session state
-                st.session_state.follow_up_questions = questions
+                st.session_state.control = control
 
             except json.JSONDecodeError as e:
                 print(e)
@@ -158,7 +119,6 @@ def process_query(user_query):
     st.session_state.messages.append({"role": "assistant", "content": answer})
 
     # Save chat history to file
-    save_chat_history()
     st.rerun()
 
 
@@ -182,13 +142,19 @@ def salesbot():
             st.markdown(message["content"])
 
     # Chat input at the bottom of the page
-    user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
+    user_input = st.chat_input(f"Enter your question about Oona Insurance:")
 
     if user_input:
         process_query(user_input)
 
-    # Handle follow-up questions
-    if "follow_up_questions" in st.session_state:
-        for question in st.session_state.follow_up_questions:
-            if st.button(question):
-                process_query(question)
+    if len(st.session_state.messages) == 1:
+        for category in ["Car insurance", "Travel insurance", "Health insurance", "CTPL"]:
+            if st.button(category):
+                process_query(f"Tell me more about {category}")
+
+    if "control" in st.session_state:
+        if st.session_state.control.lower() == 'human':
+            if st.button("Speak to a human", help="If you prefer to speak with a human, click here. Else, keep talking in the chat."):
+                st.markdown("Chat ends. Here speak to a human")
+        if st.session_state.control.lower() == 'product':
+            st.button("Go to product", help="If you are ready to purchase a product, click here. Else, keep talking in the chat.", on_click=lambda: st.session_state.update(page="infopage"))
