@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 
 from salesbot import salesbot
 from infopage import infopage
+from storage import save_to_storage
 
 # Load environment variables from .env file
 load_dotenv()
@@ -87,6 +88,9 @@ if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "assistant", "content": "Hello! How can I help you today? Select an insurance category, or type your question below:"}]
 if "page" not in st.session_state:
     st.session_state.page = "salesbot"
+if "stored" not in st.session_state:
+    st.session_state.stored = True
+    save_to_storage()
 
 
 if st.session_state.page == "salesbot":

@@ -85,6 +85,14 @@ def conversation_history():
     return history
 
 
+def save_chat_history():
+    with open("oona.txt", "a") as file:
+        for message in st.session_state.messages:
+            file.write(f"Role: {message['role']}\n")
+            file.write(f"Content: {message['content']}\n")
+            file.write("-" * 40 + "\n")
+
+
 # Function to process user query
 def process_query(user_query):
     with st.chat_message("user"):
@@ -96,7 +104,6 @@ def process_query(user_query):
     with st.chat_message("assistant"):
         with st.spinner("Processing your input..."):
             crew = init_crew()
-            # MAKE CONVERSATION HISTORY
             result = crew.kickoff(inputs={'user_query': user_query, 'conversation': conversation_history()})
             try:
                 # Remove potential markdown code block syntax
@@ -119,6 +126,7 @@ def process_query(user_query):
     st.session_state.messages.append({"role": "assistant", "content": answer})
 
     # Save chat history to file
+    save_chat_history()
     st.rerun()
 
 
