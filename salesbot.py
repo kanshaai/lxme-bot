@@ -4,9 +4,12 @@ from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 
 from storage import save_chat_history
+from product import product_button
 
 
 def init_crew():
+
+    # Define search tool
     class CompanySerperDevTool(SerperDevTool):
         def search(self, query):
             company_query = f"site:https://www.oona-insurance.com {query}"
@@ -19,9 +22,20 @@ def init_crew():
     # Define agents
     info_agent = Agent(
         role='Information Agent',
-        goal='Retrieve the correct answer for {user_query} from internet search. Just search the web once, and give the best answer you can. Do not keep searching further after the first time.',
-        backstory='You are responsible for providing the most accurate information.',
+        goal='Retrieve the correct answer for {user_query} from internet search. Search the web once, and give the best answer you can. Summarize the information you find online.',
+        backstory='''You are responsible for providing the most accurate information. Retrieve all relevant information from the internet search, and give that in a textual answer.
+Do not reference urls, websites, or customer service in your answer. Just provide a summarized version of the information found online, in order to answer the question appropriately without writing too much.
+Do not come up with any information or numbers that were not found online.''',
         tools=[search_tool],
+        verbose=True
+    )
+
+    sales_agent = Agent(
+        role='Sales Agent',
+        goal='Guide customers through the insurance offerings and encourage them to purchase a suitable package while maintaining a friendly and non-pushy tone.',
+        backstory='''You are designed to assist customers in finding the best coverage for their needs. Buying insurance is an important decision, so listen carefully to the customer's concerns and preferences.
+Your approach is helpful and informative, aiming to build trust rather than pressure the customer. Your ultimate goal is to make the customer feel confident in their decision to purchase insurance.
+Do not come up with any information or numbers yourself, just try to make a sale with provided data. Do not make too long text in your answer. Keep it concise and to the point.''',
         verbose=True
     )
 
@@ -36,33 +50,38 @@ you respond politely indicating that the question is out of context and that onl
 
     conversation_agent = Agent(
         role='Conversation Control Agent',
-        goal='Check what is the best next step in the conversation. Choose between continuing the conversation with salesbot, escalating the matter to a human, or ready to offer a product.',
+        goal='Check what is the best next step in the conversation. Choose between giving more information, moving towards a sale, escalating the matter to a human, or ready to offer a product.',
         backstory='''You help guide a sales conversation that a prospective customer has with Oona sales bot. You decide in which direction the conversation should go next.
-If the conversation is following a normal course, with informed questions and answers, you should continue the conversation.
-If the assistant sales bot is not able to help the user, you should escalate the matter to a human.
+There are two chatbots available, the information bot and the sales bot.
+If the user is asking exploratory questions and has little information about Oona Insurance, you should ask the information bot.
+If the first exploratory questions have been answered, and the user is asking more specific questions, you should ask the sales bot.
+If neither the information bot nor sales bot is not able to help the user, you should escalate the matter to a human.
 If the user seems satisfied enough with the answers and is ready to make a purchase, you should offer a product.''',
         verbose=True
     )
 
-
+    # Define task
     centralized_task = Task(
-        description=f'You get a conversation with one or multiple messages between the user and the assistant. Do the following tasks:'
-        f'First, determine if {{user_query}} is relevant to Oona Insurance, by asking the context validator agent, and respond appropriately.'
-        f'Second, check what should happen with the conversation after this answer. Conversation: {{conversation}}. Ask the conversation control agent if the conversation should continue, it should escalate to a human, or you offer a product.'
-        f'If the query is about Oona Insurance and the conversation should continue, provide a detailed and informative response, by asking the information agent to search the web and retrieve information.'
-        f'If the conversation should be escalated or a product offer, simply provide an appropriate final response, without providing any additional information.',
+        description=f'''You get a conversation with one or multiple messages between the user and the assistant. Do the following tasks:
+First, determine if {{user_query}} is relevant to Oona Insurance, by asking the context validator agent, and respond appropriately.
+Second, check what should happen with the conversation after this answer. Conversation: {{conversation}}. Ask the conversation control agent if the conversation should continue with information, move towards a sale, escalate to a human, or you offer a product.
+If the query is about Oona Insurance and the conversation is in the first informative phase, provide a detailed and informative response, by asking the information agent to search the web and retrieve information. Provide a summarized version of this information that answers the question, do not use too many sentences.
+If the query is about Oona Insurance and the user is ready to talk about a sale, provide a response that moves the conversation towards a sale, by asking the sales agent to make a sales pitch.
+Always ask either the information bot or the sales bot, do not come up with an answer yourself. Do not come up with any information or numbers that were not found online.
+If the conversation should be escalated or a product offer, simply provide an appropriate final response, without providing any additional information.''',
         expected_output='''A JSON object containing "answer" and "control". "answer" should contain text with the answer to follow the conversation, and "control" one out of three categories: 'continue', 'human' or 'product'.
-    Output json without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.''',
+Output json without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.
+Text output for "answer" should be able to render in markdown, using appropriate notation and newlines for lists, do not use other markdown elements aside from lists.''',
         agent=Agent(
             role='Oona Insurance Sales Bot',
             goal=f'Manage a sales conversation about Oona Insurance and its offerings.',
             verbose=True,
             memory=True,
             backstory=('''You are an intelligent bot specializing in Oona Insurance information. You provide detailed responses about Oona Insurance. 
-    You only respond to queries related to Oona Insurance. Delegate tasks to helpers as needed. Always check if the user query is relevant to Oona Insurance.
-    Always check with the conversation control agent to see what the next step in the conversation should be. If additional information is required to give your answer, ask the information agent.
-    Formulate your final answer so that it is always appropriate to present the user.'''),
-            tools=[search_tool],
+You only respond to queries related to Oona Insurance. Delegate tasks to helpers as needed. Always check if the user query is relevant to Oona Insurance.
+Always check with the conversation control agent to see what the next step in the conversation should be.
+If additional information is required to give your answer, ask the information agent. If initial information has been given, ask the sales agent to move towards a sale.
+Formulate your final answer so that it is always appropriate to present the user. Do not refer to any urls, websites or customer service in your answer. If your answer contains lists or subtitles, add appropriate markdown elements to render.'''),
             allow_delegation=True
         )
     )
@@ -71,8 +90,9 @@ If the user seems satisfied enough with the answers and is ready to make a purch
     context_agent.allow_delegation = False
     conversation_agent.allow_delegation = False
 
+    # Init crew
     conversation_crew = Crew(
-        agents=[context_agent, info_agent, conversation_agent],
+        agents=[context_agent, info_agent, sales_agent, conversation_agent],
         tasks=[centralized_task],
         process=Process.sequential  # Executes tasks in sequence
     )
@@ -81,6 +101,7 @@ If the user seems satisfied enough with the answers and is ready to make a purch
 
 
 def conversation_history():
+    # Make a string containing all messages in current history
     history = ''
     for message in st.session_state.messages:
         history += f"{message['role']}: {message['content']}\n"
@@ -132,11 +153,11 @@ def salesbot():
         </h1>
     
     """, unsafe_allow_html=True)
-    left, right = st.columns([8, 2])
-    with left:
-        st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
-    with right:
-        st.button("Background info", on_click=lambda: st.session_state.update(page="infopage"))
+    #left, right = st.columns([8, 2])
+    #with left:
+    st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
+    #with right:
+    #    st.button("Background info", on_click=lambda: st.session_state.update(page="infopage"))
 
     # Display chat messages from history on app rerun
     for message in st.session_state.messages:
@@ -159,4 +180,5 @@ def salesbot():
             if st.button("Speak to a human", help="If you prefer to speak with a human, click here. Else, keep talking in the chat."):
                 st.markdown("Chat ends. Here speak to a human")
         if st.session_state.control.lower() == 'product':
-            st.button("Go to product", help="If you are ready to purchase a product, click here. Else, keep talking in the chat.", on_click=lambda: st.session_state.update(page="infopage"))
+            if st.button("Go to product", help="If you are ready to purchase a product, click here. Else, keep talking in the chat."):
+                product_button()
