@@ -1,10 +1,26 @@
 from datetime import datetime
 from azure.identity import DefaultAzureCredential
 from azure.storage.blob import BlobClient, StandardBlobTier
+import streamlit as st
+import os
+
+
+# Save current chat history to text file
+def save_chat_history():
+    with open("oona.txt", "a") as file:
+        for message in st.session_state.messages[-2:]:
+            file.write(f"Role: {message['role']}\n")
+            file.write(f"Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            file.write(f"Content: {message['content']}\n")
+            file.write("-" * 40 + "\n")
 
 
 # Check if log file is ready to store away
 def check_file():
+    if not os.path.exists('oona.txt'):
+        restart_file()
+        return False
+    
     with open('oona.txt', 'r') as file:
 
         # Check if logs are written into file
@@ -16,14 +32,14 @@ def check_file():
         line = file.readline()
         time = datetime.strptime(line, "%Y-%m-%d %H:%M:%S")
         current_time = datetime.now()
-        if (current_time - time).days > 7:
+        if (current_time - time).days > 1:
             return True
         return False
 
 
 # Upload logs to Azure Blob Storage
 def upload_logs():
-
+    
     # Connect with blob storage
     blob_name = "oona_sales_log_" + datetime.now().strftime("%Y-%m-%d")
     blob_client = BlobClient(
@@ -54,7 +70,3 @@ def save_to_storage():
         return
     if upload_logs():
         restart_file()
-
-
-if __name__ == '__main__':
-    restart_file()

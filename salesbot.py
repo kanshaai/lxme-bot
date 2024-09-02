@@ -3,6 +3,8 @@ import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 
+from storage import save_chat_history
+
 
 def init_crew():
     class CompanySerperDevTool(SerperDevTool):
@@ -85,14 +87,6 @@ def conversation_history():
     return history
 
 
-def save_chat_history():
-    with open("oona.txt", "a") as file:
-        for message in st.session_state.messages:
-            file.write(f"Role: {message['role']}\n")
-            file.write(f"Content: {message['content']}\n")
-            file.write("-" * 40 + "\n")
-
-
 # Function to process user query
 def process_query(user_query):
     with st.chat_message("user"):
@@ -134,7 +128,7 @@ def salesbot():
     st.markdown("""
         
         <h1 style="color:#9b51e0;">
-            OONA Customer Support
+            OONA Sales
         </h1>
     
     """, unsafe_allow_html=True)
