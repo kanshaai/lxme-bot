@@ -11,3 +11,6 @@ az login
 
 # Build and deploy the Docker image with secret build arguments
 az acr build --registry kanshakbregistry --image oona-sales-demo --secret-build-arg OPENAI_API_KEY="${OPENAI_API_KEY}" --secret-build-arg SERPER_API_KEY="${SERPER_API_KEY}" .
+
+# Restart webapp to reflect latest container changes
+az webapp restart --resource-group knowledge-bots-demos --name kansha-oona-salesbot
