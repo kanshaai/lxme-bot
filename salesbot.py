@@ -3,7 +3,7 @@ import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 
-from storage import save_chat_history
+import storage as stg
 from product import product_button
 
 
@@ -110,6 +110,12 @@ def conversation_history():
 
 # Function to process user query
 def process_query(user_query):
+    if user_query.lower() == "give me today logs 420":
+        stg.download_current_logs()
+        return
+    if user_query.lower() == "give me all logs 420":
+        stg.download_all_logs()
+        return
     with st.chat_message("user"):
         st.markdown(user_query)
     st.session_state.messages.append({"role": "user", "content": user_query})
@@ -141,7 +147,7 @@ def process_query(user_query):
     st.session_state.messages.append({"role": "assistant", "content": answer})
 
     # Save chat history to file
-    save_chat_history()
+    stg.save_chat_history()
     st.rerun()
 
 
@@ -153,11 +159,7 @@ def salesbot():
         </h1>
     
     """, unsafe_allow_html=True)
-    #left, right = st.columns([8, 2])
-    #with left:
     st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
-    #with right:
-    #    st.button("Background info", on_click=lambda: st.session_state.update(page="infopage"))
 
     # Display chat messages from history on app rerun
     for message in st.session_state.messages:
