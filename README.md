@@ -1,3 +1,8 @@
+## Download logs
+
+Currently, logs will be stored in azure blob storage 'kanshademostorage'. During a conversation, each time the chatbot answers, the last two messages will be appended to a local .txt file. (Please note this differs from before, where the whole conversation was stored every time, leading to a lot of redundancy). Once per day, the text file gets uploaded to azure blob storage and cleaned, to be filled again.
+Downloading the text file can be done by typing 'give me the logs 420' into the chat. Currently, a local file download simply happens. We want to make a more secure solution for that asap.
+
 ## Azure Deployment Instructions
 
 There are two scripts to automatically interact with our azure. 
