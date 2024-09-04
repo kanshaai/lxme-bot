@@ -75,7 +75,7 @@ centralized_task = Task(
         f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately. '
         f'If the query is about {COMPANY_NAME}, provide a detailed and informative response. '
         f'Respond in JSON format with two keys: "answer" and "questions". '
-        f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions '
+        f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions. Make sure to answer in proper format, if the answer have list it should be formatted as a list not a pararaph '
         f'that are relevant to {COMPANY_NAME}.'
         f'Ensure the response is in valid JSON format.'
     ),
@@ -113,6 +113,9 @@ body {
 }
 
 /* Change the color of the main title */
+#MainMenu {visibility: hidden;}
+header {visibility: hidden;}
+footer {visibility: hidden;}
 h1 {
     color: #bf1f61;
 }
@@ -177,10 +180,10 @@ background-color: black;
 .bottom-icons {
     
     width: 100%;
-    background-color: white; /* Change to your desired background color */
+    
     text-align: center;
     
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+    
     display:flex;
 }
 .bottom-icons img {
@@ -191,7 +194,7 @@ background-color: black;
 
 @media (max-width: 50.5rem) {
     .st-emotion-cache-1eo1tir {
-        max-width: calc(111vw);
+        max-width: calc(90vw);
     }
 }
 </style>
@@ -202,13 +205,13 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
-    <h1 style="color:#bf1f61;">
+    <h3 style="color:#bf1f61; margin-left:5px;">
         L<span style="color:#bf1f61;">X</span>ME Customer Support
-    </h1>
+    </h3>
 """, unsafe_allow_html=True)
 st.markdown("""
  <div class="bottom-icons">
-    <p style="margin: 0 10px;"> For Human Support </p>
+    <p style="margin: 0 10px; color:#bf1f61"> For Human Support: </p>
     <a href="#"><img src="https://img.icons8.com/?size=100&id=9729&format=png&color=bf1f61"  alt="Home"/></a>
     <a href="#"><img src="https://img.icons8.com/?size=100&id=16733&format=png&color=bf1f61" alt="Search"/></a>
     <a href="#"><img src="https://img.icons8.com/?size=100&id=Y2GfpkgYNp42&format=png&color=bf1f61" alt="Info"/></a>
@@ -373,5 +376,3 @@ if "follow_up_questions" in st.session_state:
     for question in st.session_state.follow_up_questions:
         if st.button(question):
             process_query(question)
-
-
