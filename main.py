@@ -233,20 +233,11 @@ for message in st.session_state.messages:
 def check_links(links, user_query):
     web_links = []
     youtube_links = []
-    youtube_response = ""
     for link in links:
        if COMPANY_DOMAIN in link:
            web_links.append(link)
        if "youtube.com" in link and "watch" in link:
-          
           youtube_links.append(link)
-   
-       
-               
-
-               
-               
-    
     return web_links, youtube_links
            
 
@@ -310,8 +301,6 @@ def process_query(user_query):
         st.markdown(user_query)
     st.session_state.messages.append({"role": "user", "content": user_query})
     
-    final_answer = ""  # Initialize the answer variable
-
     with st.chat_message("assistant"):
         with st.spinner("Processing your input..."):
             result = centralized_crew.kickoff(inputs={'user_query': user_query})
@@ -328,23 +317,16 @@ def process_query(user_query):
                 link_text = " "
                 
                 if len(youtube)>0:
-                    
-                    link_text += '\nHere some youtube references\n' + '\n'
+                    link_text += '\nHere some youtube references\n\n'
                     for link in youtube:
-                    
-                         link_text += '\n' + link + '\n' +','
-                    
-                
+                         link_text += '\n\n' + link + ',\n\n'
                 if len(web)>0:
-                    link_text += '\nHere some web references\n' + '\n'
+                    link_text += '\nHere some web references\n\n'
                     for link in web:
-                        
-                        link_text += '\n' + link + ','
-                    
+                        link_text += '\n' + link + ',\n\n'
 
-
-                
-                final_answer = answer + '\n\nFor your reference:\n' + link_text
+                if len(web) > 0 or len(youtube) > 0:
+                    answer = answer + '\n\nFor your reference:\n' + link_text
                 
 
                 # Update follow-up questions in session state
@@ -355,9 +337,7 @@ def process_query(user_query):
                 st.markdown(f"**Error parsing JSON:**\n{result}")
                 answer = "There was an error processing your request."
 
-    st.session_state.messages.append({"role": "assistant", "content": final_answer})
-    
-    
+    st.session_state.messages.append({"role": "assistant", "content": answer})
 
     # Save chat history to file
     save_chat_history()
