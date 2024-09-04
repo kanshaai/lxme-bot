@@ -7,6 +7,7 @@ from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
 
 from mail import send_logs_email
+from storage import save_to_storage, save_chat_history
 
 # Load environment variables from .env file
 load_dotenv()
@@ -178,18 +179,15 @@ st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_h
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+# Check once if logs are ready to store
+if "stored" not in st.session_state:
+    st.session_state.stored = True
+    save_to_storage(COMPANY_NAME)
+
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
-
-# Function to save the chat history to a file
-def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
-    with open(filename, "a") as file:
-        for message in st.session_state.messages:
-            file.write(f"Role: {message['role']}\n")
-            file.write(f"Content: {message['content']}\n")
-            file.write("-" * 40 + "\n")
 
 # Function to handle log downloads
 def download_logs():
@@ -252,7 +250,7 @@ def process_query(user_query):
     st.session_state.messages.append({"role": "assistant", "content": answer})
 
     # Save chat history to file
-    save_chat_history()
+    save_chat_history(f"{COMPANY_NAME}.txt")
     st.rerun()
 
 # Chat input at the bottom of the page
