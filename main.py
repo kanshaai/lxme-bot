@@ -75,7 +75,7 @@ centralized_task = Task(
         f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately. '
         f'If the query is about {COMPANY_NAME}, provide a detailed and informative response. '
         f'Respond in JSON format with two keys: "answer" and "questions". '
-        f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions '
+        f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions. Make sure to answer in proper format, if the answer have list it should be formatted as a list not a pararaph'
         f'that are relevant to {COMPANY_NAME}.'
         f'Ensure the response is in valid JSON format.'
     ),
@@ -113,6 +113,9 @@ body {
 }
 
 /* Change the color of the main title */
+#MainMenu {visibility: hidden;}
+header {visibility: hidden;}
+footer {visibility: hidden;}
 h1 {
     color: #bf1f61;
 }
@@ -178,9 +181,9 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
-    <h1 style="color:black;">
+    <h3 style="color:#bf1f61; margin-left:5px;">
         L<span style="color:#bf1f61;">X</span>ME Customer Support
-    </h1>
+    </h3>
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
 
@@ -292,25 +295,16 @@ def process_query(user_query):
                 link_text = " "
                 
                 if len(youtube)>0:
-                    
-                    link_text += '\nHere some youtube references\n' + '\n'
+                    link_text += '\nHere some youtube references\n\n'
                     for link in youtube:
-                    
-                         link_text += '\n' + link + '\n' +','
-                    
-                
+                         link_text += '\n\n' + link + ',\n\n'
                 if len(web)>0:
-                    link_text += '\nHere some web references\n' + '\n'
+                    link_text += '\nHere some web references\n\n'
                     for link in web:
-                        
-                        link_text += '\n' + link + ','
-                    
+                        link_text += '\n' + link + ',\n\n'
 
-
-                
-                final_answer = answer + '\n\nFor your reference:\n' + link_text
-                
-
+                if len(web) > 0 or len(youtube) > 0:
+                    answer = answer + '\n\nFor your reference:\n' + link_text                
                 # Update follow-up questions in session state
                 st.session_state.follow_up_questions = questions
 
@@ -319,9 +313,7 @@ def process_query(user_query):
                 st.markdown(f"**Error parsing JSON:**\n{result}")
                 answer = "There was an error processing your request."
 
-    st.session_state.messages.append({"role": "assistant", "content": final_answer})
-    
-    
+    st.session_state.messages.append({"role": "assistant", "content": answer})
 
     # Save chat history to file
     save_chat_history()
