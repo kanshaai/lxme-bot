@@ -1,7 +1,7 @@
 ## Azure Deployment Instructions
 
 There are two scripts to automatically interact with our azure. 
-```create_app.sh``` will initiates a new web app
+```create_app.sh``` will initiates a new web app on our demo group (not production)
 ```deploy.sh``` will redeploy current code to an existing webapp
 
 ### Prerequisites
