@@ -208,9 +208,9 @@ def download_logs():
 # Function to process user query
 def process_query(user_query):
     st.session_state.follow_up_questions = []
-    #if user_query.lower() == "give me the logs 420":
-    #    download_logs()
-    #    return  # Exit the function to avoid processing the query further
+    if user_query.lower() == "give me the logs 420":
+        download_logs()
+        return  # Exit the function to avoid processing the query further
     
     if user_query.lower() == "email me the logs 420":
         success, message = send_logs_email('souravvmishra@gmail.com', COMPANY_NAME)
