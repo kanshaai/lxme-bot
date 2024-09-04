@@ -1,0 +1,669 @@
+Role: user
+Content: Show me some red tshirts for less than 500
+----------------------------------------
+Role: assistant
+Content: Sure! Here are some red t-shirts available on MYNTRA for less than 500 INR:
+1. Alcis Women Red Solid Polo Collar T-shirt - Rs. 395
+2. Men Sports Printed Applique T-shirt - Rs. 415
+3. Rapid-Dry Training T-shirt - Rs. 422
+4. Kalt Colourblocked Hooded T-shirt - Rs. 256 (with coupon)
+5. The Roadster Lifestyle Co Women Red & Black Colourblocked T-shirt - Rs. 569 (discounted from Rs. 343)
+
+You can find more options by visiting the following links:
+- [Red Polo T-shirts](https://www.myntra.com/women-red-tshirt-polo-tshirts)
+- [Sport Red T-shirts](https://www.myntra.com/sport-red-tshirts)
+- [Red Hooded T-shirts](https://www.myntra.com/red-men-mens-t-shirts-hooded-shirt)
+- [Red Tops](https://www.myntra.com/red-tops)
+- [Men Shirts Under 500](https://www.myntra.com/men-shirts-under-500)
+- [Red Black Jersey T-shirts](https://www.myntra.com/red-black-jersey-t-shirts)
+- [Roadster T-shirts](https://www.myntra.com/roadster-tshirts)
+
+For your reference:
+ 
+----------------------------------------
+Role: user
+Content: Show me some red tshirts for less than 500
+----------------------------------------
+Role: assistant
+Content: Sure! Here are some red t-shirts available on MYNTRA for less than 500 INR:
+1. Alcis Women Red Solid Polo Collar T-shirt - Rs. 395
+2. Men Sports Printed Applique T-shirt - Rs. 415
+3. Rapid-Dry Training T-shirt - Rs. 422
+4. Kalt Colourblocked Hooded T-shirt - Rs. 256 (with coupon)
+5. The Roadster Lifestyle Co Women Red & Black Colourblocked T-shirt - Rs. 569 (discounted from Rs. 343)
+
+You can find more options by visiting the following links:
+- [Red Polo T-shirts](https://www.myntra.com/women-red-tshirt-polo-tshirts)
+- [Sport Red T-shirts](https://www.myntra.com/sport-red-tshirts)
+- [Red Hooded T-shirts](https://www.myntra.com/red-men-mens-t-shirts-hooded-shirt)
+- [Red Tops](https://www.myntra.com/red-tops)
+- [Men Shirts Under 500](https://www.myntra.com/men-shirts-under-500)
+- [Red Black Jersey T-shirts](https://www.myntra.com/red-black-jersey-t-shirts)
+- [Roadster T-shirts](https://www.myntra.com/roadster-tshirts)
+
+For your reference:
+ 
+----------------------------------------
+Role: user
+Content: I want to get some big brand sports shoes, can you show me some shoes with big discounts
+----------------------------------------
+Role: assistant
+Content: Myntra offers a wide range of big brand sports shoes with significant discounts. You can find discounts up to 80% on various branded men's sports shoes. For instance, you can find deals on brands like ASICS, Adidas, New Balance, and more. You can explore the latest collection of branded men's sports shoes and enjoy discounts on Myntra's website.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/men-sports-shoes,
+https://www.myntra.com/sports-shoes,
+https://www.myntra.com/shop/prebuzz,
+https://www.myntra.com/asics-shoes,
+https://www.myntra.com/sports-shoes/big-fox/big-fox-men-grey-running-sports-shoes/13428394/buy,
+https://www.myntra.com/sports-shoes/asics/asics-men-blue--white-woven-design-jolt-1-running-shoes/15117940/buy,
+https://www.myntra.com/gym-shoes,
+https://www.myntra.com/big-fox,
+https://www.myntra.com/sports-shoes/impakto/impakto-barefoot-rooted-comfortable-big-toe-box-gym-cross-training-walking-shoes-for-men/26779560/buy,
+https://www.myntra.com/sports-shoes/asian/asian-men--waterproof-13-big-mesh-running-shoes/25948968/buy,
+----------------------------------------
+Role: user
+Content: Show me some red tshirts for less than 500
+----------------------------------------
+Role: assistant
+Content: Sure! Here are some red t-shirts available on MYNTRA for less than 500 INR:
+1. Alcis Women Red Solid Polo Collar T-shirt - Rs. 395
+2. Men Sports Printed Applique T-shirt - Rs. 415
+3. Rapid-Dry Training T-shirt - Rs. 422
+4. Kalt Colourblocked Hooded T-shirt - Rs. 256 (with coupon)
+5. The Roadster Lifestyle Co Women Red & Black Colourblocked T-shirt - Rs. 569 (discounted from Rs. 343)
+
+You can find more options by visiting the following links:
+- [Red Polo T-shirts](https://www.myntra.com/women-red-tshirt-polo-tshirts)
+- [Sport Red T-shirts](https://www.myntra.com/sport-red-tshirts)
+- [Red Hooded T-shirts](https://www.myntra.com/red-men-mens-t-shirts-hooded-shirt)
+- [Red Tops](https://www.myntra.com/red-tops)
+- [Men Shirts Under 500](https://www.myntra.com/men-shirts-under-500)
+- [Red Black Jersey T-shirts](https://www.myntra.com/red-black-jersey-t-shirts)
+- [Roadster T-shirts](https://www.myntra.com/roadster-tshirts)
+
+For your reference:
+ 
+----------------------------------------
+Role: user
+Content: I want to get some big brand sports shoes, can you show me some shoes with big discounts
+----------------------------------------
+Role: assistant
+Content: Myntra offers a wide range of big brand sports shoes with significant discounts. You can find discounts up to 80% on various branded men's sports shoes. For instance, you can find deals on brands like ASICS, Adidas, New Balance, and more. You can explore the latest collection of branded men's sports shoes and enjoy discounts on Myntra's website.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/men-sports-shoes,
+https://www.myntra.com/sports-shoes,
+https://www.myntra.com/shop/prebuzz,
+https://www.myntra.com/asics-shoes,
+https://www.myntra.com/sports-shoes/big-fox/big-fox-men-grey-running-sports-shoes/13428394/buy,
+https://www.myntra.com/sports-shoes/asics/asics-men-blue--white-woven-design-jolt-1-running-shoes/15117940/buy,
+https://www.myntra.com/gym-shoes,
+https://www.myntra.com/big-fox,
+https://www.myntra.com/sports-shoes/impakto/impakto-barefoot-rooted-comfortable-big-toe-box-gym-cross-training-walking-shoes-for-men/26779560/buy,
+https://www.myntra.com/sports-shoes/asian/asian-men--waterproof-13-big-mesh-running-shoes/25948968/buy,
+----------------------------------------
+Role: user
+Content: I want to get NIKE sports shoes, show me some with big discounts
+----------------------------------------
+Role: assistant
+Content: You can find a variety of NIKE sports shoes with significant discounts on MYNTRA. Here are some options:
+
+1. NIKE Pegasus 41 Road Running Shoes: Discounted price ₹10,110 with coupon.
+2. NIKE Revolution 7 Women's Shoes: Discounted price ₹3,140 with coupon.
+3. NIKE Gamma Force Women's Shoes: Discounted price ₹7,220 with coupon.
+4. NIKE Men Dunk Low Retro Shoes: Discounted price ₹8,095 with coupon.
+5. NIKE Men Flex Running Shoes: Discounted price ₹4,245 with coupon.
+6. NIKE Men Revolution 6 Running Shoes: Discounted price ₹3,140 with coupon.
+7. NIKE Women Dunk Low Sneaker: Original price ₹8,295.
+8. NIKE Air Jordan 1 Low Men's Shoes: Original price ₹8,995.
+
+To explore more options and make a purchase, visit the following links: https://www.myntra.com/nike-shoes, https://www.myntra.com/nike-running-shoes, https://www.myntra.com/nike-shoes-sale, https://www.myntra.com/nike-sports-shoes.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/nike-shoes,
+https://www.myntra.com/nike-running-shoes,
+https://www.myntra.com/nike-shoes-sale,
+https://www.myntra.com/nike-sports-shoes,
+https://www.myntra.com/men-nike-sports-shoes,
+https://www.myntra.com/women-nike-sports-shoes,
+https://www.myntra.com/men-sports-shoes,
+https://www.myntra.com/nike-men-sports-shoes,
+https://www.myntra.com/nike-shoes-under-4000,
+----------------------------------------
+Role: user
+Content: Show me some red tshirts for less than 500
+----------------------------------------
+Role: assistant
+Content: Sure! Here are some red t-shirts available on MYNTRA for less than 500 INR:
+1. Alcis Women Red Solid Polo Collar T-shirt - Rs. 395
+2. Men Sports Printed Applique T-shirt - Rs. 415
+3. Rapid-Dry Training T-shirt - Rs. 422
+4. Kalt Colourblocked Hooded T-shirt - Rs. 256 (with coupon)
+5. The Roadster Lifestyle Co Women Red & Black Colourblocked T-shirt - Rs. 569 (discounted from Rs. 343)
+
+You can find more options by visiting the following links:
+- [Red Polo T-shirts](https://www.myntra.com/women-red-tshirt-polo-tshirts)
+- [Sport Red T-shirts](https://www.myntra.com/sport-red-tshirts)
+- [Red Hooded T-shirts](https://www.myntra.com/red-men-mens-t-shirts-hooded-shirt)
+- [Red Tops](https://www.myntra.com/red-tops)
+- [Men Shirts Under 500](https://www.myntra.com/men-shirts-under-500)
+- [Red Black Jersey T-shirts](https://www.myntra.com/red-black-jersey-t-shirts)
+- [Roadster T-shirts](https://www.myntra.com/roadster-tshirts)
+
+For your reference:
+ 
+----------------------------------------
+Role: user
+Content: I want to get some big brand sports shoes, can you show me some shoes with big discounts
+----------------------------------------
+Role: assistant
+Content: Myntra offers a wide range of big brand sports shoes with significant discounts. You can find discounts up to 80% on various branded men's sports shoes. For instance, you can find deals on brands like ASICS, Adidas, New Balance, and more. You can explore the latest collection of branded men's sports shoes and enjoy discounts on Myntra's website.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/men-sports-shoes,
+https://www.myntra.com/sports-shoes,
+https://www.myntra.com/shop/prebuzz,
+https://www.myntra.com/asics-shoes,
+https://www.myntra.com/sports-shoes/big-fox/big-fox-men-grey-running-sports-shoes/13428394/buy,
+https://www.myntra.com/sports-shoes/asics/asics-men-blue--white-woven-design-jolt-1-running-shoes/15117940/buy,
+https://www.myntra.com/gym-shoes,
+https://www.myntra.com/big-fox,
+https://www.myntra.com/sports-shoes/impakto/impakto-barefoot-rooted-comfortable-big-toe-box-gym-cross-training-walking-shoes-for-men/26779560/buy,
+https://www.myntra.com/sports-shoes/asian/asian-men--waterproof-13-big-mesh-running-shoes/25948968/buy,
+----------------------------------------
+Role: user
+Content: I want to get NIKE sports shoes, show me some with big discounts
+----------------------------------------
+Role: assistant
+Content: You can find a variety of NIKE sports shoes with significant discounts on MYNTRA. Here are some options:
+
+1. NIKE Pegasus 41 Road Running Shoes: Discounted price ₹10,110 with coupon.
+2. NIKE Revolution 7 Women's Shoes: Discounted price ₹3,140 with coupon.
+3. NIKE Gamma Force Women's Shoes: Discounted price ₹7,220 with coupon.
+4. NIKE Men Dunk Low Retro Shoes: Discounted price ₹8,095 with coupon.
+5. NIKE Men Flex Running Shoes: Discounted price ₹4,245 with coupon.
+6. NIKE Men Revolution 6 Running Shoes: Discounted price ₹3,140 with coupon.
+7. NIKE Women Dunk Low Sneaker: Original price ₹8,295.
+8. NIKE Air Jordan 1 Low Men's Shoes: Original price ₹8,995.
+
+To explore more options and make a purchase, visit the following links: https://www.myntra.com/nike-shoes, https://www.myntra.com/nike-running-shoes, https://www.myntra.com/nike-shoes-sale, https://www.myntra.com/nike-sports-shoes.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/nike-shoes,
+https://www.myntra.com/nike-running-shoes,
+https://www.myntra.com/nike-shoes-sale,
+https://www.myntra.com/nike-sports-shoes,
+https://www.myntra.com/men-nike-sports-shoes,
+https://www.myntra.com/women-nike-sports-shoes,
+https://www.myntra.com/men-sports-shoes,
+https://www.myntra.com/nike-men-sports-shoes,
+https://www.myntra.com/nike-shoes-under-4000,
+----------------------------------------
+Role: user
+Content: I want to buy a blue jeans from Levis under 2000
+----------------------------------------
+Role: assistant
+Content: You can find blue jeans from Levis under 2000 on MYNTRA. Here are a few options:
+
+1. [Levis Men Blue 517 Slim Fit Heavy Fade Stretchable Jeans](https://www.myntra.com/jeans/levis/levis-men-blue-517-slim-fit-heavy-fade-stretchable-jeans/18973882/buy) - ₹1,299
+2. [Levis Men 512 Slim Fit Jeans](https://www.myntra.com/levis-blue-jeans) - ₹1,499 (50% OFF)
+3. [Levis Men 511 Slim Fit Jeans](https://www.myntra.com/levis-blue-jeans) - ₹1,375 (57% OFF)
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/levis-jeans,
+https://www.myntra.com/jeans/levis/levis-men-blue-517-slim-fit-heavy-fade-stretchable-jeans/18973882/buy,
+https://www.myntra.com/jeans/levis/levismenblue511mfllacanadaslimfitjeans/182033/buy,
+https://www.myntra.com/jeans/levis/levis-men-navy-blue-512-slim-tapered-fit-mid-rise-stretchable-jeans/16612710/buy,
+https://www.myntra.com/levis-blue-jeans,
+https://www.myntra.com/jeans/levis/levis-x-deepika-padukone-women-blue-70s-straight-fit-high-rise-ripped-stretchable-jeans/16653762/buy,
+https://www.myntra.com/jeans/levis/levis-men-grey-slim-fit-heavy-fade-stretchable-jeans/16323050/buy,
+https://www.myntra.com/jeans/levis/levis-women-711-skinny-fit-light-fade-jeans/21421390/buy,
+https://www.myntra.com/jeans/levis/levis-women-bootcut-high-rise-low-distress-light-fade-pure-cotton-jeans/23638608/buy,
+----------------------------------------
+Role: user
+Content: Show me some red tshirts for less than 500
+----------------------------------------
+Role: assistant
+Content: Sure! Here are some red t-shirts available on MYNTRA for less than 500 INR:
+1. Alcis Women Red Solid Polo Collar T-shirt - Rs. 395
+2. Men Sports Printed Applique T-shirt - Rs. 415
+3. Rapid-Dry Training T-shirt - Rs. 422
+4. Kalt Colourblocked Hooded T-shirt - Rs. 256 (with coupon)
+5. The Roadster Lifestyle Co Women Red & Black Colourblocked T-shirt - Rs. 569 (discounted from Rs. 343)
+
+You can find more options by visiting the following links:
+- [Red Polo T-shirts](https://www.myntra.com/women-red-tshirt-polo-tshirts)
+- [Sport Red T-shirts](https://www.myntra.com/sport-red-tshirts)
+- [Red Hooded T-shirts](https://www.myntra.com/red-men-mens-t-shirts-hooded-shirt)
+- [Red Tops](https://www.myntra.com/red-tops)
+- [Men Shirts Under 500](https://www.myntra.com/men-shirts-under-500)
+- [Red Black Jersey T-shirts](https://www.myntra.com/red-black-jersey-t-shirts)
+- [Roadster T-shirts](https://www.myntra.com/roadster-tshirts)
+
+For your reference:
+ 
+----------------------------------------
+Role: user
+Content: I want to get some big brand sports shoes, can you show me some shoes with big discounts
+----------------------------------------
+Role: assistant
+Content: Myntra offers a wide range of big brand sports shoes with significant discounts. You can find discounts up to 80% on various branded men's sports shoes. For instance, you can find deals on brands like ASICS, Adidas, New Balance, and more. You can explore the latest collection of branded men's sports shoes and enjoy discounts on Myntra's website.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/men-sports-shoes,
+https://www.myntra.com/sports-shoes,
+https://www.myntra.com/shop/prebuzz,
+https://www.myntra.com/asics-shoes,
+https://www.myntra.com/sports-shoes/big-fox/big-fox-men-grey-running-sports-shoes/13428394/buy,
+https://www.myntra.com/sports-shoes/asics/asics-men-blue--white-woven-design-jolt-1-running-shoes/15117940/buy,
+https://www.myntra.com/gym-shoes,
+https://www.myntra.com/big-fox,
+https://www.myntra.com/sports-shoes/impakto/impakto-barefoot-rooted-comfortable-big-toe-box-gym-cross-training-walking-shoes-for-men/26779560/buy,
+https://www.myntra.com/sports-shoes/asian/asian-men--waterproof-13-big-mesh-running-shoes/25948968/buy,
+----------------------------------------
+Role: user
+Content: I want to get NIKE sports shoes, show me some with big discounts
+----------------------------------------
+Role: assistant
+Content: You can find a variety of NIKE sports shoes with significant discounts on MYNTRA. Here are some options:
+
+1. NIKE Pegasus 41 Road Running Shoes: Discounted price ₹10,110 with coupon.
+2. NIKE Revolution 7 Women's Shoes: Discounted price ₹3,140 with coupon.
+3. NIKE Gamma Force Women's Shoes: Discounted price ₹7,220 with coupon.
+4. NIKE Men Dunk Low Retro Shoes: Discounted price ₹8,095 with coupon.
+5. NIKE Men Flex Running Shoes: Discounted price ₹4,245 with coupon.
+6. NIKE Men Revolution 6 Running Shoes: Discounted price ₹3,140 with coupon.
+7. NIKE Women Dunk Low Sneaker: Original price ₹8,295.
+8. NIKE Air Jordan 1 Low Men's Shoes: Original price ₹8,995.
+
+To explore more options and make a purchase, visit the following links: https://www.myntra.com/nike-shoes, https://www.myntra.com/nike-running-shoes, https://www.myntra.com/nike-shoes-sale, https://www.myntra.com/nike-sports-shoes.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/nike-shoes,
+https://www.myntra.com/nike-running-shoes,
+https://www.myntra.com/nike-shoes-sale,
+https://www.myntra.com/nike-sports-shoes,
+https://www.myntra.com/men-nike-sports-shoes,
+https://www.myntra.com/women-nike-sports-shoes,
+https://www.myntra.com/men-sports-shoes,
+https://www.myntra.com/nike-men-sports-shoes,
+https://www.myntra.com/nike-shoes-under-4000,
+----------------------------------------
+Role: user
+Content: I want to buy a blue jeans from Levis under 2000
+----------------------------------------
+Role: assistant
+Content: You can find blue jeans from Levis under 2000 on MYNTRA. Here are a few options:
+
+1. [Levis Men Blue 517 Slim Fit Heavy Fade Stretchable Jeans](https://www.myntra.com/jeans/levis/levis-men-blue-517-slim-fit-heavy-fade-stretchable-jeans/18973882/buy) - ₹1,299
+2. [Levis Men 512 Slim Fit Jeans](https://www.myntra.com/levis-blue-jeans) - ₹1,499 (50% OFF)
+3. [Levis Men 511 Slim Fit Jeans](https://www.myntra.com/levis-blue-jeans) - ₹1,375 (57% OFF)
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/levis-jeans,
+https://www.myntra.com/jeans/levis/levis-men-blue-517-slim-fit-heavy-fade-stretchable-jeans/18973882/buy,
+https://www.myntra.com/jeans/levis/levismenblue511mfllacanadaslimfitjeans/182033/buy,
+https://www.myntra.com/jeans/levis/levis-men-navy-blue-512-slim-tapered-fit-mid-rise-stretchable-jeans/16612710/buy,
+https://www.myntra.com/levis-blue-jeans,
+https://www.myntra.com/jeans/levis/levis-x-deepika-padukone-women-blue-70s-straight-fit-high-rise-ripped-stretchable-jeans/16653762/buy,
+https://www.myntra.com/jeans/levis/levis-men-grey-slim-fit-heavy-fade-stretchable-jeans/16323050/buy,
+https://www.myntra.com/jeans/levis/levis-women-711-skinny-fit-light-fade-jeans/21421390/buy,
+https://www.myntra.com/jeans/levis/levis-women-bootcut-high-rise-low-distress-light-fade-pure-cotton-jeans/23638608/buy,
+----------------------------------------
+Role: user
+Content: Tell me about all the live deals and sales right now
+----------------------------------------
+Role: assistant
+Content: Currently, MYNTRA is running several exciting sales and deals. The key highlight is the 'Big Fashion Festival Sale' which starts on October 7, 2023. This sale offers up to 90% off on clothing, footwear, accessories, and beauty products. Additionally, customers can avail an extra 15% off using MYNTRA's co-branded credit card in association with Kotak. Early deals for this sale have already commenced from September 20, 2023. Other noteworthy sales include the Dussehra Sale from October 4 to October 8, 2023, offering discounts up to 70% and extra 10% cashback.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/shop/prebuzz,
+----------------------------------------
+Role: user
+Content: Show me some red tshirts for less than 500
+----------------------------------------
+Role: assistant
+Content: Sure! Here are some red t-shirts available on MYNTRA for less than 500 INR:
+1. Alcis Women Red Solid Polo Collar T-shirt - Rs. 395
+2. Men Sports Printed Applique T-shirt - Rs. 415
+3. Rapid-Dry Training T-shirt - Rs. 422
+4. Kalt Colourblocked Hooded T-shirt - Rs. 256 (with coupon)
+5. The Roadster Lifestyle Co Women Red & Black Colourblocked T-shirt - Rs. 569 (discounted from Rs. 343)
+
+You can find more options by visiting the following links:
+- [Red Polo T-shirts](https://www.myntra.com/women-red-tshirt-polo-tshirts)
+- [Sport Red T-shirts](https://www.myntra.com/sport-red-tshirts)
+- [Red Hooded T-shirts](https://www.myntra.com/red-men-mens-t-shirts-hooded-shirt)
+- [Red Tops](https://www.myntra.com/red-tops)
+- [Men Shirts Under 500](https://www.myntra.com/men-shirts-under-500)
+- [Red Black Jersey T-shirts](https://www.myntra.com/red-black-jersey-t-shirts)
+- [Roadster T-shirts](https://www.myntra.com/roadster-tshirts)
+
+For your reference:
+ 
+----------------------------------------
+Role: user
+Content: I want to get some big brand sports shoes, can you show me some shoes with big discounts
+----------------------------------------
+Role: assistant
+Content: Myntra offers a wide range of big brand sports shoes with significant discounts. You can find discounts up to 80% on various branded men's sports shoes. For instance, you can find deals on brands like ASICS, Adidas, New Balance, and more. You can explore the latest collection of branded men's sports shoes and enjoy discounts on Myntra's website.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/men-sports-shoes,
+https://www.myntra.com/sports-shoes,
+https://www.myntra.com/shop/prebuzz,
+https://www.myntra.com/asics-shoes,
+https://www.myntra.com/sports-shoes/big-fox/big-fox-men-grey-running-sports-shoes/13428394/buy,
+https://www.myntra.com/sports-shoes/asics/asics-men-blue--white-woven-design-jolt-1-running-shoes/15117940/buy,
+https://www.myntra.com/gym-shoes,
+https://www.myntra.com/big-fox,
+https://www.myntra.com/sports-shoes/impakto/impakto-barefoot-rooted-comfortable-big-toe-box-gym-cross-training-walking-shoes-for-men/26779560/buy,
+https://www.myntra.com/sports-shoes/asian/asian-men--waterproof-13-big-mesh-running-shoes/25948968/buy,
+----------------------------------------
+Role: user
+Content: I want to get NIKE sports shoes, show me some with big discounts
+----------------------------------------
+Role: assistant
+Content: You can find a variety of NIKE sports shoes with significant discounts on MYNTRA. Here are some options:
+
+1. NIKE Pegasus 41 Road Running Shoes: Discounted price ₹10,110 with coupon.
+2. NIKE Revolution 7 Women's Shoes: Discounted price ₹3,140 with coupon.
+3. NIKE Gamma Force Women's Shoes: Discounted price ₹7,220 with coupon.
+4. NIKE Men Dunk Low Retro Shoes: Discounted price ₹8,095 with coupon.
+5. NIKE Men Flex Running Shoes: Discounted price ₹4,245 with coupon.
+6. NIKE Men Revolution 6 Running Shoes: Discounted price ₹3,140 with coupon.
+7. NIKE Women Dunk Low Sneaker: Original price ₹8,295.
+8. NIKE Air Jordan 1 Low Men's Shoes: Original price ₹8,995.
+
+To explore more options and make a purchase, visit the following links: https://www.myntra.com/nike-shoes, https://www.myntra.com/nike-running-shoes, https://www.myntra.com/nike-shoes-sale, https://www.myntra.com/nike-sports-shoes.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/nike-shoes,
+https://www.myntra.com/nike-running-shoes,
+https://www.myntra.com/nike-shoes-sale,
+https://www.myntra.com/nike-sports-shoes,
+https://www.myntra.com/men-nike-sports-shoes,
+https://www.myntra.com/women-nike-sports-shoes,
+https://www.myntra.com/men-sports-shoes,
+https://www.myntra.com/nike-men-sports-shoes,
+https://www.myntra.com/nike-shoes-under-4000,
+----------------------------------------
+Role: user
+Content: I want to buy a blue jeans from Levis under 2000
+----------------------------------------
+Role: assistant
+Content: You can find blue jeans from Levis under 2000 on MYNTRA. Here are a few options:
+
+1. [Levis Men Blue 517 Slim Fit Heavy Fade Stretchable Jeans](https://www.myntra.com/jeans/levis/levis-men-blue-517-slim-fit-heavy-fade-stretchable-jeans/18973882/buy) - ₹1,299
+2. [Levis Men 512 Slim Fit Jeans](https://www.myntra.com/levis-blue-jeans) - ₹1,499 (50% OFF)
+3. [Levis Men 511 Slim Fit Jeans](https://www.myntra.com/levis-blue-jeans) - ₹1,375 (57% OFF)
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/levis-jeans,
+https://www.myntra.com/jeans/levis/levis-men-blue-517-slim-fit-heavy-fade-stretchable-jeans/18973882/buy,
+https://www.myntra.com/jeans/levis/levismenblue511mfllacanadaslimfitjeans/182033/buy,
+https://www.myntra.com/jeans/levis/levis-men-navy-blue-512-slim-tapered-fit-mid-rise-stretchable-jeans/16612710/buy,
+https://www.myntra.com/levis-blue-jeans,
+https://www.myntra.com/jeans/levis/levis-x-deepika-padukone-women-blue-70s-straight-fit-high-rise-ripped-stretchable-jeans/16653762/buy,
+https://www.myntra.com/jeans/levis/levis-men-grey-slim-fit-heavy-fade-stretchable-jeans/16323050/buy,
+https://www.myntra.com/jeans/levis/levis-women-711-skinny-fit-light-fade-jeans/21421390/buy,
+https://www.myntra.com/jeans/levis/levis-women-bootcut-high-rise-low-distress-light-fade-pure-cotton-jeans/23638608/buy,
+----------------------------------------
+Role: user
+Content: Tell me about all the live deals and sales right now
+----------------------------------------
+Role: assistant
+Content: Currently, MYNTRA is running several exciting sales and deals. The key highlight is the 'Big Fashion Festival Sale' which starts on October 7, 2023. This sale offers up to 90% off on clothing, footwear, accessories, and beauty products. Additionally, customers can avail an extra 15% off using MYNTRA's co-branded credit card in association with Kotak. Early deals for this sale have already commenced from September 20, 2023. Other noteworthy sales include the Dussehra Sale from October 4 to October 8, 2023, offering discounts up to 70% and extra 10% cashback.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/shop/prebuzz,
+----------------------------------------
+Role: user
+Content: What brands are offering the highest discounts during the Big Fashion Festival Sale?
+----------------------------------------
+Role: assistant
+Content: During the Myntra Big Fashion Festival Sale 2023, several top brands are offering substantial discounts. Customers can expect discounts ranging from 50% to 90% on a wide variety of products, including clothing, footwear, and accessories. Some of the brands offering the highest discounts include well-known names in the fashion industry. For more detailed information, you can check out the following links:
+1. [Myntra Big Fashion Festival Sale 2023: Offers, Coupons, more!](https://www.desidime.com/news/myntra-big-fashion-festival-sale-2023-offers-coupons-more)
+2. [Myntra Big Fashion Festival 2023: Uncover Exclusive Savings](https://medium.com/@rayabandijitender/myntra-big-fashion-festival-2023-uncover-exclusive-savings-01d079596ff0)
+3. [Myntra Big Fashion Festival Sale 2023 Dates & Offers List](https://indiadesire.com/myntra-big-fashion-days-22526)
+4. [Myntra Fashion Festival Sale 2023 | Live | 50-90% Off](https://m.youtube.com/watch?v=h8Tu4-X6vWw&pp=ygUOI215bnRyYWJmZjIwMjM%3D)
+5. [Myntra Big Fashion Festival 2023: Save Big with Offers](https://www.thehindu.com/brandhub/myntra-big-fashion-festival-2023-save-big-with-offers/article67412215.ece)
+6. [MYNTRA Big fashion festival Sale 2023-SHOP MY WISHLIST](https://www.youtube.com/watch?v=TSEcz5ZeEoM)
+
+For your reference:
+ 
+----------------------------------------
+Role: user
+Content: Show me some red tshirts for less than 500
+----------------------------------------
+Role: assistant
+Content: Sure! Here are some red t-shirts available on MYNTRA for less than 500 INR:
+1. Alcis Women Red Solid Polo Collar T-shirt - Rs. 395
+2. Men Sports Printed Applique T-shirt - Rs. 415
+3. Rapid-Dry Training T-shirt - Rs. 422
+4. Kalt Colourblocked Hooded T-shirt - Rs. 256 (with coupon)
+5. The Roadster Lifestyle Co Women Red & Black Colourblocked T-shirt - Rs. 569 (discounted from Rs. 343)
+
+You can find more options by visiting the following links:
+- [Red Polo T-shirts](https://www.myntra.com/women-red-tshirt-polo-tshirts)
+- [Sport Red T-shirts](https://www.myntra.com/sport-red-tshirts)
+- [Red Hooded T-shirts](https://www.myntra.com/red-men-mens-t-shirts-hooded-shirt)
+- [Red Tops](https://www.myntra.com/red-tops)
+- [Men Shirts Under 500](https://www.myntra.com/men-shirts-under-500)
+- [Red Black Jersey T-shirts](https://www.myntra.com/red-black-jersey-t-shirts)
+- [Roadster T-shirts](https://www.myntra.com/roadster-tshirts)
+
+For your reference:
+ 
+----------------------------------------
+Role: user
+Content: I want to get some big brand sports shoes, can you show me some shoes with big discounts
+----------------------------------------
+Role: assistant
+Content: Myntra offers a wide range of big brand sports shoes with significant discounts. You can find discounts up to 80% on various branded men's sports shoes. For instance, you can find deals on brands like ASICS, Adidas, New Balance, and more. You can explore the latest collection of branded men's sports shoes and enjoy discounts on Myntra's website.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/men-sports-shoes,
+https://www.myntra.com/sports-shoes,
+https://www.myntra.com/shop/prebuzz,
+https://www.myntra.com/asics-shoes,
+https://www.myntra.com/sports-shoes/big-fox/big-fox-men-grey-running-sports-shoes/13428394/buy,
+https://www.myntra.com/sports-shoes/asics/asics-men-blue--white-woven-design-jolt-1-running-shoes/15117940/buy,
+https://www.myntra.com/gym-shoes,
+https://www.myntra.com/big-fox,
+https://www.myntra.com/sports-shoes/impakto/impakto-barefoot-rooted-comfortable-big-toe-box-gym-cross-training-walking-shoes-for-men/26779560/buy,
+https://www.myntra.com/sports-shoes/asian/asian-men--waterproof-13-big-mesh-running-shoes/25948968/buy,
+----------------------------------------
+Role: user
+Content: I want to get NIKE sports shoes, show me some with big discounts
+----------------------------------------
+Role: assistant
+Content: You can find a variety of NIKE sports shoes with significant discounts on MYNTRA. Here are some options:
+
+1. NIKE Pegasus 41 Road Running Shoes: Discounted price ₹10,110 with coupon.
+2. NIKE Revolution 7 Women's Shoes: Discounted price ₹3,140 with coupon.
+3. NIKE Gamma Force Women's Shoes: Discounted price ₹7,220 with coupon.
+4. NIKE Men Dunk Low Retro Shoes: Discounted price ₹8,095 with coupon.
+5. NIKE Men Flex Running Shoes: Discounted price ₹4,245 with coupon.
+6. NIKE Men Revolution 6 Running Shoes: Discounted price ₹3,140 with coupon.
+7. NIKE Women Dunk Low Sneaker: Original price ₹8,295.
+8. NIKE Air Jordan 1 Low Men's Shoes: Original price ₹8,995.
+
+To explore more options and make a purchase, visit the following links: https://www.myntra.com/nike-shoes, https://www.myntra.com/nike-running-shoes, https://www.myntra.com/nike-shoes-sale, https://www.myntra.com/nike-sports-shoes.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/nike-shoes,
+https://www.myntra.com/nike-running-shoes,
+https://www.myntra.com/nike-shoes-sale,
+https://www.myntra.com/nike-sports-shoes,
+https://www.myntra.com/men-nike-sports-shoes,
+https://www.myntra.com/women-nike-sports-shoes,
+https://www.myntra.com/men-sports-shoes,
+https://www.myntra.com/nike-men-sports-shoes,
+https://www.myntra.com/nike-shoes-under-4000,
+----------------------------------------
+Role: user
+Content: I want to buy a blue jeans from Levis under 2000
+----------------------------------------
+Role: assistant
+Content: You can find blue jeans from Levis under 2000 on MYNTRA. Here are a few options:
+
+1. [Levis Men Blue 517 Slim Fit Heavy Fade Stretchable Jeans](https://www.myntra.com/jeans/levis/levis-men-blue-517-slim-fit-heavy-fade-stretchable-jeans/18973882/buy) - ₹1,299
+2. [Levis Men 512 Slim Fit Jeans](https://www.myntra.com/levis-blue-jeans) - ₹1,499 (50% OFF)
+3. [Levis Men 511 Slim Fit Jeans](https://www.myntra.com/levis-blue-jeans) - ₹1,375 (57% OFF)
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/levis-jeans,
+https://www.myntra.com/jeans/levis/levis-men-blue-517-slim-fit-heavy-fade-stretchable-jeans/18973882/buy,
+https://www.myntra.com/jeans/levis/levismenblue511mfllacanadaslimfitjeans/182033/buy,
+https://www.myntra.com/jeans/levis/levis-men-navy-blue-512-slim-tapered-fit-mid-rise-stretchable-jeans/16612710/buy,
+https://www.myntra.com/levis-blue-jeans,
+https://www.myntra.com/jeans/levis/levis-x-deepika-padukone-women-blue-70s-straight-fit-high-rise-ripped-stretchable-jeans/16653762/buy,
+https://www.myntra.com/jeans/levis/levis-men-grey-slim-fit-heavy-fade-stretchable-jeans/16323050/buy,
+https://www.myntra.com/jeans/levis/levis-women-711-skinny-fit-light-fade-jeans/21421390/buy,
+https://www.myntra.com/jeans/levis/levis-women-bootcut-high-rise-low-distress-light-fade-pure-cotton-jeans/23638608/buy,
+----------------------------------------
+Role: user
+Content: Tell me about all the live deals and sales right now
+----------------------------------------
+Role: assistant
+Content: Currently, MYNTRA is running several exciting sales and deals. The key highlight is the 'Big Fashion Festival Sale' which starts on October 7, 2023. This sale offers up to 90% off on clothing, footwear, accessories, and beauty products. Additionally, customers can avail an extra 15% off using MYNTRA's co-branded credit card in association with Kotak. Early deals for this sale have already commenced from September 20, 2023. Other noteworthy sales include the Dussehra Sale from October 4 to October 8, 2023, offering discounts up to 70% and extra 10% cashback.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/shop/prebuzz,
+----------------------------------------
+Role: user
+Content: What brands are offering the highest discounts during the Big Fashion Festival Sale?
+----------------------------------------
+Role: assistant
+Content: During the Myntra Big Fashion Festival Sale 2023, several top brands are offering substantial discounts. Customers can expect discounts ranging from 50% to 90% on a wide variety of products, including clothing, footwear, and accessories. Some of the brands offering the highest discounts include well-known names in the fashion industry. For more detailed information, you can check out the following links:
+1. [Myntra Big Fashion Festival Sale 2023: Offers, Coupons, more!](https://www.desidime.com/news/myntra-big-fashion-festival-sale-2023-offers-coupons-more)
+2. [Myntra Big Fashion Festival 2023: Uncover Exclusive Savings](https://medium.com/@rayabandijitender/myntra-big-fashion-festival-2023-uncover-exclusive-savings-01d079596ff0)
+3. [Myntra Big Fashion Festival Sale 2023 Dates & Offers List](https://indiadesire.com/myntra-big-fashion-days-22526)
+4. [Myntra Fashion Festival Sale 2023 | Live | 50-90% Off](https://m.youtube.com/watch?v=h8Tu4-X6vWw&pp=ygUOI215bnRyYWJmZjIwMjM%3D)
+5. [Myntra Big Fashion Festival 2023: Save Big with Offers](https://www.thehindu.com/brandhub/myntra-big-fashion-festival-2023-save-big-with-offers/article67412215.ece)
+6. [MYNTRA Big fashion festival Sale 2023-SHOP MY WISHLIST](https://www.youtube.com/watch?v=TSEcz5ZeEoM)
+
+For your reference:
+ 
+----------------------------------------
+Role: user
+Content: I ordered a product but has not delievered in 6 days, what should i do
+----------------------------------------
+Role: assistant
+Content: If your Myntra order has not been delivered within the expected timeframe of 6 days, you can take the following steps: 1. **Check Order Status:** Log in to your Myntra account and go to 'My Orders' to check the current status of your order. 2. **Contact Customer Support:** Reach out to Myntra's customer support for assistance. You can contact them via the Myntra app or website through the 'Contact Us' section. You can also call their customer care number for quicker assistance. 3. **Raise a Complaint:** If your issue is not resolved through customer support, you can raise a complaint on the National Consumer Helpline or other consumer grievance forums. 4. **Request for Refund/Cancellation:** If the delay is too long, you can request a refund or cancel the order. Ensure to keep all communication records for future reference. Following these steps should help you get your issue resolved efficiently.
+
+For your reference:
+ 
+----------------------------------------
+Role: user
+Content: I ordered a product on myntra but have not recieved it still in 6 days
+----------------------------------------
+Role: assistant
+Content: If you have not received your Myntra order within 6 days, you should take the following steps: 1. Check the order status on your Myntra account to see if there are any updates or delays mentioned. 2. Contact Myntra customer support through their 'Contact Us' or 'Raise a Complaint' options available on their website or app. 3. Provide your order number and details about the issue when you contact customer support. They may ask for additional information or proof of delivery if the order shows as delivered but you have not received it. 4. If the issue is not resolved by customer support, you can escalate the concern and speak to a supervisor or a manager. 5. In cases where the order is significantly delayed, you may also consider raising a complaint on consumer forums for further assistance. Here are some useful links: - https://www.quora.com/What-should-I-do-if-Myntra-is-showing-delivered-that-I-havent-received-yet-I-tried-contacting-the-customer-care-but-theyre-saying-that-they-cant-do-anything-Is-there-anything-I-can-do-to-get-my-order - https://www.reddit.com/r/Btechtards/comments/18dgr9a/someone_at_hostel_took_my_myntra_order_what_to_do/ - https://www.technofino.in/community/threads/myntra-not-delivering-order.12327/
+
+For your reference:
+ 
+----------------------------------------
+Role: user
+Content: I ordered a product on myntra but have not recieved it still in 6 days
+----------------------------------------
+Role: assistant
+Content: If you have not received your Myntra order within 6 days, you should take the following steps: 1. Check the order status on your Myntra account to see if there are any updates or delays mentioned. 2. Contact Myntra customer support through their 'Contact Us' or 'Raise a Complaint' options available on their website or app. 3. Provide your order number and details about the issue when you contact customer support. They may ask for additional information or proof of delivery if the order shows as delivered but you have not received it. 4. If the issue is not resolved by customer support, you can escalate the concern and speak to a supervisor or a manager. 5. In cases where the order is significantly delayed, you may also consider raising a complaint on consumer forums for further assistance. Here are some useful links: - https://www.quora.com/What-should-I-do-if-Myntra-is-showing-delivered-that-I-havent-received-yet-I-tried-contacting-the-customer-care-but-theyre-saying-that-they-cant-do-anything-Is-there-anything-I-can-do-to-get-my-order - https://www.reddit.com/r/Btechtards/comments/18dgr9a/someone_at_hostel_took_my_myntra_order_what_to_do/ - https://www.technofino.in/community/threads/myntra-not-delivering-order.12327/
+
+For your reference:
+ 
+----------------------------------------
+Role: user
+Content: How could i raise a complaint
+----------------------------------------
+Role: assistant
+Content: To raise a complaint on MYNTRA, you have several options:
+1. **Via the Website or App**: You can visit the 'Contact Us' or 'Help' section on the MYNTRA website or app. Log in to your account, select the order you have an issue with, and follow the steps to submit your complaint.
+2. **Grievance Redressal Mechanism**: MYNTRA has a dedicated Grievance Redressal page where you can submit your complaints. Visit [Myntra Grievance Redressal](https://www.myntra.com/grievanceredressal) for more details.
+3. **Customer Support**: You can also contact MYNTRA customer support directly by calling their helpline or reaching out via social media channels like [Myntra Support on X (formerly Twitter)](https://x.com/myntrasupport).
+4. **Third-Party Platforms**: If you are not satisfied with MYNTRA's response, you can file a complaint on consumer forums like [Voxya](https://voxya.com/company/myntra-complaints/5782).
+
+I hope this helps you resolve your issue with MYNTRA.
+
+For your reference:
+ 
+Here some web references
+
+
+https://www.myntra.com/grievanceredressal,
+https://www.myntra.com/contactus,
+----------------------------------------

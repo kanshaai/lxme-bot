@@ -168,7 +168,31 @@ background-color: black;
 .black-text {
     
     color: black;
+}
+
+.st-emotion-cache-1eo1tir{
+   padding:0;
+}
+
+.bottom-icons {
     
+    width: 100%;
+    background-color: white; /* Change to your desired background color */
+    text-align: center;
+    
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+    display:flex;
+}
+.bottom-icons img {
+    margin: 0 10px;
+    vertical-align: middle;
+    width:20px;
+}
+
+@media (max-width: 50.5rem) {
+    .st-emotion-cache-1eo1tir {
+        max-width: calc(111vw);
+    }
 }
 </style>
 """
@@ -178,11 +202,20 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
-    <h1 style="color:black;">
+    <h1 style="color:#bf1f61;">
         L<span style="color:#bf1f61;">X</span>ME Customer Support
     </h1>
 """, unsafe_allow_html=True)
+st.markdown("""
+ <div class="bottom-icons">
+    <p style="margin: 0 10px;"> For Human Support </p>
+    <a href="#"><img src="https://img.icons8.com/?size=100&id=9729&format=png&color=bf1f61"  alt="Home"/></a>
+    <a href="#"><img src="https://img.icons8.com/?size=100&id=16733&format=png&color=bf1f61" alt="Search"/></a>
+    <a href="#"><img src="https://img.icons8.com/?size=100&id=Y2GfpkgYNp42&format=png&color=bf1f61" alt="Info"/></a>
+</div>
+""", unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
+
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -330,6 +363,8 @@ def process_query(user_query):
 # Chat input at the bottom of the page
 user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
 
+
+
 if user_input:
     process_query(user_input)
 
@@ -338,3 +373,5 @@ if "follow_up_questions" in st.session_state:
     for question in st.session_state.follow_up_questions:
         if st.button(question):
             process_query(question)
+
+
