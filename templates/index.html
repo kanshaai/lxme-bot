@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Interface with Fixed Header and Footer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Basic Reset */
@@ -12,7 +14,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            
         }
 
         body {
@@ -23,6 +25,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 0;
+            font-family: 'Poppins', sans-serif;
         }
 
         .chat-container {
@@ -57,6 +60,8 @@
             gap: 20px;
             margin-top: 100px;
             margin-bottom: 70px;
+            -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+            scrollbar-width: none;
         }
 
         .message-wrapper {
@@ -92,7 +97,7 @@
             padding: 10px 15px;
             border-radius: 20px;
             max-width: 75%;
-            font-size: 1rem;
+            font-size: 0.8rem;
             line-height: 1.4;
         }
 
@@ -116,7 +121,7 @@
             bottom: 0;
             width: 100%;
             max-width: 800px;
-            margin-bottom: 20px;
+            margin-bottom: 50px;
         }
 
         .chat-input {
@@ -126,7 +131,7 @@
             border-radius: 10px;
             background-color: rgba(240, 242, 246, 0.5);
             outline: none;
-            font-size: 1rem;
+            font-size: 0.8rem;
         }
 
         .send-btn {
@@ -137,7 +142,7 @@
             margin-left: 10px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.8rem;
             transition: background-color 0.3s ease;
         }
 
@@ -181,15 +186,15 @@
             }
 
             .message {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
 
             .chat-input {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
 
             .send-btn {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
                 padding: 8px 12px;
             }
         }
@@ -197,21 +202,41 @@
         .relevant-question {
             display: inline-block;
             padding: 10px 15px;
-            color: white;
-            background-color: #bf1f61;
+            color: #333;
+            background-color: #ffffff;
+            max-width: 75%;
             cursor: pointer;
             text-align: center;
-            border-radius: 20px;
+            border-radius: 10px;
             text-decoration: none;
-            margin: 10px 5px;
+            margin: 2px;
             transition: background-color 0.3s ease;
-            border: none;
-            font-size: 0.9rem;
+            border: 0.5px solid rgba(177, 177, 177, 0.5);
+            margin-top: -4px;
+            margin-left: 45px;
+            
+            font-size: 0.8rem;
         }
 
         .relevant-question:hover {
-            background-color: #a52a2a;
+            background-color: #f7f7f7;
         }
+        .bottom-icons {
+    
+    width: 100%;
+    
+    text-align: center;
+    
+    margin-bottom: 30px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.bottom-icons img {
+    margin: 0 10px;
+    vertical-align: middle;
+    width:20px;
+}
     </style>
 </head>
 
@@ -231,6 +256,12 @@
         <div class="chat-input-container">
             <input type="text" id="user_input" class="chat-input" placeholder="Ask a question...">
             <button id="submit-btn" class="send-btn" type="submit">Send</button>
+        </div>
+        <div class="bottom-icons">
+            <p style="margin: 0 10px; color:#bf1f61"> For Human Support: </p>
+            <a href="#"><img src="https://img.icons8.com/?size=100&id=9729&format=png&color=bf1f61"  alt="Home"/></a>
+            <a href="#"><img src="https://img.icons8.com/?size=100&id=16733&format=png&color=bf1f61" alt="Search"/></a>
+            <a href="#"><img src="https://img.icons8.com/?size=100&id=Y2GfpkgYNp42&format=png&color=bf1f61" alt="Info"/></a>
         </div>
     </div>
 
