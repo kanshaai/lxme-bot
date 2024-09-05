@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface with Fixed Header and Footer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #9e8686;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 800px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background-color: #fdfdfd;
+            color: #bf1f61;
+            text-align: left;
+            padding: 25px;
+            font-size: 1.5rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            max-width: 800px;
+            z-index: 1000;
+        }
+
+        .chat-messages {
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 100px;
+            margin-bottom: 70px;
+        }
+
+        .message-wrapper {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .message-wrapper.user {
+            justify-content: flex-end;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            background-color: black;
+            margin-right: 10px;
+            font-size: 15px;
+        }
+
+        .message-wrapper.user .avatar {
+            background-color: #bf1f61;
+            margin-left: 10px;
+            margin-right: 0;
+        }
+
+        .message {
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 75%;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .message.user {
+            background-color: #bf1f61;
+            color: #fff;
+            border-bottom-right-radius: 0;
+        }
+
+        .message.bot {
+            background-color: rgba(240, 242, 246, 0.5);
+            color: #333;
+            border-bottom-left-radius: 0;
+        }
+
+        .chat-input-container {
+            display: flex;
+            padding: 10px;
+            background-color: #ffffff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background-color: rgba(240, 242, 246, 0.5);
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .send-btn {
+            background-color: #bf1f61;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            margin-left: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .send-btn:hover {
+            background-color: #a52a2a;
+        }
+
+        /* Skeleton Loader Styles */
+        .skeleton {
+            width: 75%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin: 10px 0;
+            animation: shimmer 1.5s infinite;
+        }
+
+        .skeleton-avatar {
+            width: 40px;
+            height: 40px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin-right: 10px;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -40px 0;
+            }
+
+            100% {
+                background-position: 40px 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .chat-header {
+                font-size: 1.25rem;
+            }
+
+            .message {
+                font-size: 0.9rem;
+            }
+
+            .chat-input {
+                font-size: 0.9rem;
+            }
+
+            .send-btn {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+        }
+
+        .relevant-question {
+            display: inline-block;
+            padding: 10px 15px;
+            color: white;
+            background-color: #bf1f61;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 20px;
+            text-decoration: none;
+            margin: 10px 5px;
+            transition: background-color 0.3s ease;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .relevant-question:hover {
+            background-color: #a52a2a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container">
+        <!-- Fixed Header -->
+        <div class="chat-header">
+            <h3>LXME Customer Support</h3>
+        </div>
+
+        <!-- Scrollable Chat Messages -->
+        <div class="chat-messages" id="chat-box">
+            <!-- Chat content will go here -->
+        </div>
+
+        <!-- Fixed Input Container -->
+        <div class="chat-input-container">
+            <input type="text" id="user_input" class="chat-input" placeholder="Ask a question...">
+            <button id="submit-btn" class="send-btn" type="submit">Send</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        document.getElementById('submit-btn').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const userInput = document.getElementById('user_input').value.trim();
+
+            if (userInput === '') {
+                return;
+            }
+
+            addMessage(userInput, true);
+
+            // Add skeleton loader
+            const skeletonId = addSkeleton();
+
+            fetch('/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'user_input': userInput
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Remove skeleton loader
+                    removeSkeleton(skeletonId);
+
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+
+                    addMessage(data.answer, false);
+
+                    if (data.questions && data.questions.length > 0) {
+                        data.questions.forEach(question => {
+                            addRelevantQuestion(question);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    removeSkeleton(skeletonId);
+                });
+
+            document.getElementById('user_input').value = '';
+        });
+
+        function addMessage(text, isUser) {
+            const chatBox = document.getElementById('chat-box');
+            const messageWrapper = document.createElement('div');
+            messageWrapper.classList.add('message-wrapper', isUser ? 'user' : 'bot');
+
+            const avatar = document.createElement('div');
+            avatar.classList.add('avatar');
+            avatar.innerHTML = `<i class="fas ${isUser ? 'fa-user' : 'fa-robot'}"></i>`;
+
+            const message = document.createElement('div');
+            message.classList.add('message', isUser ? 'user' : 'bot');
+            message.innerText = text;
+
+            if (isUser) {
+                messageWrapper.appendChild(message);
+                messageWrapper.appendChild(avatar);
+            } else {
+                messageWrapper.appendChild(avatar);
+                messageWrapper.appendChild(message);
+            }
+
+            chatBox.appendChild(messageWrapper);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function addSkeleton() {
+            const chatBox = document.getElementById('chat-box');
+            const skeletonWrapper = document.createElement('div');
+            skeletonWrapper.classList.add('message-wrapper', 'bot');
+
+            const skeletonAvatar = document.createElement('div');
+            skeletonAvatar.classList.add('skeleton-avatar');
+
+            const skeleton = document.createElement('div');
+            skeleton.classList.add('skeleton');
+
+            skeletonWrapper.appendChild(skeletonAvatar);
+            skeletonWrapper.appendChild(skeleton);
+            skeletonWrapper.appendChild(skeleton);
+
+            chatBox.appendChild(skeletonWrapper);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Return the skeleton element so we can remove it later
+            return skeletonWrapper;
+        }
+
+        function removeSkeleton(skeletonElement) {
+            skeletonElement.remove();
+        }
+
+        function addRelevantQuestion(questionText) {
+            const chatBox = document.getElementById('chat-box');
+            const questionButton = document.createElement('button');
+            questionButton.classList.add('relevant-question');
+            questionButton.textContent = questionText;
+            questionButton.onclick = (event) => {
+                event.preventDefault();
+                document.getElementById('user_input').value = questionText;
+                document.getElementById('submit-btn').click();
+            };
+            chatBox.appendChild(questionButton);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        document.getElementById('user_input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('submit-btn').click();
+            }
+        });
+    </script>
+</body>
+
+</html>
