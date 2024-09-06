@@ -6,6 +6,7 @@ APP_SERVICE_PLAN="prod1-bfsi"
 CONTAINER_REGISTRY="bfsiregistry"
 #STORAGE_ACCOUNT="kanshademostorage"
 
+
 # Ensure environment variables are set
 if [[ -z "${OPENAI_API_KEY}" || -z "${SERPER_API_KEY}" ]]; then
   echo "Error: Environment variables OPENAI_API_KEY and SERPER_API_KEY must be set."
