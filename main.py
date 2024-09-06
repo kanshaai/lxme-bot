@@ -113,33 +113,36 @@ body {
 }
 
 /* Change the color of the main title */
+#MainMenu {visibility: hidden;}
+header {visibility: hidden;}
+footer {visibility: hidden;}
 h1 {
-    color: rgb(252 122 105);
+    color: #bf1f61;
 }
 
 /* Style the chat messages */
 .chat-message.user {
     background-color: #ffcccb;
-    color: rgb(252 122 105);
-    border: 2px solid rgb(252 122 105);
+    color: #bf1f61;
+    border: 2px solid #bf1f61;
 }
 
 .chat-message.assistant {
     background-color: #ffffcc;
-    color: rgb(252 122 105);
-    border: 2px solid rgb(252 122 105);
+    color: #bf1f61;
+    border: 2px solid #bf1f61;
 }
 
 /* Style the input box at the bottom */
 .stTextInput > div {
     background-color: #ffcccb;
     border-radius: 5px;
-    color: rgb(252 122 105);
+    color: #bf1f61;
 }
 
 /* Style the buttons */
 button {
-    background-color: rgb(252 122 105);
+    background-color: #bf1f61;
     color: #fff;
    
     border: none;
@@ -147,7 +150,7 @@ button {
 }
 
 .st-emotion-cache-1ghhuty{
-background-color: rgb(252 122 105);
+background-color: #bf1f61;
 }
 
 .st-emotion-cache-bho8sy{
@@ -155,12 +158,12 @@ background-color: black;
 }
 /* Style the spinner */
 .stSpinner > div {
-    border-top-color: rgb(252 122 105);
+    border-top-color: #bf1f61;
 }
 
 /* Style the download button */
 .stDownloadButton {
-    background-color: rgb(252 122 105);
+    background-color: #bf1f61;
     color: #fff;
     border-radius: 5px;
 }
@@ -168,7 +171,31 @@ background-color: black;
 .black-text {
     
     color: black;
+}
+
+.st-emotion-cache-1eo1tir{
+   padding:0;
+}
+
+.bottom-icons {
     
+    width: 100%;
+    
+    text-align: center;
+    
+    
+    display:flex;
+}
+.bottom-icons img {
+    margin: 0 10px;
+    vertical-align: middle;
+    width:20px;
+}
+
+@media (max-width: 50.5rem) {
+    .st-emotion-cache-1eo1tir {
+        max-width: calc(90vw);
+    }
 }
 </style>
 """
