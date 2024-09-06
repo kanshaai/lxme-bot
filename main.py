@@ -7,6 +7,7 @@ from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
 
 from mail import send_logs_email
+from langchain_openai import ChatOpenAI
 
 # Load environment variables from .env file
 load_dotenv()
@@ -37,53 +38,70 @@ class CompanySerperDevTool(SerperDevTool):
 
 search_tool = CompanySerperDevTool()
 
-# Agent setups
-company_info_agent = Agent(
-    role=COMPANY_ROLE,
-    goal=COMPANY_GOAL,
-    verbose=True,
-    memory=True,
-    backstory=COMPANY_BACKSTORY,
-    tools=[search_tool]
-)
 
-out_of_context_agent = Agent(
-    role='Context Checker',
-    goal=f'Determine if a question is relevant to {COMPANY_NAME} and politely decline if not.',
-    verbose=True,
-    memory=True,
-    backstory=(
-        f'You are responsible for determining if a question is relevant to {COMPANY_NAME}. '
-        f'If the question is not related, you respond politely indicating that the question is out of context and '
-        f'that only {COMPANY_NAME}-related information is provided.'
-    )
-)
+class TextAgents():
+    def __init__(self):
+        self.llm = ChatOpenAI(
+            model = "gpt-4o-mini"
+        )
+        pass
+# Agent setups
+    def company_info_agent(self):
+        return Agent(
+            role=COMPANY_ROLE,
+            goal=COMPANY_GOAL,
+            verbose=True,
+            memory=True,
+            backstory=COMPANY_BACKSTORY,
+            tools=[search_tool]
+        )
+
+    def out_of_context_agent(self): 
+        return Agent(
+            role='Context Checker',
+            goal=f'Determine if a question is relevant to {COMPANY_NAME} and politely decline if not.',
+            verbose=True,
+            memory=True,
+            backstory=(
+                f'You are responsible for determining if a question is relevant to {COMPANY_NAME}. '
+                f'If the question is not related, you respond politely indicating that the question is out of context and '
+                f'that only {COMPANY_NAME}-related information is provided.'
+            )
+        )
 
 # Centralized Task
-centralized_task = Task(
-    description=(
-        f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately. '
-        f'If the query is about {COMPANY_NAME}, provide a detailed and informative response. '
-        f'Respond in JSON format with two keys: "answer" and "questions". '
-        f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions '
-        f'that are relevant to {COMPANY_NAME}.'
-        f'Ensure the response is in valid JSON format.'
-    ),
-    expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
-    agent=Agent(
-        role=f'{COMPANY_NAME} Information Bot',
-        goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
-        verbose=True,
-        memory=True,
-        backstory=(
-            f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-           f'about {COMPANY_NAME}\'s trading platforms, financial instruments, Credit cards, salary account, mutual funds etc. . '
-            f'You only respond to queries related to {COMPANY_NAME}.'
-        ),
-        tools=[search_tool],
-        allow_delegation=True
-    )
-)
+    def centralized_task(self):
+        return Task(
+            description=(
+                f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately. '
+                f'If the query is about {COMPANY_NAME}, provide a detailed and informative response. '
+                f'Respond in JSON format with two keys: "answer" and "questions". '
+                f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions '
+                f'that are relevant to {COMPANY_NAME}.'
+                f'Ensure the response is in valid JSON format.'
+            ),
+            expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
+            agent=Agent(
+                role=f'{COMPANY_NAME} Information Bot',
+                goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
+                verbose=True,
+                memory=True,
+                backstory=(
+                    f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
+                f'about {COMPANY_NAME}\'s trading platforms, financial instruments, Credit cards, salary account, mutual funds etc. . '
+                    f'You only respond to queries related to {COMPANY_NAME}.'
+                ),
+                tools=[search_tool],
+                allow_delegation=True
+            )
+        )
+
+Textagent = TextAgents()
+
+company_info_agent = Textagent.company_info_agent()
+out_of_context_agent = Textagent.company_info_agent()
+centralized_task = Textagent.centralized_task()
+
 
 # Centralized Crew setup
 centralized_crew = Crew(
