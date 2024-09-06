@@ -6,39 +6,14 @@ from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
 
-
 from mail import send_logs_email
-
-
 
 # Load environment variables from .env file
 load_dotenv()
 
-
-
 # Set up the environment keys
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
-
-import openai
-
-class GPT4TurboTool:
-    def __init__(self, model="gpt-4-turbo"):
-        self.model = model
-
-    def generate_response(self, prompt):
-        try:
-            response = openai.ChatCompletion.create(
-                model=self.model,
-                messages=[{"role": "system", "content": "You are a helpful assistant."},
-                          {"role": "user", "content": prompt}]
-            )
-            return response['choices'][0]['message']['content'].strip()
-        except openai.error.OpenAIError as e:
-            return f"An error occurred: {e}"
-
-gpt4_turbo_tool = GPT4TurboTool()
-
 
 # Company-specific details
 COMPANY_NAME = "JUPITER"
@@ -238,7 +213,7 @@ def process_query(user_query):
     if user_query.lower() == "give me the logs 420":
         download_logs()
         return  # Exit the function to avoid processing the query further
-
+    
     if user_query.lower() == "email me the logs 420":
         success, message = send_logs_email('souravvmishra@gmail.com', COMPANY_NAME)
         if success:
@@ -250,22 +225,28 @@ def process_query(user_query):
     with st.chat_message("user"):
         st.markdown(user_query)
     st.session_state.messages.append({"role": "user", "content": user_query})
-
+    
     answer = ""  # Initialize the answer variable
 
     with st.chat_message("assistant"):
         with st.spinner("Processing your input..."):
             result = centralized_crew.kickoff(inputs={'user_query': user_query})
             try:
-                # Use GPT-4-turbo for response
-                answer = gpt4_turbo_tool.generate_response(user_query)
-                # Example of parsing and displaying the response
+                # Remove potential markdown code block syntax
+                cleaned_result = str(json.loads(result.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+                print(json.loads(result.model_dump_json())['raw'])
+                # Parse JSON response
+                parsed_result = json.loads(cleaned_result)
+                answer = parsed_result.get("answer", "")
+                questions = parsed_result.get("questions", [])
                 st.markdown(f"{answer}")
-                # Handle follow-up questions if any
+
                 # Update follow-up questions in session state
-                st.session_state.follow_up_questions = []  # Add your logic here
-            except Exception as e:
-                st.markdown(f"**Error:**\n{e}")
+                st.session_state.follow_up_questions = questions
+
+            except json.JSONDecodeError as e:
+                print(e)
+                st.markdown(f"**Error parsing JSON:**\n{result}")
                 answer = "There was an error processing your request."
 
     st.session_state.messages.append({"role": "assistant", "content": answer})
