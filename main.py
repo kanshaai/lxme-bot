@@ -1,10 +1,13 @@
 import json
 import os
+
 from pathlib import Path
 import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
+
+
 
 from mail import send_logs_email
 
@@ -16,8 +19,8 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "JUPITER"
-COMPANY_DOMAIN = "upiter.money/"
+COMPANY_NAME = "Lxme"
+COMPANY_DOMAIN = "lxme.in"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
 COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on {COMPANY_DOMAIN}'
 COMPANY_BACKSTORY = (
@@ -27,13 +30,20 @@ COMPANY_BACKSTORY = (
 )
 
 
+
+
 # Initialize the SerperDevTool with company-specific search settings
 class CompanySerperDevTool(SerperDevTool):
     def search(self, query):
+        # Search the company website
+        
         company_query = f"site:{COMPANY_DOMAIN} {query}"
         results = super().search(company_query)
+      
         relevant_results = [result for result in results if COMPANY_DOMAIN in result.get('link', '')]
-        return relevant_results
+        
+
+        return results
 
 search_tool = CompanySerperDevTool()
 
@@ -65,11 +75,11 @@ centralized_task = Task(
         f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately. '
         f'If the query is about {COMPANY_NAME}, provide a detailed and informative response. '
         f'Respond in JSON format with two keys: "answer" and "questions". '
-        f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions '
+        f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions. Make sure to answer in proper format, if the answer have list it should be formatted as a list not a pararaph'
         f'that are relevant to {COMPANY_NAME}.'
         f'Ensure the response is in valid JSON format.'
     ),
-    expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
+    expected_output='A JSON object containing "answer", and "questions" without any unescaped newline characters and without any codeblock. It should also have all the links of youtube and blogs it thought during the proccess of searching in json as "links". Make sure to not add links to "answer". The response should be able to pass JSON.loads() without any error. ',
     agent=Agent(
         role=f'{COMPANY_NAME} Information Bot',
         goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
@@ -77,8 +87,8 @@ centralized_task = Task(
         memory=True,
         backstory=(
             f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-           f'about {COMPANY_NAME}\'s trading platforms, financial instruments, Credit cards, salary account, mutual funds etc. . '
-            f'You only respond to queries related to {COMPANY_NAME}.'
+             f'about {COMPANY_NAME}\'s trading platforms, financial instruments, Credit cards, salary account, mutual funds etc. . '
+           f'You only respond to queries related to {COMPANY_NAME}.'
         ),
         tools=[search_tool],
         allow_delegation=True
@@ -183,9 +193,30 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
+
+def check_links(links, user_query):
+    web_links = []
+    youtube_links = []
+    youtube_response = ""
+    for link in links:
+       if COMPANY_DOMAIN in link:
+           web_links.append(link)
+       if "youtube.com" in link and "watch" in link:
+          
+          youtube_links.append(link)
+   
+       
+               
+
+               
+               
+    
+    return web_links, youtube_links
+           
+
 # Function to save the chat history to a file
 def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
-    with open(filename, "a") as file:
+    with open(filename, "a", encoding="utf-8") as file:
         for message in st.session_state.messages:
             file.write(f"Role: {message['role']}\n")
             file.write(f"Content: {message['content']}\n")
@@ -209,24 +240,41 @@ def download_logs():
 
 # Function to process user query
 def process_query(user_query):
-    st.session_state.follow_up_questions = []
+    st.session_state.follow_up_questions = st.session_state.get("follow_up_questions", [])
     if user_query.lower() == "give me the logs 420":
         download_logs()
         return  # Exit the function to avoid processing the query further
     
     if user_query.lower() == "email me the logs 420":
-        success, message = send_logs_email('souravvmishra@gmail.com', COMPANY_NAME)
-        if success:
-            st.success(message)
-        else:
-            st.error(message)
-        return  # Exit the function to avoid processing the query further
+        # Prompt user for their email address
+        st.session_state.follow_up_questions = ["Please enter your email address:"]
+        return  # Exit the function to prompt for the email
+
+    if st.session_state.follow_up_questions:
+        # If there's a follow-up question, check the user's response
+        last_question = st.session_state.follow_up_questions.pop(0)
+ 
+        
+        if "Please enter your email address:" in last_question:
+            with st.chat_message("user"):
+              st.markdown(user_query)
+            st.session_state.messages.append({"role": "user", "content": user_query})
+            
+            email = user_query  # Treat the user's response as the email address
+            success, message = send_logs_email(email, COMPANY_NAME)
+
+            if success:
+                st.success(message)
+                
+            else:
+                st.error(message)
+            return # Exit the function to avoid processing the query further
 
     with st.chat_message("user"):
         st.markdown(user_query)
     st.session_state.messages.append({"role": "user", "content": user_query})
     
-    answer = ""  # Initialize the answer variable
+    final_answer = ""  # Initialize the answer variable
 
     with st.chat_message("assistant"):
         with st.spinner("Processing your input..."):
@@ -238,9 +286,22 @@ def process_query(user_query):
                 # Parse JSON response
                 parsed_result = json.loads(cleaned_result)
                 answer = parsed_result.get("answer", "")
+                links = parsed_result.get("links", "")
+                web, youtube = check_links(links, user_query)
                 questions = parsed_result.get("questions", [])
-                st.markdown(f"{answer}")
+                link_text = " "
+                
+                if len(youtube)>0:
+                    link_text += '\nHere some youtube references\n\n'
+                    for link in youtube:
+                         link_text += '\n\n' + link + ',\n\n'
+                if len(web)>0:
+                    link_text += '\nHere some web references\n\n'
+                    for link in web:
+                        link_text += '\n' + link + ',\n\n'
 
+                if len(web) > 0 or len(youtube) > 0:
+                    answer = answer + '\n\nFor your reference:\n' + link_text                
                 # Update follow-up questions in session state
                 st.session_state.follow_up_questions = questions
 
