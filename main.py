@@ -1,10 +1,11 @@
 import json
 import os
 from pathlib import Path
-from flask import Flask, request, render_template, jsonify, send_file
+import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
+
 from mail import send_logs_email
 
 # Load environment variables from .env file
@@ -15,24 +16,24 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "Lxme"
-COMPANY_DOMAIN = "lxme.in"
+COMPANY_NAME = "JUPITER"
+COMPANY_DOMAIN = "upiter.money/"
 COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on lxme.in.'
+COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on {COMPANY_DOMAIN}'
 COMPANY_BACKSTORY = (
     f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
     f'You provide detailed information about their products, services, '
     f'and solutions available on lxme.in, including any innovations and key features.'
 )
 
+
 # Initialize the SerperDevTool with company-specific search settings
 class CompanySerperDevTool(SerperDevTool):
     def search(self, query):
-        # Search the company website
         company_query = f"site:{COMPANY_DOMAIN} {query}"
         results = super().search(company_query)
         relevant_results = [result for result in results if COMPANY_DOMAIN in result.get('link', '')]
-        return results
+        return relevant_results
 
 search_tool = CompanySerperDevTool()
 
@@ -68,7 +69,7 @@ centralized_task = Task(
         f'that are relevant to {COMPANY_NAME}.'
         f'Ensure the response is in valid JSON format.'
     ),
-    expected_output='A JSON object containing "answer", and "questions" without any unescaped newline characters and without any codeblock.',
+    expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
     agent=Agent(
         role=f'{COMPANY_NAME} Information Bot',
         goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
@@ -76,7 +77,8 @@ centralized_task = Task(
         memory=True,
         backstory=(
             f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-            f'about {COMPANY_NAME}\'s products, services, and innovations.'
+           f'about {COMPANY_NAME}\'s trading platforms, financial instruments, Credit cards, salary account, mutual funds etc. . '
+            f'You only respond to queries related to {COMPANY_NAME}.'
         ),
         tools=[search_tool],
         allow_delegation=True
@@ -90,78 +92,177 @@ centralized_crew = Crew(
     process=Process.sequential
 )
 
-# Initialize Flask app
-app = Flask(__name__)
 
-# Helper function to check links
-def check_links(links, user_query):
-    web_links = []
-    youtube_links = []
-    for link in links:
-        if COMPANY_DOMAIN in link:
-            web_links.append(link)
-        if "youtube.com" in link and "watch" in link:
-            youtube_links.append(link)
-    return web_links, youtube_links
+
+# Define custom CSS
+custom_css = """
+<style>
+/* Change the background color of the entire app */
+body {
+    background-color: #ffe6f2;
+}
+
+/* Change the color of the main title */
+h1 {
+    color: rgb(252 122 105);
+}
+
+/* Style the chat messages */
+.chat-message.user {
+    background-color: #ffcccb;
+    color: rgb(252 122 105);
+    border: 2px solid rgb(252 122 105);
+}
+
+.chat-message.assistant {
+    background-color: #ffffcc;
+    color: rgb(252 122 105);
+    border: 2px solid rgb(252 122 105);
+}
+
+/* Style the input box at the bottom */
+.stTextInput > div {
+    background-color: #ffcccb;
+    border-radius: 5px;
+    color: rgb(252 122 105);
+}
+
+/* Style the buttons */
+button {
+    background-color: rgb(252 122 105);
+    color: #fff;
+   
+    border: none;
+    border-radius: 5px;
+}
+
+.st-emotion-cache-1ghhuty{
+background-color: rgb(252 122 105);
+}
+
+.st-emotion-cache-bho8sy{
+background-color: black;
+}
+/* Style the spinner */
+.stSpinner > div {
+    border-top-color: rgb(252 122 105);
+}
+
+/* Style the download button */
+.stDownloadButton {
+    background-color: rgb(252 122 105);
+    color: #fff;
+    border-radius: 5px;
+}
+
+.black-text {
+    
+    color: black;
+    
+}
+</style>
+"""
+
+# Inject the custom CSS
+st.markdown(custom_css, unsafe_allow_html=True)
+
+# Streamlit UI
+st.markdown("""
+    <h4 style="color:rgb(252 122 105);">
+           Jupiter Customer Support
+    </h4>
+""", unsafe_allow_html=True)
+st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
+
+# Initialize chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
 # Function to save the chat history to a file
-def save_chat_history(filename=f"{COMPANY_NAME}.txt", chat_history=None):
-    with open(filename, "a", encoding="utf-8") as file:
-        for message in chat_history:
+def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
+    with open(filename, "a") as file:
+        for message in st.session_state.messages:
             file.write(f"Role: {message['role']}\n")
             file.write(f"Content: {message['content']}\n")
             file.write("-" * 40 + "\n")
 
-# Route for the chat interface
-@app.route("/", methods=["GET", "POST"])
-def index():
-    if request.method == "POST":
-        user_query = request.form["user_input"]
-        chat_history = []
+# Function to handle log downloads
+def download_logs():
+    log_file = f"{COMPANY_NAME}.txt"
+    if Path(log_file).exists():
+        # Prompt the user to download the file
+        st.download_button(
+            label="Download Logs",
+            data=open(log_file, "rb").read(),
+            file_name=log_file,
+            mime="text/plain"
+        )
+    else:
+        st.write("No logs found.")
 
-        if user_query.lower() == "give me the logs 420":
-            return send_file(f"{COMPANY_NAME}.txt", as_attachment=True)
 
-        if user_query.lower() == "email me the logs 420":
-            email = request.form.get("email")
-            if email:
-                success, message = send_logs_email(email, COMPANY_NAME)
-                return jsonify({"success": success, "message": message})
 
-        # Process the query using Crew
-        result = centralized_crew.kickoff(inputs={'user_query': user_query})
-        try:
-            # Parse the JSON response
-            cleaned_result = str(json.loads(result.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
-            parsed_result = json.loads(cleaned_result)
-            answer = parsed_result.get("answer", "")
-            links = parsed_result.get("links", "")
-            web_links, youtube_links = check_links(links, user_query)
+# Function to process user query
+def process_query(user_query):
+    st.session_state.follow_up_questions = []
+    if user_query.lower() == "give me the logs 420":
+        download_logs()
+        return  # Exit the function to avoid processing the query further
+    
+    if user_query.lower() == "email me the logs 420":
+        success, message = send_logs_email('souravvmishra@gmail.com', COMPANY_NAME)
+        if success:
+            st.success(message)
+        else:
+            st.error(message)
+        return  # Exit the function to avoid processing the query further
 
-            if web_links or youtube_links:
-                answer += "\n\nFor your reference:\n"
-                if youtube_links:
-                    answer += "\nYouTube references:\n" + "\n".join(youtube_links)
-                if web_links:
-                    answer += "\nWeb references:\n" + "\n".join(web_links)
+    with st.chat_message("user"):
+        st.markdown(user_query)
+    st.session_state.messages.append({"role": "user", "content": user_query})
+    
+    answer = ""  # Initialize the answer variable
 
-            questions = parsed_result.get("questions", [])
-            chat_history.append({"role": "assistant", "content": answer})
+    with st.chat_message("assistant"):
+        with st.spinner("Processing your input..."):
+            result = centralized_crew.kickoff(inputs={'user_query': user_query})
+            try:
+                # Remove potential markdown code block syntax
+                cleaned_result = str(json.loads(result.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+                print(json.loads(result.model_dump_json())['raw'])
+                # Parse JSON response
+                parsed_result = json.loads(cleaned_result)
+                answer = parsed_result.get("answer", "")
+                questions = parsed_result.get("questions", [])
+                st.markdown(f"{answer}")
 
-            save_chat_history(chat_history=chat_history)
-            print("Answer:", answer)  # Debugging print
-            print("Questions:", questions)  # Debugging print
-            return jsonify({"answer": answer, "questions": questions})
+                # Update follow-up questions in session state
+                st.session_state.follow_up_questions = questions
 
-        except json.JSONDecodeError as e:
-            print("JSON Decode Error:", e)  # Debugging print
-            return jsonify({"error": "Error parsing JSON response."})
+            except json.JSONDecodeError as e:
+                print(e)
+                st.markdown(f"**Error parsing JSON:**\n{result}")
+                answer = "There was an error processing your request."
 
-        except Exception as e:
-            print("An unexpected error occurred:", e)  # Debugging print
-            return jsonify({"error": "An unexpected error occurred."})
+    st.session_state.messages.append({"role": "assistant", "content": answer})
 
-    return render_template("index.html")
+    # Save chat history to file
+    save_chat_history()
+    st.rerun()
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# Chat input at the bottom of the page
+user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
+
+if user_input:
+    process_query(user_input)
+
+# Handle follow-up questions
+if "follow_up_questions" in st.session_state:
+    for question in st.session_state.follow_up_questions:
+        if st.button(question):
+            process_query(question)

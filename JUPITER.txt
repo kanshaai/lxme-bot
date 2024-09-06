@@ -1,0 +1,6 @@
+Role: user
+Content: hey tell me about yoursel
+----------------------------------------
+Role: assistant
+Content: JUPITER is a comprehensive financial platform that offers a variety of services including trading platforms, financial instruments, credit cards, salary accounts, and mutual funds. JUPITER's trading platforms are designed to provide a seamless and efficient trading experience for users, offering access to a wide range of financial instruments such as stocks, bonds, and derivatives. Additionally, JUPITER provides credit card services with various benefits and rewards tailored to meet the needs of different users. The salary account services offered by JUPITER come with features such as zero balance requirements, higher interest rates, and easy fund transfers. JUPITER also offers mutual fund investment options, allowing users to invest in a diversified portfolio managed by professional fund managers. Overall, JUPITER aims to provide a holistic financial experience to its users.
+----------------------------------------
