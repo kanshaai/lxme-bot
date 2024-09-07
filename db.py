@@ -28,6 +28,14 @@ def get_prompts():
     return response
 
 
+def create_prompt(name, author, prompt):
+    with open_connection().session as session:
+        query = text("INSERT INTO Prompts (name, author, prompt) VALUES (:name, :author, :prompt)")
+        session.execute(query, {"name": name, "author": author, "prompt": prompt})
+        session.commit()
+    st.cache_data.clear()
+
+
 if __name__ == "__main__":
     init_db()
     fill_db()

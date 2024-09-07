@@ -1,4 +1,4 @@
-INSERT INTO Prompts (prompt, author, name, describe, evaluation) VALUES
+INSERT INTO Prompts (prompt, created_at, author, name, describe, evaluation) VALUES
 ("Rephrase the response given by an information agent in a way that is friendly, customer centric, and aims to resolve the issue as quickly as possible.
 As context, you get the \n\n ## Customer query: {{user_query}}\n\n, ## Original response: {{original_response}}\n\n, ## Conversation history so far: {{conversation}}
 If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help.
@@ -12,7 +12,7 @@ The 'answer' key should contain a rephrased response or, that follows the intent
 - Do not style too much where not necessary. A short, informative reply, should remain the same.
 - Do not exaggerate on friendliness to the point that it seems insincere. Remain objective and factual. Always put resolution of the issue first.
 - Focus on styling the response nicely. Use newlines and lists in markdown where appropriate. No other styling elements than lists and newlines should be in the response.
-Also, ensure the response is in valid JSON format.", "Kamiel", "Draft 1", "Basic", "A lot of room for improvement"),
+Also, ensure the response is in valid JSON format.", "2024-09-05 16:00:00", "Kamiel", "Kamiel Draft 1", "Basic", "A lot of room for improvement"),
 
 ("As context, you get the
 ## Customer query: {{user_query}},
@@ -39,4 +39,4 @@ Keep in mind the entire context of the conversation, not just the most recent me
 Empathise but Do not exaggerate on friendliness to the point that it seems insincere.
 Mention you will keep the user proactively updated on progress
 Focus on styling the response nicely. Use newlines and lists in markdown where appropriate. No other styling elements than lists and newlines should be in the response.
-Always ensure the response is in valid JSON format.", "Riddhi", "Demo 1", "Basic", "A lot of room for improvement")
+Always ensure the response is in valid JSON format.", "2024-09-05 21:00:00", "Riddhi", "Riddhi 1st Demo", "Basic", "A lot of room for improvement")
