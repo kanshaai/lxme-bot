@@ -1,0 +1,253 @@
+Role: user
+Content: How to open a bank account?
+----------------------------------------
+Role: assistant
+Content: To open a bank account with Jupiter Money, follow these detailed steps: 1. Download the Jupiter App: The first step is to download the Jupiter Money app from the Google Play Store or Apple App Store. 2. Create Your Account: After downloading the app, open it and sign up using your mobile number and email ID. You will receive an OTP (One-Time Password) for verification. 3. Complete Your KYC: - Video Verification: You will need to complete a video verification process. This usually involves a short video call where you will be asked to show your face and possibly some identification documents. - Document Submission: Keep your documents ready for submission. The essential documents typically include: * Identity Proof: Aadhar card, PAN card, passport, driving license, or voter ID. * Address Proof: Aadhar card, utility bill, passport, or rent agreement. * Age Proof: PAN card, birth certificate, or school leaving certificate. 4. Set Up Your Account: Once your KYC is successfully completed, you can set up your bank account details like choosing your account type (e.g., savings or salary account), setting up a passcode, and other preferences. 5. Start Using Your Account: After the setup is complete, you can start using your Jupiter Money account for transactions, savings, and other financial activities. Here are some additional details: - Instant Account Opening: Jupiter Money offers the convenience of opening a savings account in just 3 minutes. - No Need for Physical Branch Visits: Entire process is online, eliminating the need to visit a physical branch. - User-Friendly Interface: The app is designed to be intuitive and easy to use, making banking simple and accessible. For more details, you can visit the official Jupiter Money website and check their blog posts or help section for any specific queries.
+----------------------------------------
+Role: assistant
+Content: {"answer":"Hi there! Opening a bank account with Jupiter Money is a breeze. Here’s how you can get started:
+
+1. **Download the Jupiter App:** First, download the Jupiter Money app from the Google Play Store or Apple App Store.
+2. **Create Your Account:** Open the app and sign up using your mobile number and email ID. You'll receive an OTP (One-Time Password) for verification.
+3. **Complete Your KYC:** 
+   - **Video Verification:** This involves a short video call where you’ll be asked to show your face and possibly some ID documents.
+   - **Document Submission:** Have your documents ready. You’ll need:
+     - *Identity Proof:* Aadhar card, PAN card, passport, driving license, or voter ID.
+     - *Address Proof:* Aadhar card, utility bill, passport, or rent agreement.
+     - *Age Proof:* PAN card, birth certificate, or school leaving certificate.
+4. **Set Up Your Account:** Once your KYC is approved, you can set up account details like choosing your account type (e.g., savings or salary account), setting up a passcode, and other preferences.
+5. **Start Using Your Account:** After setting up, you can start using your Jupiter Money account for transactions, savings, and more.
+
+Here are some additional perks:
+- **Instant Account Opening:** You can open a savings account in just 3 minutes.
+- **No Physical Branch Visits Needed:** Everything is done online.
+- **User-Friendly Interface:** The app is intuitive, making banking simple and accessible.
+
+For more details, feel free to visit our official website and check the blog posts or help section for any specific queries. Happy banking with Jupiter Money!"}
+----------------------------------------
+Role: user
+Content: How to open a bank account?
+----------------------------------------
+Role: assistant
+Content: To open a bank account with Jupiter Money, follow these detailed steps: 1. Download the Jupiter App: The first step is to download the Jupiter Money app from the Google Play Store or Apple App Store. 2. Create Your Account: After downloading the app, open it and sign up using your mobile number and email ID. You will receive an OTP (One-Time Password) for verification. 3. Complete Your KYC: - Video Verification: You will need to complete a video verification process. This usually involves a short video call where you will be asked to show your face and possibly some identification documents. - Document Submission: Keep your documents ready for submission. The essential documents typically include: * Identity Proof: Aadhar card, PAN card, passport, driving license, or voter ID. * Address Proof: Aadhar card, utility bill, passport, or rent agreement. * Age Proof: PAN card, birth certificate, or school leaving certificate. 4. Set Up Your Account: Once your KYC is successfully completed, you can set up your bank account details like choosing your account type (e.g., savings or salary account), setting up a passcode, and other preferences. 5. Start Using Your Account: After the setup is complete, you can start using your Jupiter Money account for transactions, savings, and other financial activities. Here are some additional details: - Instant Account Opening: Jupiter Money offers the convenience of opening a savings account in just 3 minutes. - No Need for Physical Branch Visits: Entire process is online, eliminating the need to visit a physical branch. - User-Friendly Interface: The app is designed to be intuitive and easy to use, making banking simple and accessible. For more details, you can visit the official Jupiter Money website and check their blog posts or help section for any specific queries.
+----------------------------------------
+Role: assistant
+Content: {"answer":"Hi there! Opening a bank account with Jupiter Money is a breeze. Here’s how you can get started:
+
+1. **Download the Jupiter App:** First, download the Jupiter Money app from the Google Play Store or Apple App Store.
+2. **Create Your Account:** Open the app and sign up using your mobile number and email ID. You'll receive an OTP (One-Time Password) for verification.
+3. **Complete Your KYC:** 
+   - **Video Verification:** This involves a short video call where you’ll be asked to show your face and possibly some ID documents.
+   - **Document Submission:** Have your documents ready. You’ll need:
+     - *Identity Proof:* Aadhar card, PAN card, passport, driving license, or voter ID.
+     - *Address Proof:* Aadhar card, utility bill, passport, or rent agreement.
+     - *Age Proof:* PAN card, birth certificate, or school leaving certificate.
+4. **Set Up Your Account:** Once your KYC is approved, you can set up account details like choosing your account type (e.g., savings or salary account), setting up a passcode, and other preferences.
+5. **Start Using Your Account:** After setting up, you can start using your Jupiter Money account for transactions, savings, and more.
+
+Here are some additional perks:
+- **Instant Account Opening:** You can open a savings account in just 3 minutes.
+- **No Physical Branch Visits Needed:** Everything is done online.
+- **User-Friendly Interface:** The app is intuitive, making banking simple and accessible.
+
+For more details, feel free to visit our official website and check the blog posts or help section for any specific queries. Happy banking with Jupiter Money!"}
+----------------------------------------
+Role: user
+Content: I'm so angry! Fuck! It's not working! This bank sucks! It is terrible! I'm exploding
+----------------------------------------
+Role: assistant
+Content: I'm really sorry to hear about your frustration with Jupiter Money's services. I understand how important it is for your banking experience to be smooth and reliable. Let me provide some detailed information about Jupiter Money's offerings and features that might help address your concerns: 1. Account and Money Management: - Digital Savings Account: Jupiter offers a 100% digital savings bank account issued by Federal Bank. This includes various money management features like On-Demand Salary and Mutual Fund investments. - No Hidden Fees: Jupiter ensures a fair fee structure with no hidden charges, making it transparent for users. Detailed information on fees, rates, and charges can be found [here](https://jupiter.money/fees-rates-charges/). 2. Key Features: - Magic Spends: This newly launched feature encourages millennials to save and invest by reallocating unspent money from the monthly budget into savings automatically. - Wealth Builder: A tool to assist users in choosing Mutual Funds based on their needs. Users can start with as low as ₹1,000 and have the flexibility to pause and resume their investments. - Manual Tracking and Integration: Suggestions from the community include features like manual tracking of transactions and linking investments with Pots, aimed at enhancing user experience. 3. Customer Support: - Freshworks Integration: Jupiter Money has integrated Freshworks customer service software, which has helped retain nearly 1 million customers by providing efficient support and resolving issues promptly. 4. Community and Updates: - Jupiter Money actively engages with its community to update and improve its services. For instance, their community updates and feedback can be found [here](https://community.jupiter.money/t/community-update-october-2023/48741). 5. Remittance Services: - Jupiter Money provides various ways to send money abroad with ease, aligning with different remittance guidelines to ensure a seamless experience for users. It's important to also check community forums and support options if you are facing specific issues. Jupiter Money's community forum is a good place to raise concerns and get support from both the team and other users. If you continue to face issues, I recommend reaching out to Jupiter Money's customer support directly for personalized assistance. Your feedback is crucial for them to improve their services and provide a better banking experience. I hope this information helps alleviate some of your frustration. If you need further assistance, please don't hesitate to ask.
+----------------------------------------
+Role: assistant
+Content: {"answer":"I'm really sorry to hear about your frustration with Jupiter Money's services. You deserve a smooth and reliable banking experience. Let's address your concerns with some detailed information about Jupiter Money's offerings and features that might help:
+
+1. **Account and Money Management:**
+   - **Digital Savings Account:** Jupiter offers a 100% digital savings bank account issued by Federal Bank. This includes features like On-Demand Salary and Mutual Fund investments.
+   - **No Hidden Fees:** Jupiter ensures a transparent fee structure with no hidden charges. You can find detailed information on fees, rates, and charges [here](https://jupiter.money/fees-rates-charges/).
+
+2. **Key Features:**
+   - **Magic Spends:** This feature encourages millennials to save and invest by reallocating unspent money from the monthly budget into savings automatically.
+   - **Wealth Builder:** A tool to help you choose Mutual Funds based on your needs. Start with as low as ₹1,000 and enjoy flexibility to pause and resume investments.
+   - **Manual Tracking and Integration:** Features like manual tracking of transactions and linking investments with Pots are aimed at enhancing user experience.
+
+3. **Customer Support:**
+   - **Freshworks Integration:** Jupiter Money uses Freshworks customer service software, which has helped retain nearly 1 million customers by providing efficient support and resolving issues promptly.
+
+4. **Community and Updates:**
+   - Jupiter Money actively engages with its community to update and improve its services. Check out their community updates and feedback [here](https://community.jupiter.money/t/community-update-october-2023/48741).
+
+5. **Remittance Services:**
+   - Jupiter Money provides various ways to send money abroad with ease, aligning with different remittance guidelines to ensure a seamless experience for users.
+
+Your feedback is crucial for us to improve our services and provide a better banking experience. I will keep you proactively updated on progress. If you need further assistance, please don't hesitate to ask. Let's work together to resolve this and improve your experience with Jupiter Money."}
+----------------------------------------
+Role: user
+Content: How to open a bank account?
+----------------------------------------
+Role: assistant
+Content: To open a bank account with Jupiter Money, follow these steps: 1. **Download the Jupiter app**: Visit the official Jupiter Money website or go directly to your app store (Google Play Store or Apple App Store) and download the Jupiter app. 2. **Create your account**: Open the app and begin the account creation process by providing your basic details like your name, email, and mobile number. 3. **Complete your video verification / full KYC**: You will need to complete the Know Your Customer (KYC) process. This usually involves a video call where you will show your documents and verify your identity. The required documents typically include an identity and age proof like the Permanent Account Number (PAN) card, driving license, or Aadhaar card. 4. **Submit the necessary documents**: Make sure to have all the necessary documents ready. This includes your PAN card, Aadhaar card, or other government-issued IDs. You may also need to provide proof of address and a passport-sized photograph. 5. **Await verification and account activation**: After submitting your documents and completing the video verification, your application will be reviewed. Once approved, your account will be activated, and you will receive the details to start using your Jupiter account. For more detailed information, you can visit the specific pages on Jupiter Money's website: - Open Savings Account Online: https://jupiter.money/blog/open-savings-account-online/ - Open Salary Account Online: https://jupiter.money/pro-salary-account/ These resources will provide comprehensive guidance and ensure you have all the necessary information to successfully open your bank account with Jupiter Money.
+----------------------------------------
+Role: Control
+Content: Introduction
+----------------------------------------
+Role: assistant
+Content: Sure, I'd be happy to help you open a bank account with Jupiter Money! Just follow these simple steps:
+
+1. **Download the Jupiter app**: Head over to the official Jupiter Money website or your app store (Google Play Store or Apple App Store) and download the Jupiter app.
+
+2. **Create your account**: Open the app and start the account creation process by entering your basic details such as your name, email, and mobile number.
+
+3. **Complete your video verification / full KYC**: You'll need to complete the Know Your Customer (KYC) process, which usually involves a video call to show your documents and verify your identity. Commonly required documents include identity and age proofs like your Permanent Account Number (PAN) card, driving license, or Aadhaar card.
+
+4. **Submit the necessary documents**: Ensure you have all the required documents ready, such as your PAN card, Aadhaar card, or other government-issued IDs. You may also need proof of address and a passport-sized photograph.
+
+5. **Await verification and account activation**: After you've submitted your documents and completed the video verification, your application will be reviewed. Once approved, your account will be activated, and you'll receive the details to start using your Jupiter account.
+
+For more detailed information, you can visit these pages on Jupiter Money's website:
+
+- [Open Savings Account Online](https://jupiter.money/blog/open-savings-account-online/)
+- [Open Salary Account Online](https://jupiter.money/pro-salary-account/)
+
+These resources will provide comprehensive guidance to ensure you have everything you need to successfully open your bank account with Jupiter Money. If you have any other questions or need further assistance, feel free to ask!
+----------------------------------------
+Role: user
+Content: How to open a bank account?
+----------------------------------------
+Role: assistant
+Content: To open a bank account with Jupiter Money, follow these steps: 1. **Download the Jupiter app**: Visit the official Jupiter Money website or go directly to your app store (Google Play Store or Apple App Store) and download the Jupiter app. 2. **Create your account**: Open the app and begin the account creation process by providing your basic details like your name, email, and mobile number. 3. **Complete your video verification / full KYC**: You will need to complete the Know Your Customer (KYC) process. This usually involves a video call where you will show your documents and verify your identity. The required documents typically include an identity and age proof like the Permanent Account Number (PAN) card, driving license, or Aadhaar card. 4. **Submit the necessary documents**: Make sure to have all the necessary documents ready. This includes your PAN card, Aadhaar card, or other government-issued IDs. You may also need to provide proof of address and a passport-sized photograph. 5. **Await verification and account activation**: After submitting your documents and completing the video verification, your application will be reviewed. Once approved, your account will be activated, and you will receive the details to start using your Jupiter account. For more detailed information, you can visit the specific pages on Jupiter Money's website: - Open Savings Account Online: https://jupiter.money/blog/open-savings-account-online/ - Open Salary Account Online: https://jupiter.money/pro-salary-account/ These resources will provide comprehensive guidance and ensure you have all the necessary information to successfully open your bank account with Jupiter Money.
+----------------------------------------
+Role: Control
+Content: Introduction
+----------------------------------------
+Role: assistant
+Content: Sure, I'd be happy to help you open a bank account with Jupiter Money! Just follow these simple steps:
+
+1. **Download the Jupiter app**: Head over to the official Jupiter Money website or your app store (Google Play Store or Apple App Store) and download the Jupiter app.
+
+2. **Create your account**: Open the app and start the account creation process by entering your basic details such as your name, email, and mobile number.
+
+3. **Complete your video verification / full KYC**: You'll need to complete the Know Your Customer (KYC) process, which usually involves a video call to show your documents and verify your identity. Commonly required documents include identity and age proofs like your Permanent Account Number (PAN) card, driving license, or Aadhaar card.
+
+4. **Submit the necessary documents**: Ensure you have all the required documents ready, such as your PAN card, Aadhaar card, or other government-issued IDs. You may also need proof of address and a passport-sized photograph.
+
+5. **Await verification and account activation**: After you've submitted your documents and completed the video verification, your application will be reviewed. Once approved, your account will be activated, and you'll receive the details to start using your Jupiter account.
+
+For more detailed information, you can visit these pages on Jupiter Money's website:
+
+- [Open Savings Account Online](https://jupiter.money/blog/open-savings-account-online/)
+- [Open Salary Account Online](https://jupiter.money/pro-salary-account/)
+
+These resources will provide comprehensive guidance to ensure you have everything you need to successfully open your bank account with Jupiter Money. If you have any other questions or need further assistance, feel free to ask!
+----------------------------------------
+Role: user
+Content: I'm soo angry! It is not working! Fuck! This is terrible! AAAAAA
+----------------------------------------
+Role: assistant
+Content: It appears that you are experiencing significant frustration with a service that is not working properly. If your issue is related to Jupiter Money, here are some common problems users might face and their solutions: 1. **App Not Opening or Crashing**: Try restarting the app, clearing the cache, deleting app data, or reinstalling the app. 2. **MPIN Verification Failure**: Ensure you are entering the correct MPIN or reset your MPIN. 3. **Mobile Recharge Failures**: Check your internet connection or contact support. 4. **Buggy Chat Section**: Update the app or report the bug to support. 5. **Debit Card Issues**: Make sure your app is updated or contact support. 6. **Account Opening Errors**: Follow the instructions in the error message or contact support. 7. **Card Not Working in Federal CDMs**: Confirm if the CDM supports Jupiter card deposits or contact support. For persistent issues, please reach out to Jupiter Money's customer support via email at support@jupiter.money. We hope this helps resolve your issue.
+----------------------------------------
+Role: Control
+Content: Conversation expert
+----------------------------------------
+Role: assistant
+Content: You seem to be experiencing significant frustration with a service that's not working properly. Let's try to resolve this quickly. If your issue is related to Jupiter Money, here are some common problems users might face and their solutions:
+
+1. **App Not Opening or Crashing**: Try restarting the app, clearing the cache, deleting app data, or reinstalling the app.
+
+2. **MPIN Verification Failure**: Ensure you are entering the correct MPIN or reset your MPIN.
+
+3. **Mobile Recharge Failures**: Check your internet connection or contact support.
+
+4. **Buggy Chat Section**: Update the app or report the bug to support.
+
+5. **Debit Card Issues**: Make sure your app is updated or contact support.
+
+6. **Account Opening Errors**: Follow the instructions in the error message or contact support.
+
+7. **Card Not Working in Federal CDMs**: Confirm if the CDM supports Jupiter card deposits or contact support.
+
+For persistent issues, please reach out to Jupiter Money's customer support via email at support@jupiter.money. We hope this helps resolve your issue.
+----------------------------------------
+Role: user
+Content: I want to open a bank account
+----------------------------------------
+Role: assistant
+Content: To open a bank account with Jupiter Money, follow these steps: 1. **Download the Jupiter App**: - First, you need to download the Jupiter app, which is available on both the Google Play Store and the Apple App Store. 2. **Create Your Account**: - Open the app and follow the instructions to create a new account. You will need to provide your basic details such as your name, email address, and mobile number. 3. **Complete Your Video Verification / Full KYC**: - Jupiter Money requires you to complete a video verification process for Know Your Customer (KYC) compliance. This involves a live video call where you will be asked to show your identification documents. 4. **Submit Required Documents**: - You need the following documents to open your account: - Identity Proof: PAN card, Aadhaar card, Voter ID, Passport, or Driving License. - Address Proof: Aadhaar card, Passport, Voter ID, Utility Bill, or Driving License. 5. **Set Up and Start Using Your Account**: - Once your KYC verification is complete, your account will be activated. You can then start using your Jupiter account for various banking services, including savings, salary deposits, payments, and investing. For more detailed information, you can visit the following links: - [Open Savings Account Online](https://jupiter.money/blog/open-savings-account-online/) - [Open Salary Account Online With Jupiter Money](https://jupiter.money/pro-salary-account/) These resources will provide you with a comprehensive guide on how to open and start using your new bank account with Jupiter Money.
+----------------------------------------
+Role: Control
+Content: Information
+----------------------------------------
+Role: assistant
+Content: Hi there! Opening a bank account with Jupiter Money is a straightforward process. Here’s how you can get started:
+
+1. **Download the Jupiter App**: You can find the Jupiter app on both the Google Play Store and the Apple App Store.
+
+2. **Create Your Account**: Once you've downloaded the app, open it and follow the prompts to create your new account. You'll need to provide some basic details like your name, email address, and mobile number.
+
+3. **Complete Your Video Verification / Full KYC**: For KYC compliance, Jupiter Money requires a video verification process. This involves a live video call where you'll be asked to show your identification documents.
+
+4. **Submit Required Documents**: You'll need to provide the following documents:
+- **Identity Proof**: PAN card, Aadhaar card, Voter ID, Passport, or Driving License.
+- **Address Proof**: Aadhaar card, Passport, Voter ID, Utility Bill, or Driving License.
+
+5. **Set Up and Start Using Your Account**: After your KYC verification is complete, your account will be activated. You can then start using your Jupiter account for various banking services like savings, salary deposits, payments, and investing.
+
+For more detailed information, you can visit these links:
+- [Open Savings Account Online](https://jupiter.money/blog/open-savings-account-online/)
+- [Open Salary Account Online With Jupiter Money](https://jupiter.money/pro-salary-account/)
+
+Feel free to reach out if you have any more questions. We're here to help!
+----------------------------------------
+Role: user
+Content: I want to open a bank account
+----------------------------------------
+Role: assistant
+Content: To open a bank account with Jupiter Money, follow these steps: 1. **Download the Jupiter App**: - First, you need to download the Jupiter app, which is available on both the Google Play Store and the Apple App Store. 2. **Create Your Account**: - Open the app and follow the instructions to create a new account. You will need to provide your basic details such as your name, email address, and mobile number. 3. **Complete Your Video Verification / Full KYC**: - Jupiter Money requires you to complete a video verification process for Know Your Customer (KYC) compliance. This involves a live video call where you will be asked to show your identification documents. 4. **Submit Required Documents**: - You need the following documents to open your account: - Identity Proof: PAN card, Aadhaar card, Voter ID, Passport, or Driving License. - Address Proof: Aadhaar card, Passport, Voter ID, Utility Bill, or Driving License. 5. **Set Up and Start Using Your Account**: - Once your KYC verification is complete, your account will be activated. You can then start using your Jupiter account for various banking services, including savings, salary deposits, payments, and investing. For more detailed information, you can visit the following links: - [Open Savings Account Online](https://jupiter.money/blog/open-savings-account-online/) - [Open Salary Account Online With Jupiter Money](https://jupiter.money/pro-salary-account/) These resources will provide you with a comprehensive guide on how to open and start using your new bank account with Jupiter Money.
+----------------------------------------
+Role: Control
+Content: Information
+----------------------------------------
+Role: assistant
+Content: Hi there! Opening a bank account with Jupiter Money is a straightforward process. Here’s how you can get started:
+
+1. **Download the Jupiter App**: You can find the Jupiter app on both the Google Play Store and the Apple App Store.
+
+2. **Create Your Account**: Once you've downloaded the app, open it and follow the prompts to create your new account. You'll need to provide some basic details like your name, email address, and mobile number.
+
+3. **Complete Your Video Verification / Full KYC**: For KYC compliance, Jupiter Money requires a video verification process. This involves a live video call where you'll be asked to show your identification documents.
+
+4. **Submit Required Documents**: You'll need to provide the following documents:
+- **Identity Proof**: PAN card, Aadhaar card, Voter ID, Passport, or Driving License.
+- **Address Proof**: Aadhaar card, Passport, Voter ID, Utility Bill, or Driving License.
+
+5. **Set Up and Start Using Your Account**: After your KYC verification is complete, your account will be activated. You can then start using your Jupiter account for various banking services like savings, salary deposits, payments, and investing.
+
+For more detailed information, you can visit these links:
+- [Open Savings Account Online](https://jupiter.money/blog/open-savings-account-online/)
+- [Open Salary Account Online With Jupiter Money](https://jupiter.money/pro-salary-account/)
+
+Feel free to reach out if you have any more questions. We're here to help!
+----------------------------------------
+Role: user
+Content: I'm so angry! It is not working! This bank is terrible! My hair is on fire from rage
+----------------------------------------
+Role: assistant
+Content: I'm really sorry to hear about the frustrating experience you're having with Jupiter Money. Let's work together to resolve this issue. Here are some steps you can take to get support: 1. Chat Support via Jupiter App: You can get instant support by chatting with the support team directly through the Jupiter app. 2. Email Support: If you prefer, you can email their support team at support@jupiter.money. 3. Phone Support: You can also call their helpline at +91 8655055086, available from 9 AM to 7 PM on weekdays. 4. Grievance Redressal: For more formal complaints, you can refer to their Grievance Redressal Policy at https://jupiter.money/grievance-redressal-policy/. Taking these steps should help address your concerns more effectively. If you continue to face issues, please let us know, and we'll do our best to assist you further.
+----------------------------------------
+Role: Control
+Content: Conversation expert
+----------------------------------------
+Role: assistant
+Content: You must be extremely frustrated right now, and I understand how upsetting this situation can be. Let's work together to fix this issue as quickly as possible.
+
+Here are some immediate steps you can take to get support:
+
+1. **Chat Support via Jupiter App**: You can get instant support by chatting with our support team directly through the Jupiter app.
+
+2. **Email Support**: If you prefer, you can email our support team at support@jupiter.money.
+
+3. **Phone Support**: You can also call our helpline at +91 8655055086, available from 9 AM to 7 PM on weekdays.
+
+4. **Grievance Redressal**: For more formal complaints, you can refer to our Grievance Redressal Policy at https://jupiter.money/grievance-redressal-policy/.
+
+Taking these steps should help address your concerns more effectively. Please let me know if you continue to face issues, and I'll ensure we're on top of resolving them for you. I'll keep you proactively updated on the progress.
+----------------------------------------

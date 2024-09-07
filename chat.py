@@ -91,6 +91,32 @@ The response should not contain any unescaped newline characters nor codeblock. 
     return crew
 
 
+def conversation_control_crew():
+    description = db.get_control_prompt()["prompt"].iloc[0]
+    description = description.replace("{{conversation}}", conversation_history(st.session_state.messages))
+    centralized_task = Task(
+        description=description,
+        expected_output='''A JSON object containing "prompt" as key, with the prompt description as the value.''',
+        agent=Agent(
+            role='Conversation Controller',
+            goal='Control the flow of the conversation and provide guidance to the agents.',
+            verbose=True,
+            memory=True,
+            model_name="gpt-4o-mini",
+            backstory=(
+                'You are responsible for managing the conversation flow between agents. '
+                'You provide guidance to the agents and ensure that the conversation stays on track.'
+            )
+        )
+    )
+
+    crew = Crew(
+        tasks=[centralized_task],
+        process=Process.sequential
+    )
+    return crew
+
+
 def rephraser_crew():
     centralized_task = Task(
         description=st.session_state.chat_prompt,
@@ -128,6 +154,20 @@ def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
 
 # Function to handle log downloads
 def download_logs():
+    log_file = f"Jupter Money.txt"
+    if Path(log_file).exists():
+        # Prompt the user to download the file
+        st.download_button(
+            label="Download Conversation",
+            data=open(log_file, "rb").read(),
+            file_name=log_file,
+            mime="text/plain"
+        )
+    else:
+        st.write("No logs found.")
+
+
+def download_rephraser():
     log_file = f"rephraser.db"
     if Path(log_file).exists():
         # Prompt the user to download the file
@@ -145,6 +185,8 @@ def conversation_history(messages):
     # Make a string containing all messages in current history
     history = ''
     for message in messages:
+        if message['role'] == 'Control':
+            continue
         history += f"{message['role']}: {message['content']}\n"
     return history
 
@@ -152,6 +194,10 @@ def conversation_history(messages):
 # Function to process user query
 def process_query(user_query):
     if user_query.lower() == "give me the logs 420":
+        download_logs()
+        return  # Exit the function to avoid processing the query further
+    
+    if user_query.lower() == "give me the prompts 420":
         download_logs()
         return  # Exit the function to avoid processing the query further
 
@@ -179,25 +225,48 @@ def process_query(user_query):
 
     st.session_state.messages.append({"role": "assistant", "content": answer1})
 
+    with st.spinner("Guiding the conversation..."):
+        result2 = conversation_control_crew().kickoff()
+        try:
+            # Remove potential markdown code block syntax
+            cleaned_result = str(json.loads(result2.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+            print(json.loads(result2.model_dump_json())['raw'])
+            # Parse JSON response
+            parsed_result = json.loads(cleaned_result)
+            answer2 = parsed_result.get("prompt", "")
+            st.markdown(f"{answer2}")
+
+        except json.JSONDecodeError as e:
+            print(e)
+            #st.markdown(f"**Error parsing JSON:**\n{result2}")
+            answer2 = str(json.loads(result2.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+    st.session_state.messages.append({"role": "Control", "content": answer2})
+
     with st.chat_message("assistant"):
         with st.spinner("Rephrasing the answer..."):
-            st.session_state.chat_prompt = st.session_state.chat_prompt.replace("{{user_query}}", user_query).replace("{{original_response}}", answer1).replace("{{conversation}}", conversation_history(st.session_state.messages))
-            result2 = rephraser_crew().kickoff()
+            prompts = db.get_prompts()
+            try:
+                prompt = prompts[prompts["describe"]==answer2]["prompt"].iloc[0]
+            except:
+                st.error(f"Prompt description '{answer2}' not found by conversation control. Please refine description and conversation control prompt")
+                return
+            st.session_state.chat_prompt = prompt.replace("{{user_query}}", user_query).replace("{{original_response}}", answer1).replace("{{conversation}}", conversation_history(st.session_state.messages))
+            result3 = rephraser_crew().kickoff()
             try:
                 # Remove potential markdown code block syntax
-                cleaned_result = str(json.loads(result2.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+                cleaned_result = str(json.loads(result3.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
                 print(json.loads(result2.model_dump_json())['raw'])
                 # Parse JSON response
                 parsed_result = json.loads(cleaned_result)
-                answer2 = parsed_result.get("answer", "")
-                st.markdown(f"{answer2}")
+                answer3 = parsed_result.get("answer", "")
+                st.markdown(f"{answer3}")
 
             except json.JSONDecodeError as e:
                 print(e)
                 #st.markdown(f"**Error parsing JSON:**\n{result2}")
-                answer2 = str(json.loads(result2.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+                answer3 = str(json.loads(result3.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
 
-    st.session_state.messages.append({"role": "assistant", "content": answer2})
+    st.session_state.messages.append({"role": "assistant", "content": answer3})
 
     # Save chat history to file
     save_chat_history()
@@ -207,9 +276,9 @@ def process_query(user_query):
 def render_chat():
     if "messages" not in st.session_state:
         st.session_state.messages = []
-    prompts = db.get_prompts()
-    st.selectbox("Prompt for chat", prompts["name"], key="selected_chat_prompt")
-    st.session_state["chat_prompt"] = prompts[prompts["name"]==st.session_state.selected_chat_prompt]["prompt"].iloc[0]
+    #prompts = db.get_prompts()
+    #st.selectbox("Prompt for chat", prompts["name"], key="selected_chat_prompt")
+    #st.session_state["chat_prompt"] = prompts[prompts["name"]==st.session_state.selected_chat_prompt]["prompt"].iloc[0]
 
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):

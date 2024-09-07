@@ -23,17 +23,37 @@ def fill_db():
 
 def get_prompts():
     connection = open_connection()
-    response = connection.query(f"SELECT * FROM Prompts")
+    response = connection.query(f"SELECT * FROM Prompts WHERE name IS NOT 'Conversation control'")
     connection.session.close()
     return response
 
 
-def create_prompt(name, author, prompt):
+def create_prompt(name, author, prompt, describe):
     with open_connection().session as session:
-        query = text("INSERT INTO Prompts (name, author, prompt) VALUES (:name, :author, :prompt)")
-        session.execute(query, {"name": name, "author": author, "prompt": prompt})
+        query = text("INSERT INTO Prompts (name, author, prompt, describe) VALUES (:name, :author, :prompt, :describe)")
+        session.execute(query, {"name": name, "author": author, "prompt": prompt, "describe": describe})
         session.commit()
-    st.cache_data.clear()
+
+
+def update_description():
+    with open_connection().session as session:
+        query = text("UPDATE Prompts SET describe = :describe WHERE name = :name")
+        session.execute(query, {"describe": st.session_state.description_input, "name": st.session_state.selected_prompt})
+        session.commit()
+
+
+def get_control_prompt():
+    connection = open_connection()
+    response = connection.query("SELECT * FROM Prompts WHERE name IS 'Conversation control'")
+    connection.session.close()
+    return response
+
+
+def update_control():
+    with open_connection().session as session:
+        query = text("UPDATE Prompts SET prompt = :prompt WHERE name = 'Conversation control'")
+        session.execute(query, {"prompt": st.session_state.control_input})
+        session.commit()
 
 
 if __name__ == "__main__":
