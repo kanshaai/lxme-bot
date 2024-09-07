@@ -1,13 +1,11 @@
 import json
 import os
-from pathlib import Path
 import streamlit as st
 from crewai import Agent, Task, Crew, Process
 from crewai_tools import SerperDevTool
 from dotenv import load_dotenv
-
+from pathlib import Path
 from mail import send_logs_email
-from langchain_openai import ChatOpenAI
 
 # Load environment variables from .env file
 load_dotenv()
@@ -17,15 +15,8 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
 # Company-specific details
-COMPANY_NAME = "JUPITER"
-COMPANY_DOMAIN = "upiter.money/"
-COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on {COMPANY_DOMAIN}'
-COMPANY_BACKSTORY = (
-    f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
-    f'You provide detailed information about their products, services, '
-    f'and solutions available on lxme.in, including any innovations and key features.'
-)
+COMPANY_NAME = "Jupiter Money"
+COMPANY_DOMAIN = "jupiter.money/"
 
 
 # Initialize the SerperDevTool with company-specific search settings
@@ -39,171 +30,137 @@ class CompanySerperDevTool(SerperDevTool):
 search_tool = CompanySerperDevTool()
 
 
-class TextAgents():
-    def __init__(self):
-        self.llm = ChatOpenAI(
-            model = "gpt-4o-mini"
-        )
-        pass
-# Agent setups
-    def company_info_agent(self):
-        return Agent(
-            role=COMPANY_ROLE,
-            goal=COMPANY_GOAL,
-            verbose=True,
-            memory=True,
-            backstory=COMPANY_BACKSTORY,
-            tools=[search_tool]
-        )
+def information_crew():
 
-    def out_of_context_agent(self): 
-        return Agent(
-            role='Context Checker',
-            goal=f'Determine if a question is relevant to {COMPANY_NAME} and politely decline if not.',
+    company_info_agent = Agent(
+        role=f'{COMPANY_NAME} Information Specialist',
+        goal=f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on {COMPANY_DOMAIN}.',
+        verbose=True,
+        memory=True,
+        backstory=f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
+        f'You provide detailed information about their products, services, '
+        f'and solutions available on {COMPANY_DOMAIN}, including any innovations and key features.',
+        tools=[search_tool]
+    )
+
+    out_of_context_agent = Agent(
+        role='Context Checker',
+        goal=f'Determine if a question is relevant to {COMPANY_NAME} and politely decline if not.',
+        verbose=True,
+        memory=True,
+        backstory=(
+            f'You are responsible for determining if a question is relevant to {COMPANY_NAME}. '
+            f'If the question is not related, you respond politely indicating that the question is out of context and '
+            f'that only {COMPANY_NAME}-related information is provided.'
+        )
+    )
+
+    centralized_task = Task(
+        description=(
+            f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately.'
+            f'First ask the Context Checker if the query is related to the company or not.'
+            f'Then ask the {COMPANY_NAME} Information Specialist to provide detailed information relevant to the user query.'
+            f'If the query is about {COMPANY_NAME}, provide a detailed and informative response.'
+            f'Respond in JSON format with one key: "answer", which should contain the response.'
+            f'Ensure the response is in valid JSON format.'
+        ),
+        expected_output='''A JSON object containing "answer" as key, with the response as the value.
+The response should not contain any unescaped newline characters nor codeblock. The response should be able to pass JSON.loads() without any error.''',
+        agent=Agent(
+            role=f'{COMPANY_NAME} Information Bot',
+            goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
             verbose=True,
             memory=True,
             backstory=(
-                f'You are responsible for determining if a question is relevant to {COMPANY_NAME}. '
-                f'If the question is not related, you respond politely indicating that the question is out of context and '
-                f'that only {COMPANY_NAME}-related information is provided.'
-            )
-        )
-
-# Centralized Task
-    def centralized_task(self):
-        return Task(
-            description=(
-                f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately. '
-                f'If the query is about {COMPANY_NAME}, provide a detailed and informative response. '
-                f'Respond in JSON format with two keys: "answer" and "questions". '
-                f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions '
-                f'that are relevant to {COMPANY_NAME}.'
-                f'Ensure the response is in valid JSON format.'
+                f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
+                f'about {COMPANY_NAME}\'s trading platforms, financial instruments, account types, and market analysis tools. '
+                f'You only respond to queries related to {COMPANY_NAME}.'
             ),
-            expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
-            agent=Agent(
-                role=f'{COMPANY_NAME} Information Bot',
-                goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
-                verbose=True,
-                memory=True,
-                backstory=(
-                    f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-                f'about {COMPANY_NAME}\'s trading platforms, financial instruments, Credit cards, salary account, mutual funds etc. . '
-                    f'You only respond to queries related to {COMPANY_NAME}.'
-                ),
-                tools=[search_tool],
-                allow_delegation=True
-            )
+            allow_delegation=True
         )
+    )
 
-Textagent = TextAgents()
-
-company_info_agent = Textagent.company_info_agent()
-out_of_context_agent = Textagent.company_info_agent()
-centralized_task = Textagent.centralized_task()
-
-
-# Centralized Crew setup
-centralized_crew = Crew(
-    agents=[company_info_agent, out_of_context_agent],
-    tasks=[centralized_task],
-    process=Process.sequential
-)
+    crew = Crew(
+        agents=[company_info_agent, out_of_context_agent],
+        tasks=[centralized_task],
+        process=Process.sequential
+    )
+    return crew
 
 
+if "rephrase_prompt" not in st.session_state:
+    st.session_state.rephrase_prompt = (
+f'As context, you get the \n'
+f'## Customer query: {{user_query}},\n'
+f'## Original response: {{original_response}},\n'
+f'## Conversation history so far: {{conversation}}\n'
+f'Respond in JSON format with one keys: "answer"\n'
+f'The "answer" key should \n'
+f'Rephrase only the Original response given by a knowledge base agent: {{original_response}}\n'
+f'The knowledge base agent is trained on the information available on a company called Jupiter,\n'
+f"Into how the world's best customer support representative would respond\n"
+f"In a way that validates the user's pain and consequence to the user, and makes clear they aim to resolve any issue as quickly as possible, and always stays solution-oriented,\n"
+f'and never becomes helpless or apologetic or defends or justifies anything that has caused the user inconvenience, anger and pain\n'
+f'and remains focused on providing concise reasons, and best recommended next action\n'
+f'You can also use the knowledge base agent again if needed, but not too much, as in most cases you should have enough context to answer the question yourself.\n'
+f'## Answer Guidelines\n'
+f'Start by acknowledging what the user has mentioned they need to get done, and then their need, with a sentence that starts with "You" wherever possible instead of "I" to maintain user-centric-focus\n'
+f"Focus on what can be done now, not what can't be done\n"
+f'If you need to re-confirm a specific transaction, then pretend you have the entire user transaction history with the company, and make up some dummy transaction data to use to re-confirm these details with user\n'
+f'Use your response to help shift a user from complaint-orientation to solution-orientation\n'
+f'A concise, informative, actually helpful reply is best. \n'
+f"In no situation, should you recommend that the user contact the company's customer support team directly, because you are already acting as the customer support team that the user has already contacted. Also do not recommend checking Jupiter Community Forum. Just focus on making progress happen wrt resolving user issue"
+f'Every sentence should be sequenced exactly how a user in extreme pain would most care about receiving that information.\n'
+f'Keep in mind the entire context of the conversation, not just the most recent messages. If you apologised before and the customer is still angry, there is no use in apologising again. Try a different tactic to reduce their anger.\n'
+f'Empathise but Do not exaggerate on friendliness to the point that it seems insincere.\n'
+f'Mention you will keep the user proactively updated on progress\n'
+f'Focus on styling the response nicely. Use newlines and lists in markdown where appropriate. No other styling elements than lists and newlines should be in the response.\n'
+f'Always ensure the response is in valid JSON format.'
+    )
 
-# Define custom CSS
-custom_css = """
-<style>
-/* Change the background color of the entire app */
-body {
-    background-color: #ffe6f2;
-}
 
-/* Change the color of the main title */
-h1 {
-    color: rgb(252 122 105);
-}
+def rephraser_crew():
+    centralized_task = Task(
+        description=st.session_state.rephrase_prompt,
+        expected_output='''A JSON object containing "answer" as key, with the response as the value.
+The response should not contain any unescaped newline characters nor codeblock. The response should be able to pass JSON.loads() without any error.''',
+        agent=Agent(
+            role=f'{COMPANY_NAME} Customer Service Agent',
+            goal= f'Provide a helpful and empathetic customer service response for chats about {COMPANY_NAME} products, services, and solutions',
+            verbose=True,
+            memory=True,
+            backstory=(
+                f'You are a helpful assistant working with clients of {COMPANY_NAME}.'
+                f'You use detailed information about their products, services, and solutions available on {COMPANY_DOMAIN}'
+                f'and communicate this information to the customer in a way that is friendly, customer centric, and aims to resolve the issue as quickly as possible.'
+            ),
+            allow_delegation=True
+        )
+    )
 
-/* Style the chat messages */
-.chat-message.user {
-    background-color: #ffcccb;
-    color: rgb(252 122 105);
-    border: 2px solid rgb(252 122 105);
-}
+    crew = Crew(
+        tasks=[centralized_task],
+        process=Process.sequential
+    )
+    return crew
 
-.chat-message.assistant {
-    background-color: #ffffcc;
-    color: rgb(252 122 105);
-    border: 2px solid rgb(252 122 105);
-}
-
-/* Style the input box at the bottom */
-.stTextInput > div {
-    background-color: #ffcccb;
-    border-radius: 5px;
-    color: rgb(252 122 105);
-}
-
-/* Style the buttons */
-button {
-    background-color: rgb(252 122 105);
-    color: #fff;
-   
-    border: none;
-    border-radius: 5px;
-}
-
-.st-emotion-cache-1ghhuty{
-background-color: rgb(252 122 105);
-}
-
-.st-emotion-cache-bho8sy{
-background-color: black;
-}
-/* Style the spinner */
-.stSpinner > div {
-    border-top-color: rgb(252 122 105);
-}
-
-/* Style the download button */
-.stDownloadButton {
-    background-color: rgb(252 122 105);
-    color: #fff;
-    border-radius: 5px;
-}
-
-.black-text {
-    
-    color: black;
-    
-}
-</style>
-"""
-
-# Inject the custom CSS
-st.markdown(custom_css, unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
-    <h4 style="color:rgb(252 122 105);">
-           Jupiter Customer Support
-    </h4>
+    <h2 style="color:#ff796d; margin-left:5px;">
+        Jupiter Customer Support + Rephraser
+    </h2>
 """, unsafe_allow_html=True)
 st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
+
 
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Display chat messages from history on app rerun
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
-
 # Function to save the chat history to a file
 def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
-    with open(filename, "a") as file:
+    with open(filename, "a", encoding="utf-8") as file:
         for message in st.session_state.messages:
             file.write(f"Role: {message['role']}\n")
             file.write(f"Content: {message['content']}\n")
@@ -224,21 +181,20 @@ def download_logs():
         st.write("No logs found.")
 
 
+def conversation_history(messages):
+    # Make a string containing all messages in current history
+    history = ''
+    for message in messages:
+        history += f"{message['role']}: {message['content']}\n"
+    return history
+
 
 # Function to process user query
 def process_query(user_query):
-    st.session_state.follow_up_questions = []
     if user_query.lower() == "give me the logs 420":
         download_logs()
         return  # Exit the function to avoid processing the query further
-    
-    if user_query.lower() == "email me the logs 420":
-        success, message = send_logs_email('souravvmishra@gmail.com', COMPANY_NAME)
-        if success:
-            st.success(message)
-        else:
-            st.error(message)
-        return  # Exit the function to avoid processing the query further
+
 
     with st.chat_message("user"):
         st.markdown(user_query)
@@ -247,40 +203,158 @@ def process_query(user_query):
     answer = ""  # Initialize the answer variable
 
     with st.chat_message("assistant"):
-        with st.spinner("Processing your input..."):
-            result = centralized_crew.kickoff(inputs={'user_query': user_query})
+        with st.spinner("Initial answer for your input..."):
+            result1 = information_crew().kickoff(inputs={'user_query': user_query})
             try:
                 # Remove potential markdown code block syntax
-                cleaned_result = str(json.loads(result.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
-                print(json.loads(result.model_dump_json())['raw'])
+                cleaned_result = str(json.loads(result1.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+                print(json.loads(result1.model_dump_json())['raw'])
                 # Parse JSON response
                 parsed_result = json.loads(cleaned_result)
-                answer = parsed_result.get("answer", "")
-                questions = parsed_result.get("questions", [])
-                st.markdown(f"{answer}")
-
-                # Update follow-up questions in session state
-                st.session_state.follow_up_questions = questions
+                answer1 = parsed_result.get("answer", "")
+                st.markdown(f"{answer1}")
 
             except json.JSONDecodeError as e:
                 print(e)
-                st.markdown(f"**Error parsing JSON:**\n{result}")
-                answer = "There was an error processing your request."
+                st.markdown(f"**Error parsing JSON:**\n{result1}")
+                answer1 = "There was an error processing your request."
 
-    st.session_state.messages.append({"role": "assistant", "content": answer})
+    st.session_state.messages.append({"role": "assistant", "content": answer1})
+
+    with st.chat_message("assistant"):
+        with st.spinner("Rephrasing the answer..."):
+            result2 = rephraser_crew().kickoff(inputs={'user_query': user_query, "original_response": answer, "conversation": conversation_history(st.session_state.messages)})
+            try:
+                # Remove potential markdown code block syntax
+                cleaned_result = str(json.loads(result2.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+                print(json.loads(result2.model_dump_json())['raw'])
+                # Parse JSON response
+                parsed_result = json.loads(cleaned_result)
+                answer2 = parsed_result.get("answer", "")
+                st.markdown(f"{answer2}")
+
+            except json.JSONDecodeError as e:
+                print(e)
+                st.markdown(f"**Error parsing JSON:**\n{result2}")
+                answer2 = "There was an error processing your request."
+
+    st.session_state.messages.append({"role": "assistant", "content": answer2})
 
     # Save chat history to file
     save_chat_history()
     st.rerun()
 
-# Chat input at the bottom of the page
-user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
 
-if user_input:
-    process_query(user_input)
+def read_conversation(file_path):
+    conversations = []
+    with open(file_path, 'r') as file:
+        message = {}
+        append_content = False
+        for line in file:
+            line = line.strip()
+            
+            # Detect start of a new message
+            if line.startswith('Role:'):
+                if message:  # Add the previous message to conversations list
+                    conversations.append(message)
+                message = {"role": line.split(":")[1].strip(), "content": ""}
+                append_content = False
+            
+            # Detect content start
+            elif line.startswith('Content:'):
+                message["content"] = line.split("Content:")[1].strip()
+                append_content = True  # Start appending content lines
+            
+            # Append to the current content if no separator and in content mode
+            elif append_content and not line.startswith('-------'):
+                message["content"] += "\n" + line
+            
+            # If separator, end the current message
+            elif line.startswith('------'):
+                if message:  # Add the current message to conversations list
+                    conversations.append(message)
+                    message = {}
+                append_content = False
 
-# Handle follow-up questions
-if "follow_up_questions" in st.session_state:
-    for question in st.session_state.follow_up_questions:
-        if st.button(question):
-            process_query(question)
+        if message:  # Add the last message if any
+            conversations.append(message)
+    return conversations
+
+
+def show_conversations(messages):
+    for message in messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+
+
+def make_conversation(filepath):
+
+    user = st.chat_input("User:")
+    if user:
+        st.session_state.messages.append({"role": "user", "content": user})
+    assistant = st.chat_input("Assistant:")
+    if assistant:
+        st.session_state.messages.append({"role": "assistant", "content": assistant})
+    if st.button("Rephrase"):
+        u = conversation_history([[m for m in st.session_state.messages if m['role']=='user'][-1]])
+        r = conversation_history([[m for m in st.session_state.messages if m['role']=='assistant'][-1]])
+        c = conversation_history(st.session_state.messages)
+        result = rephraser_crew().kickoff(inputs={
+            'user_query': u,
+            "original_response": r,
+            "conversation": c
+        })
+        try:
+            # Remove potential markdown code block syntax
+            cleaned_result = str(json.loads(result.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+            # Parse JSON response
+            parsed_result = json.loads(cleaned_result[cleaned_result.find('{'):cleaned_result.rfind('}')+1])
+            answer1 = parsed_result.get("answer", "")
+            st.markdown(f"{answer1}")
+
+        except json.JSONDecodeError as e:
+            print(e)
+            st.markdown(f"**Below response is not properly parsed:**\n{result}")
+            answer1 = str(json.loads(result.model_dump_json())['raw'])
+
+        st.session_state.messages.append({"role": "Rephraser", "content": answer1})
+        # Function to save the chat history to a file
+        with open(filepath, "a", encoding="utf-8") as file:
+            for message in st.session_state.messages[-3:]:
+                file.write(f"Role: {message['role']}\n")
+                file.write(f"Content: {message['content']}\n")
+                file.write("-" * 40 + "\n")
+
+st.selectbox("Select a page", ["Chat", "Rephraser prompt", "Example 1", "Example 2", "Example 3", "Example 4"], key="page")
+
+if st.session_state.page == "Chat":
+    # Display chat messages from history on app rerun
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+
+    # Chat input at the bottom of the page
+    user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
+
+    if user_input:
+        process_query(user_input)
+
+if st.session_state.page == "Rephraser prompt":
+    prompt = st.text_area("Current rephraser Prompt", value=st.session_state.rephrase_prompt, height=800)
+    if st.button("Update Rephraser Prompt"):
+        st.session_state.rephrase_prompt = prompt
+
+if st.session_state.page == "Example 1":
+    st.markdown("Example of an existing customer conversation, with the actual response from the agent, plus what the rephrased response would have been.")
+    show_conversations(read_conversation('example.txt'))
+
+if st.session_state.page == "Example 2":
+    st.markdown("Example of an existing customer conversation, with the actual response from the agent, plus what the rephrased response would have been.")
+    show_conversations(read_conversation('example3.txt'))
+
+if st.session_state.page == "Example 3":
+    st.markdown("Example of an existing customer conversation, with the actual response from the agent, plus what the rephrased response would have been.")
+
+if st.session_state.page == "Example 4":
+    st.markdown("Examples of made up customer queries, our own chatbot answer, and the rephrased response.")
+    make_conversation("example2.txt")
