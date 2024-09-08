@@ -1,360 +1,322 @@
-import json
-import os
 import streamlit as st
-from crewai import Agent, Task, Crew, Process
-from crewai_tools import SerperDevTool
+import openai
+import os
 from dotenv import load_dotenv
-from pathlib import Path
-from mail import send_logs_email
+from openai import OpenAI
+
 
 # Load environment variables from .env file
 load_dotenv()
-
 # Set up the environment keys
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 
-# Company-specific details
-COMPANY_NAME = "Jupiter Money"
-COMPANY_DOMAIN = "jupiter.money/"
+client = OpenAI(
+    # This is the default and can be omitted
+    api_key=os.environ.get("OPENAI_API_KEY"),
+)
+
+def understand_tactics(user_input, sprinklr_input):
+    # Call OpenAI API to understand user's emotion and generate a prompt
+    response =client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "You are an assistant that understands emotions. "},
+            {"role": "user", "content": f'''
+
+I need you to generate a list of tactics that should be used when rephrasing this where
+the user query is : {user_input} 
+the original response is : {sprinklr_input}
+These tactics should focus on improving communication, managing user expectations, and maintaining a positive tone while avoiding blame or excessive apologies. Please provide the list in Python list format.
+You should not accept your mistake anytime, you have to acknowledge user only when this is someone else's mistale.
+Each tactic should focus on a specific communication strategy. You should choose the tactics from the following:tactics = [
+    "Use 'You' Focus Sentences",
+    "Validate User's Urgency",
+    "Choose Words Carefully",
+    "End with Solution Orientation",
+    "Minimize User Effort",
+    "Avoid Over-Apologizing",
+    "Use Presuppositions",
+    "Limit Apologies",
+    "Reframe the Issue",
+    "Redirect Blame"
+]
+Your output should be just a single python list with all the tactics
 
 
-# Initialize the SerperDevTool with company-specific search settings
-class CompanySerperDevTool(SerperDevTool):
-    def search(self, query):
-        company_query = f"site:{COMPANY_DOMAIN} {query}"
-        results = super().search(company_query)
-        relevant_results = [result for result in results if COMPANY_DOMAIN in result.get('link', '')]
-        return relevant_results
-
-search_tool = CompanySerperDevTool()
 
 
-def information_crew():
-
-    company_info_agent = Agent(
-        role=f'{COMPANY_NAME} Information Specialist',
-        goal=f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on {COMPANY_DOMAIN}.',
-        verbose=True,
-        memory=True,
-        backstory=f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
-        f'You provide detailed information about their products, services, '
-        f'and solutions available on {COMPANY_DOMAIN}, including any innovations and key features.',
-        tools=[search_tool]
+'''}
+        ]
     )
-
-    out_of_context_agent = Agent(
-        role='Context Checker',
-        goal=f'Determine if a question is relevant to {COMPANY_NAME} and politely decline if not.',
-        verbose=True,
-        memory=True,
-        backstory=(
-            f'You are responsible for determining if a question is relevant to {COMPANY_NAME}. '
-            f'If the question is not related, you respond politely indicating that the question is out of context and '
-            f'that only {COMPANY_NAME}-related information is provided.'
-        )
-    )
-
-    centralized_task = Task(
-        description=(
-            f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately.'
-            f'First ask the Context Checker if the query is related to the company or not.'
-            f'Then ask the {COMPANY_NAME} Information Specialist to provide detailed information relevant to the user query.'
-            f'If the query is about {COMPANY_NAME}, provide a detailed and informative response.'
-            f'Respond in JSON format with one key: "answer", which should contain the response.'
-            f'Ensure the response is in valid JSON format.'
-        ),
-        expected_output='''A JSON object containing "answer" as key, with the response as the value.
-The response should not contain any unescaped newline characters nor codeblock. The response should be able to pass JSON.loads() without any error.''',
-        agent=Agent(
-            role=f'{COMPANY_NAME} Information Bot',
-            goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
-            verbose=True,
-            memory=True,
-            backstory=(
-                f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-                f'about {COMPANY_NAME}\'s trading platforms, financial instruments, account types, and market analysis tools. '
-                f'You only respond to queries related to {COMPANY_NAME}.'
-            ),
-            allow_delegation=True
-        )
-    )
-
-    crew = Crew(
-        agents=[company_info_agent, out_of_context_agent],
-        tasks=[centralized_task],
-        process=Process.sequential
-    )
-    return crew
-
-
-if "rephrase_prompt" not in st.session_state:
-    st.session_state.rephrase_prompt = (
-f'As context, you get the \n'
-f'## Customer query: {{user_query}},\n'
-f'## Original response: {{original_response}},\n'
-f'## Conversation history so far: {{conversation}}\n'
-f'Respond in JSON format with one keys: "answer"\n'
-f'The "answer" key should \n'
-f'Rephrase only the Original response given by a knowledge base agent: {{original_response}}\n'
-f'The knowledge base agent is trained on the information available on a company called Jupiter,\n'
-f"Into how the world's best customer support representative would respond\n"
-f"In a way that validates the user's pain and consequence to the user, and makes clear they aim to resolve any issue as quickly as possible, and always stays solution-oriented,\n"
-f'and never becomes helpless or apologetic or defends or justifies anything that has caused the user inconvenience, anger and pain\n'
-f'and remains focused on providing concise reasons, and best recommended next action\n'
-f'You can also use the knowledge base agent again if needed, but not too much, as in most cases you should have enough context to answer the question yourself.\n'
-f'## Answer Guidelines\n'
-f'Start by acknowledging what the user has mentioned they need to get done, and then their need, with a sentence that starts with "You" wherever possible instead of "I" to maintain user-centric-focus\n'
-f"Focus on what can be done now, not what can't be done\n"
-f'If you need to re-confirm a specific transaction, then pretend you have the entire user transaction history with the company, and make up some dummy transaction data to use to re-confirm these details with user\n'
-f'Use your response to help shift a user from complaint-orientation to solution-orientation\n'
-f'A concise, informative, actually helpful reply is best. \n'
-f"In no situation, should you recommend that the user contact the company's customer support team directly, because you are already acting as the customer support team that the user has already contacted. Also do not recommend checking Jupiter Community Forum. Just focus on making progress happen wrt resolving user issue"
-f'Every sentence should be sequenced exactly how a user in extreme pain would most care about receiving that information.\n'
-f'Keep in mind the entire context of the conversation, not just the most recent messages. If you apologised before and the customer is still angry, there is no use in apologising again. Try a different tactic to reduce their anger.\n'
-f'Empathise but Do not exaggerate on friendliness to the point that it seems insincere.\n'
-f'Mention you will keep the user proactively updated on progress\n'
-f'Focus on styling the response nicely. Use newlines and lists in markdown where appropriate. No other styling elements than lists and newlines should be in the response.\n'
-f'Always ensure the response is in valid JSON format.'
-    )
-
-
-def rephraser_crew():
-    centralized_task = Task(
-        description=st.session_state.rephrase_prompt,
-        expected_output='''A JSON object containing "answer" as key, with the response as the value.
-The response should not contain any unescaped newline characters nor codeblock. The response should be able to pass JSON.loads() without any error.''',
-        agent=Agent(
-            role=f'{COMPANY_NAME} Customer Service Agent',
-            goal= f'Provide a helpful and empathetic customer service response for chats about {COMPANY_NAME} products, services, and solutions',
-            verbose=True,
-            memory=True,
-            backstory=(
-                f'You are a helpful assistant working with clients of {COMPANY_NAME}.'
-                f'You use detailed information about their products, services, and solutions available on {COMPANY_DOMAIN}'
-                f'and communicate this information to the customer in a way that is friendly, customer centric, and aims to resolve the issue as quickly as possible.'
-            ),
-            allow_delegation=True
-        )
-    )
-
-    crew = Crew(
-        tasks=[centralized_task],
-        process=Process.sequential
-    )
-    return crew
-
-
-# Streamlit UI
-st.markdown("""
-    <h2 style="color:#ff796d; margin-left:5px;">
-        Jupiter Customer Support + Rephraser
-    </h2>
-""", unsafe_allow_html=True)
-st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
-
-
-# Initialize chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# Function to save the chat history to a file
-def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
-    with open(filename, "a", encoding="utf-8") as file:
-        for message in st.session_state.messages:
-            file.write(f"Role: {message['role']}\n")
-            file.write(f"Content: {message['content']}\n")
-            file.write("-" * 40 + "\n")
-
-# Function to handle log downloads
-def download_logs():
-    log_file = f"{COMPANY_NAME}.txt"
-    if Path(log_file).exists():
-        # Prompt the user to download the file
-        st.download_button(
-            label="Download Logs",
-            data=open(log_file, "rb").read(),
-            file_name=log_file,
-            mime="text/plain"
-        )
-    else:
-        st.write("No logs found.")
-
-
-def conversation_history(messages):
-    # Make a string containing all messages in current history
-    history = ''
-    for message in messages:
-        history += f"{message['role']}: {message['content']}\n"
-    return history
-
-
-# Function to process user query
-def process_query(user_query):
-    if user_query.lower() == "give me the logs 420":
-        download_logs()
-        return  # Exit the function to avoid processing the query further
-
-
-    with st.chat_message("user"):
-        st.markdown(user_query)
-    st.session_state.messages.append({"role": "user", "content": user_query})
+    prompt = response.choices[0].message.content
     
-    answer = ""  # Initialize the answer variable
-
-    with st.chat_message("assistant"):
-        with st.spinner("Initial answer for your input..."):
-            result1 = information_crew().kickoff(inputs={'user_query': user_query})
-            try:
-                # Remove potential markdown code block syntax
-                cleaned_result = str(json.loads(result1.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
-                print(json.loads(result1.model_dump_json())['raw'])
-                # Parse JSON response
-                parsed_result = json.loads(cleaned_result)
-                answer1 = parsed_result.get("answer", "")
-                st.markdown(f"{answer1}")
-
-            except json.JSONDecodeError as e:
-                print(e)
-                st.markdown(f"**Error parsing JSON:**\n{result1}")
-                answer1 = "There was an error processing your request."
-
-    st.session_state.messages.append({"role": "assistant", "content": answer1})
-
-    with st.chat_message("assistant"):
-        with st.spinner("Rephrasing the answer..."):
-            result2 = rephraser_crew().kickoff(inputs={'user_query': user_query, "original_response": answer, "conversation": conversation_history(st.session_state.messages)})
-            try:
-                # Remove potential markdown code block syntax
-                cleaned_result = str(json.loads(result2.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
-                print(json.loads(result2.model_dump_json())['raw'])
-                # Parse JSON response
-                parsed_result = json.loads(cleaned_result)
-                answer2 = parsed_result.get("answer", "")
-                st.markdown(f"{answer2}")
-
-            except json.JSONDecodeError as e:
-                print(e)
-                st.markdown(f"**Error parsing JSON:**\n{result2}")
-                answer2 = "There was an error processing your request."
-
-    st.session_state.messages.append({"role": "assistant", "content": answer2})
-
-    # Save chat history to file
-    save_chat_history()
-    st.rerun()
+    return prompt
 
 
-def read_conversation(file_path):
-    conversations = []
-    with open(file_path, 'r') as file:
-        message = {}
-        append_content = False
-        for line in file:
-            line = line.strip()
-            
-            # Detect start of a new message
-            if line.startswith('Role:'):
-                if message:  # Add the previous message to conversations list
-                    conversations.append(message)
-                message = {"role": line.split(":")[1].strip(), "content": ""}
-                append_content = False
-            
-            # Detect content start
-            elif line.startswith('Content:'):
-                message["content"] = line.split("Content:")[1].strip()
-                append_content = True  # Start appending content lines
-            
-            # Append to the current content if no separator and in content mode
-            elif append_content and not line.startswith('-------'):
-                message["content"] += "\n" + line
-            
-            # If separator, end the current message
-            elif line.startswith('------'):
-                if message:  # Add the current message to conversations list
-                    conversations.append(message)
-                    message = {}
-                append_content = False
-
-        if message:  # Add the last message if any
-            conversations.append(message)
-    return conversations
+prompts = {
+    "Use 'You' Focus Sentences": "Rephrase the original text by centering the response around the user's needs and concerns. Start sentences with 'You' or phrases that emphasize the user’s perspective.",
+    
+    "Validate User's Urgency": "Rephrase the original text to acknowledge the user's urgency and demonstrate understanding of the importance of resolving the issue quickly. Express empathy and urgency in your response.",
+    
+    "Choose Words Carefully": "Rephrase the original text by selecting words that convey a sense of action, urgency, and reassurance. Avoid words that might trigger negative emotions or increase anxiety. Use more positive and proactive language.",
+    
+    "End with Solution Orientation": "Rephrase the original text to ensure that the response ends with a clear focus on the next steps and the actions being taken to resolve the issue. Emphasize what will be done to address the user's concern.",
+    
+    "Minimize User Effort": "Rephrase the original text to avoid asking the user to take additional steps. Emphasize that you will handle everything and proactively keep them updated without requiring them to follow up.",
+    
+    "Avoid Over-Apologizing": "Rephrase the original text to show empathy without excessive apologies. Focus on taking action and providing solutions rather than over-apologizing, which can seem insincere or increase annoyance.",
+    
+    "Use Presuppositions": "Rephrase the original text by stating facts confidently without seeking confirmation from the user. Increase assurance by presenting the situation as something that is already being handled.",
+    
+    "Limit Apologies": "Rephrase the original text to limit apologies and maintain professionalism. Focus on resolving the issue without accepting fault unless it’s necessary. Keep the tone positive and proactive.",
+    
+    "Reframe the Issue": "Rephrase the original text to present the situation in a way that shifts focus from any potential fault of the service provider to finding a resolution. Highlight the steps being taken to fix the problem rather than dwelling on the issue itself.",
+    
+    "Redirect Blame": "Rephrase the original text to subtly shift responsibility away from the service provider without directly blaming others. Focus on external factors like system processes or banking protocols to explain the situation."
+}
 
 
-def show_conversations(messages):
-    for message in messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
+def understand_scenerio(user_input,sprinklr_input):
+    response =client.chat.completions.create(
+    model="gpt-4o-mini",
+    
+    messages=[
+        {"role": "system", "content": "You are an assistant that understands emotions. "},
+        {"role": "user", "content": f'''
+
+I need you to tell me in which scenerio the user query exists.
+the user query is : {user_input} 
+
+Choose a scenerio from this list scenarios = [
+    "Greeting and Introduction",
+    "Frustration or Anger",
+    "Happiness or Satisfaction",
+    "General Inquiry",
+    "Technical Issues",
+    "Transaction Issues",
+    "Account Management",
+    "Card Services",
+    "Loan and Financial Services",
+    "Security Concerns",
+    "Fee and Charges Inquiry",
+    "Feedback or Complaints",
+    "Service Availability",
+    "Appointment Scheduling"
+]
+
+Your response should only contain the scenerio no extra words.
 
 
-def make_conversation(filepath):
 
-    user = st.chat_input("User:")
-    if user:
-        st.session_state.messages.append({"role": "user", "content": user})
-    assistant = st.chat_input("Assistant:")
-    if assistant:
-        st.session_state.messages.append({"role": "assistant", "content": assistant})
-    if st.button("Rephrase"):
-        u = conversation_history([[m for m in st.session_state.messages if m['role']=='user'][-1]])
-        r = conversation_history([[m for m in st.session_state.messages if m['role']=='assistant'][-1]])
-        c = conversation_history(st.session_state.messages)
-        result = rephraser_crew().kickoff(inputs={
-            'user_query': u,
-            "original_response": r,
-            "conversation": c
-        })
-        try:
-            # Remove potential markdown code block syntax
-            cleaned_result = str(json.loads(result.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
-            # Parse JSON response
-            parsed_result = json.loads(cleaned_result[cleaned_result.find('{'):cleaned_result.rfind('}')+1])
-            answer1 = parsed_result.get("answer", "")
-            st.markdown(f"{answer1}")
 
-        except json.JSONDecodeError as e:
-            print(e)
-            st.markdown(f"**Below response is not properly parsed:**\n{result}")
-            answer1 = str(json.loads(result.model_dump_json())['raw'])
+    '''}
+        ]
+    )
+    prompt = response.choices[0].message.content
 
-        st.session_state.messages.append({"role": "Rephraser", "content": answer1})
-        # Function to save the chat history to a file
-        with open(filepath, "a", encoding="utf-8") as file:
-            for message in st.session_state.messages[-3:]:
-                file.write(f"Role: {message['role']}\n")
-                file.write(f"Content: {message['content']}\n")
-                file.write("-" * 40 + "\n")
+    return prompt
 
-st.selectbox("Select a page", ["Chat", "Rephraser prompt", "Example 1", "Example 2", "Example 3", "Example 4"], key="page")
 
-if st.session_state.page == "Chat":
-    # Display chat messages from history on app rerun
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
 
-    # Chat input at the bottom of the page
-    user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
+def understand_tactics_dynamically(user_input, sprinklr_input):
+    response =client.chat.completions.create(
+    model="gpt-4o-mini",
+    
+    messages=[
+        {"role": "system", "content": "You are an assistant that understands emotions. "},
+        {"role": "user", "content": f'''
 
-    if user_input:
-        process_query(user_input)
+I need you to generate a list of tactics that should be used when rephrasing this where
+the user query is : {user_input} 
+the original response is : {sprinklr_input}
+These tactics should focus on improving communication, managing user expectations, and maintaining a positive tone while avoiding blame or excessive apologies. Please provide the list in Python list format.
+You should not accept your mistake anytime, you have to acknowledge user only when this is someone else's mistale.
+Each tactic should focus on a specific communication strategy. such as validating the user's urgency, choosing words carefully, or minimizing user effort.Here's an example of how the list should be structured:
 
-if st.session_state.page == "Rephraser prompt":
-    prompt = st.text_area("Current rephraser Prompt", value=st.session_state.rephrase_prompt, height=800)
-    if st.button("Update Rephraser Prompt"):
-        st.session_state.rephrase_prompt = prompt
+Please provide the final list formatted as a Python list, with each tactic enclosed in double quotes and separated by commas.
 
-if st.session_state.page == "Example 1":
-    st.markdown("Example of an existing customer conversation, with the actual response from the agent, plus what the rephrased response would have been.")
-    show_conversations(read_conversation('example.txt'))
 
-if st.session_state.page == "Example 2":
-    st.markdown("Example of an existing customer conversation, with the actual response from the agent, plus what the rephrased response would have been.")
-    show_conversations(read_conversation('example3.txt'))
 
-if st.session_state.page == "Example 3":
-    st.markdown("Example of an existing customer conversation, with the actual response from the agent, plus what the rephrased response would have been.")
 
-if st.session_state.page == "Example 4":
-    st.markdown("Examples of made up customer queries, our own chatbot answer, and the rephrased response.")
-    make_conversation("example2.txt")
+    '''}
+        ]
+    )
+    prompt = response.choices[0].message.content
+
+    return prompt
+
+
+
+def generate_prompt(tactics_list):
+    combined_prompt = []
+    
+    for tactic in tactics_list:
+        if tactic in prompts:
+            combined_prompt.append(prompts[tactic])
+        else:
+            combined_prompt.append(f"No prompt available for the tactic: {tactic}")
+    
+    # Join all prompts into a single string
+    return "\n\n".join(combined_prompt)
+
+
+def rephrase_sprinklr_dynamically(sprinklr_input, user_input, tactics_list):
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        temperature=0.7,
+        messages=[
+            {"role": "system", "content": "You are a chatbot response generator using the following tactics."},
+            {"role": "user", "content": f'''
+
+             Chatbot Response: {sprinklr_input} 
+             User's emotions: {user_input}            
+Rephrase the chatbot's response to address the user's emotions in a way that fosters trust, validation, and hope, while reducing feelings of anger or fear. Separate content from delivery, focusing on what needs to be communicated and how it should be conveyed. Ensure the message is clear, concise, and actionable to minimize cognitive overload for the user.
+
+Use these tactics list. {tactics_list}
+You should never say sentences like you don't need to, it looks like you are making an order, always use don't need to worry like sentences which gives user hope that we also worry about him.
+
+your output should contain just the rephrase version.
+
+
+
+'''}
+        ]
+    )
+    rephrased_output = response.choices[0].message.content
+    return rephrased_output
+
+
+
+
+def repharse_sprinklr_scenerio(scenerio, sprinklr_input, tactics_prompt):
+    if scenerio in ["Greeting and Introduction", "Happiness or Satisfaction", "General Inquiry","Account Management", "Card Services","Loan and Financial Services","Security Concerns","Service Availability"]:
+        prompt = f'''
+
+       
+        You are from customer care team, you need to rephrase this text to increase customer satisfaction.
+        Your response should be concise
+        Maintain a conversational and friendly tone
+        You have to rephrase this chatbpot response: {sprinklr_input}
+        
+    
+
+        '''
+    else:
+        prompt = f'''
+
+                Chatbot Response: {sprinklr_input} 
+                                    
+                Rephrase the chatbot's response to address the user's emotions in a way that fosters trust, validation, and hope, while reducing feelings of anger or fear. Separate content from delivery, focusing on what needs to be communicated and how it should be conveyed. Ensure the message is clear, concise, and actionable to minimize cognitive overload for the user.
+                You should never say sentences like you don't need to, it looks like you are making an order, always use don't need to worry like sentences which gives user hope that we also worry about him.
+                Maintain a conversational and friendly tone throughout, ensuring that the rephrased message never becomes helpless, apologetic, or defensive. Avoid justifying or explaining any inconvenience, pain, or anger caused to the user, and concentrate on what can be done now to resolve the issue.
+
+                Your response should be concise, and if possible use bullet points for steps or important information.
+                Reflect the user's emotions and concerns to build rapport and demonstrate understanding, mirroring their frame of mind. Always maintain a solution-oriented approach by providing clear next steps and timelines, reducing uncertainty and anxiety.
+                {tactics_prompt}
+
+
+
+                '''
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "You are an assistant that rephrases text."},
+            {"role": "user", "content": f'''{prompt}
+
+
+
+        '''}
+                ]
+        )
+    rephrased_output = response.choices[0].message.content
+    return rephrased_output
+
+
+def rephrase_sprinklr(sprinklr_input, generated_prompt, tactics_prompt):
+    # Call OpenAI API to rephrase the Sprinklr input using the generated prompt
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "You are an assistant that rephrases text."},
+            {"role": "user", "content": f'''
+
+             Chatbot Response: {sprinklr_input} 
+             User's emotions: {generated_prompt}            
+Rephrase the chatbot's response to address the user's emotions in a way that fosters trust, validation, and hope, while reducing feelings of anger or fear. Separate content from delivery, focusing on what needs to be communicated and how it should be conveyed. Ensure the message is clear, concise, and actionable to minimize cognitive overload for the user.
+You should never say sentences like you don't need to, it looks like you are making an order, always use don't need to worry like sentences which gives user hope that we also worry about him.
+Maintain a conversational and friendly tone throughout, ensuring that the rephrased message never becomes helpless, apologetic, or defensive. Avoid justifying or explaining any inconvenience, pain, or anger caused to the user, and concentrate on what can be done now to resolve the issue.
+
+Your response should be concise, and if possible use bullet points for steps or important information.
+Reflect the user's emotions and concerns to build rapport and demonstrate understanding, mirroring their frame of mind. Always maintain a solution-oriented approach by providing clear next steps and timelines, reducing uncertainty and anxiety.
+{tactics_prompt}
+
+
+
+'''}
+        ]
+    )
+    rephrased_output = response.choices[0].message.content
+    return rephrased_output
+
+# Streamlit app
+st.title("Tactics based Sprinklr Rephraser")
+
+# User input
+user_input = st.text_input("Enter User Input:")
+sprinklr_input = st.text_area("Enter Sprinklr Input:")
+option = st.selectbox(
+    'Choose an option:',
+    ['Rephrase using static prompts', 'Rephrase using dynamic response', 'Rephrase with scenerios']
+)
+
+if st.button("Submit"):
+    if user_input and sprinklr_input:
+        if option =='Rephrase using static prompts': 
+            with st.spinner("Processing..."):
+                # Step 1: Generate prompt based on user input
+
+                user_emotions = understand_tactics(user_input, sprinklr_input)
+                st.write(user_emotions)
+                tactic_prompt = generate_prompt(user_emotions)
+                
+
+                # Step 2: Rephrase Sprinklr input using the generated prompt
+                rephrased_output = rephrase_sprinklr(sprinklr_input, user_input, tactic_prompt)
+                st.write("Rephrased Sprinklr Output:")
+                st.write(rephrased_output)
+        elif option =='Rephrase using dynamic response':
+           
+            with st.spinner("Processing..."):
+                
+                tactics_list = understand_tactics_dynamically(user_input, sprinklr_input)
+                st.write(tactics_list)
+                rephrased_output = rephrase_sprinklr_dynamically(sprinklr_input, user_input, tactics_list)
+                st.write("Rephrased Sprinklr Output:")
+                st.write(rephrased_output)
+        
+        else:
+            with st.spinner("Processing..."):
+                scenerio = understand_scenerio(user_input, sprinklr_input)
+                st.write(f'Scenerio: {scenerio}')
+                if scenerio in ["Greeting and Introduction", "Happiness or Satisfaction", "General Inquiry","Account Management", "Card Services","Loan and Financial Services","Security Concerns","Service Availability"]:
+                    rephrased_output = repharse_sprinklr_scenerio(scenerio,sprinklr_input,[])
+                else:
+                    tactics_list = understand_tactics_dynamically(user_input, sprinklr_input)
+                    st.write(tactics_list)
+                    rephrased_output = rephrase_sprinklr_dynamically(sprinklr_input, user_input, tactics_list)
+
+                
+
+  
+                
+               
+                
+                st.write("Rephrased Sprinklr Output:")
+                st.write(rephrased_output)
+
+
+                
+
+    else:
+        st.error("Please provide both User and Sprinklr inputs.")
