@@ -1,286 +1,137 @@
-import json
 import os
-from pathlib import Path
+import time
+import google.generativeai as genai
 import streamlit as st
-from crewai import Agent, Task, Crew, Process
-from crewai_tools import SerperDevTool
-from dotenv import load_dotenv
 
-from mail import send_logs_email
-from langchain_openai import ChatOpenAI
+# Set up your environment variable for the API key
+genai.configure(api_key='AIzaSyAhh1f5YAVcvBwvnIFL9ZSowBTXLnrE1G0')
 
-# Load environment variables from .env file
-load_dotenv()
+# Function to upload file to Gemini
+def upload_to_gemini(path, mime_type=None):
+    """Uploads the given file to Gemini."""
+    file = genai.upload_file(path, mime_type=mime_type)
+    return file
 
-# Set up the environment keys
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
+# Function to wait for files to be active (processed)
+def wait_for_files_active(files):
+    """Waits for the given files to be active."""
+    for name in (file.name for file in files):
+        file = genai.get_file(name)
+        while file.state.name == "PROCESSING":
+            time.sleep(10)
+            file = genai.get_file(name)
+        if file.state.name != "ACTIVE":
+            raise Exception(f"File {file.name} failed to process")
 
-# Company-specific details
-COMPANY_NAME = "JUPITER"
-COMPANY_DOMAIN = "upiter.money/"
-COMPANY_ROLE = f'{COMPANY_NAME} Information Specialist'
-COMPANY_GOAL = f'Provide accurate and detailed information about {COMPANY_NAME} products, services, and solutions available on {COMPANY_DOMAIN}'
-COMPANY_BACKSTORY = (
-    f'You are a knowledgeable specialist in {COMPANY_NAME}\'s offerings. '
-    f'You provide detailed information about their products, services, '
-    f'and solutions available on lxme.in, including any innovations and key features.'
+# Streamlit UI for inputs
+st.title("Rephrase Customer Queries Using Gemini Model")
+
+# Tabbed interface for rephrasing options
+tab1, tab2 = st.tabs(["Query & Response", "Response Only"])
+
+# File uploader for custom dataset
+uploaded_file = st.file_uploader("Upload a rephrasing dataset (text file)", type="txt", key="file_uploader")
+
+# Default file path
+default_file_path = "miro_data.txt"
+
+# Use uploaded file or default file
+if uploaded_file is not None:
+    with open("uploaded_data.txt", "wb") as f:
+        f.write(uploaded_file.getbuffer())
+    dataset_path = "uploaded_data.txt"
+    st.write("Using uploaded file for rephrasing.")
+else:
+    dataset_path = default_file_path
+    st.write("Using default file for rephrasing.")
+
+# Gemini model setup
+generation_config = {
+    "temperature": 1,
+    "top_p": 0.95,
+    "top_k": 64,
+    "max_output_tokens": 8192,
+    "response_mime_type": "text/plain",
+}
+
+# Initialize the Gemini model
+model = genai.GenerativeModel(
+    model_name="gemini-1.5-flash",
+    generation_config=generation_config,
+    system_instruction="Understand the manner in which we rephrase the response from the file shared and your job is to rephrase the new queries given to you.",
 )
 
+# Upload and process the file
+files = [upload_to_gemini(dataset_path, mime_type="text/plain")]
+wait_for_files_active(files)
 
-# Initialize the SerperDevTool with company-specific search settings
-class CompanySerperDevTool(SerperDevTool):
-    def search(self, query):
-        company_query = f"site:{COMPANY_DOMAIN} {query}"
-        results = super().search(company_query)
-        relevant_results = [result for result in results if COMPANY_DOMAIN in result.get('link', '')]
-        return relevant_results
-
-search_tool = CompanySerperDevTool()
-
-
-class TextAgents():
-    def __init__(self):
-        self.llm = ChatOpenAI(
-            model = "gpt-4o-mini"
-        )
-        pass
-# Agent setups
-    def company_info_agent(self):
-        return Agent(
-            role=COMPANY_ROLE,
-            goal=COMPANY_GOAL,
-            verbose=True,
-            memory=True,
-            backstory=COMPANY_BACKSTORY,
-            tools=[search_tool]
-        )
-
-    def out_of_context_agent(self): 
-        return Agent(
-            role='Context Checker',
-            goal=f'Determine if a question is relevant to {COMPANY_NAME} and politely decline if not.',
-            verbose=True,
-            memory=True,
-            backstory=(
-                f'You are responsible for determining if a question is relevant to {COMPANY_NAME}. '
-                f'If the question is not related, you respond politely indicating that the question is out of context and '
-                f'that only {COMPANY_NAME}-related information is provided.'
-            )
-        )
-
-# Centralized Task
-    def centralized_task(self):
-        return Task(
-            description=(
-                f'Determine if the {{user_query}} is related to {COMPANY_NAME} and respond appropriately. '
-                f'If the query is about {COMPANY_NAME}, provide a detailed and informative response. '
-                f'Respond in JSON format with two keys: "answer" and "questions". '
-                f'The "answer" key should contain the response, and the "questions" key should be an array of three follow-up questions '
-                f'that are relevant to {COMPANY_NAME}.'
-                f'Ensure the response is in valid JSON format.'
-            ),
-            expected_output='A JSON object containing "answer" and "questions" without any unescaped newline characters and without any codeblock. The response should be able to pass JSON.loads() without any error.',
-            agent=Agent(
-                role=f'{COMPANY_NAME} Information Bot',
-                goal=f'Provide comprehensive information about {COMPANY_NAME} and its offerings.',
-                verbose=True,
-                memory=True,
-                backstory=(
-                    f'You are an intelligent bot specializing in {COMPANY_NAME} information. You provide detailed responses '
-                f'about {COMPANY_NAME}\'s trading platforms, financial instruments, Credit cards, salary account, mutual funds etc. . '
-                    f'You only respond to queries related to {COMPANY_NAME}.'
-                ),
-                tools=[search_tool],
-                allow_delegation=True
-            )
-        )
-
-Textagent = TextAgents()
-
-company_info_agent = Textagent.company_info_agent()
-out_of_context_agent = Textagent.company_info_agent()
-centralized_task = Textagent.centralized_task()
-
-
-# Centralized Crew setup
-centralized_crew = Crew(
-    agents=[company_info_agent, out_of_context_agent],
-    tasks=[centralized_task],
-    process=Process.sequential
-)
-
-
-
-# Define custom CSS
-custom_css = """
-<style>
-/* Change the background color of the entire app */
-body {
-    background-color: #ffe6f2;
-}
-
-/* Change the color of the main title */
-h1 {
-    color: rgb(252 122 105);
-}
-
-/* Style the chat messages */
-.chat-message.user {
-    background-color: #ffcccb;
-    color: rgb(252 122 105);
-    border: 2px solid rgb(252 122 105);
-}
-
-.chat-message.assistant {
-    background-color: #ffffcc;
-    color: rgb(252 122 105);
-    border: 2px solid rgb(252 122 105);
-}
-
-/* Style the input box at the bottom */
-.stTextInput > div {
-    background-color: #ffcccb;
-    border-radius: 5px;
-    color: rgb(252 122 105);
-}
-
-/* Style the buttons */
-button {
-    background-color: rgb(252 122 105);
-    color: #fff;
-   
-    border: none;
-    border-radius: 5px;
-}
-
-.st-emotion-cache-1ghhuty{
-background-color: rgb(252 122 105);
-}
-
-.st-emotion-cache-bho8sy{
-background-color: black;
-}
-/* Style the spinner */
-.stSpinner > div {
-    border-top-color: rgb(252 122 105);
-}
-
-/* Style the download button */
-.stDownloadButton {
-    background-color: rgb(252 122 105);
-    color: #fff;
-    border-radius: 5px;
-}
-
-.black-text {
+# Tab 1: Rephrase using query and response
+with tab1:
+    st.subheader("Rephrase with Query & Response")
     
-    color: black;
-    
-}
-</style>
-"""
+    # Input fields for query and response with unique keys
+    user_query = st.text_area("Enter the customer query:", key="query_input_tab1")
+    user_response = st.text_area("Enter the original response:", key="response_input_tab1")
 
-# Inject the custom CSS
-st.markdown(custom_css, unsafe_allow_html=True)
-
-# Streamlit UI
-st.markdown("""
-    <h4 style="color:rgb(252 122 105);">
-           Jupiter Customer Support
-    </h4>
-""", unsafe_allow_html=True)
-st.write("<style>div.block-container{padding-top:2rem;}</style>", unsafe_allow_html=True)
-
-# Initialize chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# Display chat messages from history on app rerun
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
-
-# Function to save the chat history to a file
-def save_chat_history(filename=f"{COMPANY_NAME}.txt"):
-    with open(filename, "a") as file:
-        for message in st.session_state.messages:
-            file.write(f"Role: {message['role']}\n")
-            file.write(f"Content: {message['content']}\n")
-            file.write("-" * 40 + "\n")
-
-# Function to handle log downloads
-def download_logs():
-    log_file = f"{COMPANY_NAME}.txt"
-    if Path(log_file).exists():
-        # Prompt the user to download the file
-        st.download_button(
-            label="Download Logs",
-            data=open(log_file, "rb").read(),
-            file_name=log_file,
-            mime="text/plain"
+    # Rephrase the input when button is clicked
+    if st.button("Rephrase Response (Query & Response)", key="rephrase_qr_button_tab1"):
+        # Start chat session with the uploaded file and user inputs
+        chat_session = model.start_chat(
+            history=[
+                {
+                    "role": "user",
+                    "parts": [
+                        files[0],
+                        "Understand the manner in which we rephrase the response from the file shared and your job is to rephrase the new queries given to you.",
+                    ],
+                },
+                {
+                    "role": "model",
+                    "parts": [
+                        "Okay, I understand. You want me to rephrase responses to customer queries based on the pattern you've shown in the `dataset.txt` file. I will not mention names until specified in query or actual response.",
+                    ],
+                },
+            ]
         )
-    else:
-        st.write("No logs found.")
 
+        # Send the new message and get the response
+        response = chat_session.send_message(f"query: {user_query}\n\nresponse: {user_response}\n\nJust send back the rephrased response.")
 
+        # Display the rephrased response
+        st.subheader("Rephrased Response")
+        st.write(response.text)
 
-# Function to process user query
-def process_query(user_query):
-    st.session_state.follow_up_questions = []
-    if user_query.lower() == "give me the logs 420":
-        download_logs()
-        return  # Exit the function to avoid processing the query further
-    
-    if user_query.lower() == "email me the logs 420":
-        success, message = send_logs_email('souravvmishra@gmail.com', COMPANY_NAME)
-        if success:
-            st.success(message)
-        else:
-            st.error(message)
-        return  # Exit the function to avoid processing the query further
+# Tab 2: Rephrase using only the response
+with tab2:
+    st.subheader("Rephrase with Response Only")
 
-    with st.chat_message("user"):
-        st.markdown(user_query)
-    st.session_state.messages.append({"role": "user", "content": user_query})
-    
-    answer = ""  # Initialize the answer variable
+    # Input field for only the response with a unique key
+    user_response_only = st.text_area("Enter the original response:", key="response_only_input_tab2")
 
-    with st.chat_message("assistant"):
-        with st.spinner("Processing your input..."):
-            result = centralized_crew.kickoff(inputs={'user_query': user_query})
-            try:
-                # Remove potential markdown code block syntax
-                cleaned_result = str(json.loads(result.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
-                print(json.loads(result.model_dump_json())['raw'])
-                # Parse JSON response
-                parsed_result = json.loads(cleaned_result)
-                answer = parsed_result.get("answer", "")
-                questions = parsed_result.get("questions", [])
-                st.markdown(f"{answer}")
+    # Rephrase the input when button is clicked
+    if st.button("Rephrase Response (Response Only)", key="rephrase_ro_button_tab2"):
+        # Start chat session with the uploaded file and user inputs
+        chat_session = model.start_chat(
+            history=[
+                {
+                    "role": "user",
+                    "parts": [
+                        files[0],
+                        "Understand the manner in which we rephrase the response from the file shared and your job is to rephrase the new responses given to you.",
+                    ],
+                },
+                {
+                    "role": "model",
+                    "parts": [
+                        "Okay, I understand. You want me to rephrase responses based on the pattern you've shown in the `dataset.txt` file. I will not mention names until specified in the actual response.",
+                    ],
+                },
+            ]
+        )
 
-                # Update follow-up questions in session state
-                st.session_state.follow_up_questions = questions
+        # Send the new message and get the rephrased response
+        response = chat_session.send_message(f"response: {user_response_only}\n\nJust send back the rephrased response.")
 
-            except json.JSONDecodeError as e:
-                print(e)
-                st.markdown(f"**Error parsing JSON:**\n{result}")
-                answer = "There was an error processing your request."
-
-    st.session_state.messages.append({"role": "assistant", "content": answer})
-
-    # Save chat history to file
-    save_chat_history()
-    st.rerun()
-
-# Chat input at the bottom of the page
-user_input = st.chat_input(f"Enter your question about {COMPANY_NAME}:")
-
-if user_input:
-    process_query(user_input)
-
-# Handle follow-up questions
-if "follow_up_questions" in st.session_state:
-    for question in st.session_state.follow_up_questions:
-        if st.button(question):
-            process_query(question)
+        # Display the rephrased response
+        st.subheader("Rephrased Response")
+        st.write(response.text)

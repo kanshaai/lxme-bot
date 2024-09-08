@@ -116,3 +116,9 @@ Content: JUPITER is a comprehensive financial platform designed to help users ma
 
 Overall, Jupiter is a versatile app that helps users take control of their finances, pay bills, save for goals, and invest wisely.
 ----------------------------------------
+Role: user
+Content: founders
+----------------------------------------
+Role: assistant
+Content: The founders of JUPITER are Meow and Ben Chow. Meow is the primary founder and has been actively involved in the development and promotion of JUPITER, which is a decentralized exchange aggregator on the Solana blockchain. Ben Chow is also a co-founder and has contributed significantly to the platform's success.
+----------------------------------------

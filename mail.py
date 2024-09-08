@@ -40,8 +40,4 @@ def send_logs_email(to_email, COMPANY_NAME):
         response.raise_for_status()  # Raises an HTTPError for bad responses
         return True, "Email sent successfully."
     except requests.RequestException as e:
-<<<<<<< HEAD
         return False, f"Failed to send email: {str(e)}"
-=======
-        return False, f"Failed to send email: {str(e)}"
->>>>>>> 3e3285f1de124e1579d3b9023cde2e3000a11583
