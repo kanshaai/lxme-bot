@@ -1,9 +1,13 @@
 import streamlit as st
 import db
 from chat import render_chat
+from chat_with_tactics import render_chat_tactics
+
+from mvp_with_tactics import render_chat_mvp
+
 
 #st.selectbox("Page", ["Prompts", "Chat", "Example 1", "Example 2", "Example 3"], key="page")
-st.selectbox("Page", ["Prompts", "Control prompt", "Chat"], key="page")
+st.selectbox("Page", ["Prompts", "Control prompt", "Chat", "Chat with tactics","MVP with tactics"], key="page")
 st.cache_data.clear()
 
 if "create_prompt" not in st.session_state:
@@ -67,3 +71,12 @@ if st.session_state.page == "Chat":
 
 if st.session_state.page == "Control prompt":
     render_control_prompt()
+
+
+if st.session_state.page == "Chat with tactics":
+    render_chat_tactics()
+
+
+
+if st.session_state.page == "MVP with tactics":
+    render_chat_mvp()

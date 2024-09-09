@@ -1,6 +1,7 @@
 import streamlit as st
 from pathlib import Path
 from sqlalchemy import text
+import ast
 
 def open_connection():
     return st.connection("rephraser_db", type="sql", url="sqlite:///rephraser.db")
@@ -26,6 +27,14 @@ def get_prompts():
     response = connection.query(f"SELECT * FROM Prompts WHERE name IS NOT 'Conversation control'")
     connection.session.close()
     return response
+
+def get_tactics_prompt():
+    connection = open_connection()
+    response = connection.query(f"SELECT * FROM Prompts WHERE name IS 'UPDATE_TACTICS'")
+    dictionary = ast.literal_eval(response)
+
+    connection.session.close()
+    return dictionary
 
 
 def create_prompt(name, author, prompt, describe):
