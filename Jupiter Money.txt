@@ -801,3 +801,24 @@ Content: To close your account with Jupiter Money, you can follow these simple s
 
 Remember, we're here to assist you and make this as smooth as possible! If you have any further questions or need help during the process, don’t hesitate to reach out.
 ----------------------------------------
+Role: user
+Content: Hey
+----------------------------------------
+Role: assistant
+Content: The query 'Hey' is not related to Jupiter Money. I am here to provide information specifically about Jupiter Money. If you have any questions related to Jupiter Money, please feel free to ask!
+----------------------------------------
+Role: Control
+Content: Greeting
+----------------------------------------
+Role: user
+Content: Hey
+----------------------------------------
+Role: assistant
+Content: The query 'Hey' is not specific enough to determine if it is related to Jupiter Money. If you have any questions or need information specifically about Jupiter Money, please feel free to ask!
+----------------------------------------
+Role: Control
+Content: Greeting
+----------------------------------------
+Role: assistant
+Content: Hi there! It looks like your message was a friendly greeting. How can I assist you with Jupiter Money today? Feel free to ask any questions you have!
+----------------------------------------

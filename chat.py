@@ -91,9 +91,9 @@ The response should not contain any unescaped newline characters nor codeblock. 
     return crew
 
 
-def conversation_control_crew():
+def conversation_control_crew(original_response):
     description = db.get_control_prompt()["prompt"].iloc[0]
-    description = description.replace("{{conversation}}", conversation_history(st.session_state.messages))
+    description = description.replace("{{conversation}}", original_response)
     centralized_task = Task(
         description=description,
         expected_output='''A JSON object containing "prompt" as key, with the prompt description as the value.''',
@@ -117,9 +117,9 @@ def conversation_control_crew():
     return crew
 
 
-def rephraser_crew():
+def rephraser_crew(prompt):
     centralized_task = Task(
-        description=st.session_state.chat_prompt,
+        description=prompt,
         expected_output='''A JSON object containing "answer" as key, with the response as the value.
 The response should not contain any unescaped newline characters nor codeblock. The response should be able to pass JSON.loads() without any error.''',
         agent=Agent(
