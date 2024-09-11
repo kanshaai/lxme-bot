@@ -52,99 +52,104 @@ files = [upload_to_gemini(dataset_path, mime_type="text/plain")]
 wait_for_files_active(files)
 
 
-df = pd.read_csv('conversation-report.csv')
+df = pd.read_csv('Untitled spreadsheet - customer_service_issues04 (1).csv')
 
 response1_list = []
 response2_list = []
 i = 1
 for index, row in df.iterrows():
-
-
-    user_query = row['User']
-
-    original_response = row['Response']
-
-    chat_session = model.start_chat(
-    history=[
-        {
-            "role": "user",
-            "parts": [
-                files[0],
-                "Understand the manner in which we rephrase the response from the file shared and your job is to rephrase the new queries given to you.",
-            ],
-        },
-        {
-            "role": "model",
-            "parts": [
-                "Okay, I understand. You want me to rephrase responses to customer queries based on the pattern you've shown in the `dataset.txt` file. I will not mention names until specified in query or actual response.",
-            ],
-        },
-    ]
-)
-    response3 = chat_session.send_message(f"query: {user_query}\n\nresponse: {original_response}\n\nJust send back the rephrased response.")
-  
-
-
-    result2 = chat.conversation_control_crew(original_response).kickoff()
-
     try:
-        # Remove potential markdown code block syntax
-        cleaned_result = str(json.loads(result2.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
-        print(json.loads(result2.model_dump_json())['raw'])
-        # Parse JSON response
-        parsed_result = json.loads(cleaned_result)
-        answer2 = parsed_result.get("prompt", "")
-        print(answer2)
-    
-
-    except json.JSONDecodeError as e:
-        print(e)
-        #st.markdown(f"**Error parsing JSON:**\n{result2}")
-        answer2 = str(json.loads(result2.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+        if row['User']:
 
 
+            user_query = row['User']
 
-    prompts = chat.db.get_prompts()
+            original_response = row['Response']
 
-    try:
-        prompt = prompts[prompts["describe"]==answer2]["prompt"].iloc[0]
-    except:
-        print('error')
-    updated_prompt = prompt.replace("{{user_query}}", user_query).replace("{{original_response}}", original_response).replace("{{conversation}}"," ")
-    result3 = chat.rephraser_crew(updated_prompt).kickoff()
-    
-
-    try:
-        # Remove potential markdown code block syntax
-        cleaned_result = str(json.loads(result3.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
-        print(json.loads(result2.model_dump_json())['raw'])
-        # Parse JSON response
-        parsed_result = json.loads(cleaned_result)
-        answer3 = parsed_result.get("answer", "")
+            chat_session = model.start_chat(
+            history=[
+                {
+                    "role": "user",
+                    "parts": [
+                        files[0],
+                        "Understand the manner in which we rephrase the response from the file shared and your job is to rephrase the new queries given to you.",
+                    ],
+                },
+                {
+                    "role": "model",
+                    "parts": [
+                        "Okay, I understand. You want me to rephrase responses to customer queries based on the pattern you've shown in the `dataset.txt` file. I will not mention names until specified in query or actual response.",
+                    ],
+                },
+            ]
+        )
+            response3 = chat_session.send_message(f"query: {user_query}\n\nresponse: {original_response}\n\nJust send back the rephrased response.")
         
 
-    except json.JSONDecodeError as e:
-        print(e)
-        #st.markdown(f"**Error parsing JSON:**\n{result2}")
-        answer3 = str(json.loads(result3.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+
+            result2 = chat.conversation_control_crew(original_response).kickoff()
+
+            try:
+                # Remove potential markdown code block syntax
+                cleaned_result = str(json.loads(result2.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+                print(json.loads(result2.model_dump_json())['raw'])
+                # Parse JSON response
+                parsed_result = json.loads(cleaned_result)
+                answer2 = parsed_result.get("prompt", "")
+                print(answer2)
+            
+
+            except json.JSONDecodeError as e:
+                print(e)
+                #st.markdown(f"**Error parsing JSON:**\n{result2}")
+                answer2 = str(json.loads(result2.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+
+
+
+            prompts = chat.db.get_prompts()
+
+            try:
+                prompt = prompts[prompts["describe"]==answer2]["prompt"].iloc[0]
+            except:
+                print('error')
+            updated_prompt = prompt.replace("{{user_query}}", user_query).replace("{{original_response}}", original_response).replace("{{conversation}}"," ")
+            result3 = chat.rephraser_crew(updated_prompt).kickoff()
+            
+
+            try:
+                # Remove potential markdown code block syntax
+                cleaned_result = str(json.loads(result3.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
+                print(json.loads(result2.model_dump_json())['raw'])
+                # Parse JSON response
+                parsed_result = json.loads(cleaned_result)
+                answer3 = parsed_result.get("answer", "")
+                
+
+            except json.JSONDecodeError as e:
+                print(e)
+                #st.markdown(f"**Error parsing JSON:**\n{result2}")
+                answer3 = str(json.loads(result3.model_dump_json())['raw']).strip().replace('```json', '').replace('```', '')
 
 
 
 
 
 
-    user_emotions = mvp_with_tactics.understand_tactics(user_query, original_response )
-    tactic_prompt = mvp_with_tactics.generate_prompt(user_emotions)
-    response2 = mvp_with_tactics.rephrase_sprinklr(original_response, user_query, tactic_prompt)
-    response1_list.append(answer3)
-    response2_list.append(response2)
-    print(f'{i} done')
-    i = i+1
-    df.at[index, 'response1'] = answer3
-    df.at[index, 'response2'] = response2
-    df.at[index, 'response3'] = response3.text
-    # Step 4: Save the updated DataFrame back to the CSV file
-    df.to_csv('updated3.csv', index=False)
+            user_emotions = mvp_with_tactics.understand_tactics(user_query, original_response )
+            tactic_prompt = mvp_with_tactics.generate_prompt(user_emotions)
+            response2 = mvp_with_tactics.rephrase_sprinklr(original_response, user_query, tactic_prompt)
+            response1_list.append(answer3)
+            response2_list.append(response2)
+            print(f'{i} done')
+            i = i+1
+            df.at[index, 'response1'] = answer3
+            df.at[index, 'response2'] = response2
+            df.at[index, 'response3'] = response3.text
+            # Step 4: Save the updated DataFrame back to the CSV file
+            df.to_csv('updated4.csv', index=False)
+    
+    except:
+        continue
 
 
 
