@@ -187,6 +187,7 @@ for index, row in df.iterrows():
             df.at[index, 'response2.5'] = response2_5
             df.at[index, 'response2'] = response2
             df.at[index, 'response3.5'] = response3_5.text
+            df.at[index, 'conversation'] = conversations
             # Step 4: Save the updated DataFrame back to the CSV file
             df.to_csv('Full rephrased - Sheet5.csv', index=False)
     
