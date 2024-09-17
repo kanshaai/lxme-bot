@@ -52,7 +52,7 @@ files = [upload_to_gemini(dataset_path, mime_type="text/plain")]
 wait_for_files_active(files)
 
 
-df = pd.read_csv('Untitled spreadsheet - customer_service_issues04 (1).csv')
+df = pd.read_csv('Untitled spreadsheet - Sheet1 (1).csv')
 
 response1_list = []
 response2_list = []
@@ -146,7 +146,7 @@ for index, row in df.iterrows():
             df.at[index, 'response2'] = response2
             df.at[index, 'response3'] = response3.text
             # Step 4: Save the updated DataFrame back to the CSV file
-            df.to_csv('updated4.csv', index=False)
+            df.to_csv('updated_indifi.csv', index=False)
     
     except:
         continue

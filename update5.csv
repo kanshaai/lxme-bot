@@ -1,0 +1,431 @@
+issue,User,Response,response1,response2,r1_score,r2_score
+1,"What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?","I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?","I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?","Absolutely, I empathize with your situation, [User Name]. Let's get this sorted out quickly. 
+
+To help resolve the transaction issue, please provide:
+- The amount you attempted to transfer
+- The recipient's details
+
+Together, we’ll figure this out and get your money sent. Don't worry; we’re in this together, and I’m here to assist you!",0.3993777119208586,0.9999999999999999
+1,It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!,"Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?","Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?","**Rephrased Chatbot Response:**
+
+Hi there! I can sense how important this transfer is for you, and I want to help you get it done as quickly as possible. 
+
+It looks like the transaction didn’t go through due to insufficient funds in your account. Here’s what we can do next:
+
+- **Verify Your Balance:** Can you please check your current account balance and let me know what you see?
+- **Next Steps:** Once we have that information, we can determine the best way to proceed with the transfer.
+
+I’m here to assist you and ensure this is resolved swiftly!",0.5132088803118094,0.9999999999999999
+1,"Insufficient funds? Are you kidding me? I have more than enough money! I just checked my account, and there's plenty in there! This is ridiculous! What's going on with your system?",I understand your frustration. It appears there might be a temporary glitch in our system causing the balance to be displayed incorrectly. Let me escalate this issue to a human agent who can review your account and the transaction details further. Please hold while I connect you.,I understand your frustration. It appears there might be a temporary glitch in our system causing the balance to be displayed incorrectly. Let me escalate this issue to a human agent who can review your account and the transaction details further. Please hold while I connect you.,"Absolutely, I can help with that! Here's a rephrased response:
+
+---
+
+**Chatbot Response:**
+
+I can see why you’re feeling frustrated; that response about insufficient funds must be really surprising given what you see in your account. There's likely a temporary technical issue causing this mismatch. 
+
+To get this sorted out for you, here are the next steps I’ll take:
+
+- **Escalate Your Concern:** I’ll connect you with a human agent who can specifically look into your account and transaction details.
+- **Review Timeline:** You should hear back from someone shortly, ensuring we resolve this as quickly as possible.
+
+Please hold tight while I set this up for you. We’re here to help you get this sorted out!
+
+--- 
+
+This wording acknowledges the user's emotions and concerns while providing a clear path to resolution.",0.35599106312978984,1.0000000000000002
+1,"Finally, someone who can actually help! I need this sorted out now. This is an emergency.","Good afternoon, [User Name]. My name is [Agent Name]. I understand you're experiencing an issue with an international transfer. I've reviewed your account details and confirmed there are sufficient funds for the transfer. It seems the transaction was stuck due to a temporary system error. I have manually processed the transfer, and it should be completed within the next hour. I apologize for the inconvenience and appreciate your patience.","Good afternoon, [User Name]. My name is [Agent Name]. I understand you're experiencing an issue with an international transfer. I've reviewed your account details and confirmed there are sufficient funds for the transfer. It seems the transaction was stuck due to a temporary system error. I have manually processed the transfer, and it should be completed within the next hour. I apologize for the inconvenience and appreciate your patience.","**Chatbot Response:**
+
+Good afternoon, [User Name]! I'm [Agent Name], and I’m here to help you with your international transfer. I understand this is urgent, and I completely appreciate how important it is for you to get this sorted out.
+
+Here's what I've done for you:
+
+- **Funds Checked**: Your account has sufficient funds for the transfer.
+- **Issue Resolved**: The transaction was delayed due to a temporary system error, but I’ve manually processed it.
+- **Completion Time**: The transfer should be completed within the next hour.
+
+Thank you for your patience as I worked through this. If you need anything else or have more questions, feel free to ask!",0.5859150077010283,1.0000000000000002
+1,"Thank you, that's a relief. I hope this doesn't happen again. I need to be able to rely on your service, especially in emergencies.",I understand. We are working on improving our system's reliability to prevent these situations in the future. Please let me know if you have any other questions or concerns. Have a good day.,I understand. We are working on improving our system's reliability to prevent these situations in the future. Please let me know if you have any other questions or concerns. Have a good day.,"**Chatbot Response:**
+
+I appreciate your understanding, and I'm glad to hear you're feeling relieved. Your ability to rely on our service, especially during emergencies, is important to us. We are actively working on enhancing our system's reliability to ensure you have a dependable experience.
+
+Here's what you can expect moving forward:
+
+- **Improvements**: We're implementing updates to minimize future issues.
+- **Monitoring**: Our team will be closely monitoring the system for any anomalies.
+- **Feedback**: Please feel free to share any concerns you may have at any time.
+
+Your trust is essential, and we're committed to providing you with the best service possible. If you have any other questions or need assistance, just let me know. Have a great day!",0.4403425191385374,1.0000000000000002
+2,"This is absolutely ridiculous! I just tried to pay my rent through your app, and the transaction failed. But the money is gone from my account! This is causing me major stress, and I need this sorted out immediately!","Hi Sarah, I understand this is frustrating. Could you please provide me with the transaction details like the date, time, and amount of the transaction? I'll be happy to look into this for you.","Hi Sarah, I understand this is frustrating. Could you please provide me with the transaction details like the date, time, and amount of the transaction? I'll be happy to look into this for you.","**Chatbot Response:**
+
+Hi Sarah, I can see how concerning this situation must be for you, and I’m here to help! Please don’t worry; we’ll get this sorted out quickly. 
+
+To assist you better, could you provide me with the following details about the transaction? 
+
+- Date of the transaction
+- Time of the transaction
+- Amount involved
+
+Once I have this information, I’ll investigate the matter right away. Thank you for your patience!",0.6325829302627008,1.0000000000000004
+2,"It was this morning, around 9:30 AM. The amount was $1200. This is supposed to be my rent payment, and I'm already late! I need that money back in my account ASAP!","Thank you, Sarah. I've checked your transaction history, and I see the payment was indeed unsuccessful. Please don't worry, we are working on resolving this issue. We'll credit the funds back to your account within 24 hours. In the meantime, we recommend reaching out to your landlord and informing them of the situation. We'll send you an email notification once the funds have been credited.","Thank you, Sarah. I've checked your transaction history, and I see the payment was indeed unsuccessful. Please don't worry, we are working on resolving this issue. We'll credit the funds back to your account within 24 hours. In the meantime, we recommend reaching out to your landlord and informing them of the situation. We'll send you an email notification once the funds have been credited.","**Chatbot Response:**
+
+Hi Sarah, I understand this is really stressful, especially since it involves your rent payment. Here’s what we’re doing to help:
+
+- **Transaction Update:** I checked and confirmed that your payment of $1200 was unsuccessful.
+- **Refund Timeline:** We’re working quickly to resolve this issue, and you can expect the funds to be credited back to your account within the next 24 hours.
+- **Contact Your Landlord:** It might be helpful to inform your landlord of the situation, so they’re aware of the delay.
+
+Rest assured, we will send you an email notification once the funds have been credited. We’re here for you as we work through this!",0.5721145644034762,1.0
+2,"24 hours? That's ridiculous! My landlord is going to charge me a late fee, and I'm already scrambling to cover this. I need this money back now, not in a day! Is there anything else you can do?","Sarah, I understand your urgency. I've escalated this to our priority team, and they will work to expedite the process. We will attempt to credit your account within the next 4 hours, and you will receive an email notification with the status update. We apologize for the inconvenience and are working to resolve this as quickly as possible.","Sarah, I understand your urgency. I've escalated this to our priority team, and they will work to expedite the process. We will attempt to credit your account within the next 4 hours, and you will receive an email notification with the status update. We apologize for the inconvenience and are working to resolve this as quickly as possible.","**Chatbot Response:**
+
+Hi Sarah, I completely understand how stressful this situation is for you, especially with the looming late fee from your landlord. Here's what we're going to do to help:
+
+- I've prioritized your case with our team, and they're actively working on it.
+- We're aiming to credit your account within the next **4 hours**.
+- You'll receive an email notification once it's processed, so you'll be kept in the loop.
+
+Please know that we’re here to support you through this, and I’ll do everything I can to make it happen quickly. Let me know if there's anything else I can assist you with!",0.41390429078045665,1.0000000000000002
+2,"Four hours is better than 24, but I'm still worried. Can you please confirm that my rent payment will be credited before the deadline? I don't want to end up in a worse situation because of this.","We understand your concern, Sarah. Our priority team is working on it, and we are doing everything we can to ensure the funds are credited to your account by 1 PM. You'll receive a notification once the process is complete. We apologize for the inconvenience caused.","We understand your concern, Sarah. Our priority team is working on it, and we are doing everything we can to ensure the funds are credited to your account by 1 PM. You'll receive a notification once the process is complete. We apologize for the inconvenience caused.","**Rephrased Chatbot Response:**
+
+Hi Sarah,
+
+I completely understand your worries, and it's completely valid to feel this way. Our dedicated team is actively working on ensuring your funds are credited to your account by 1 PM today. Here’s what you can expect:
+
+- **Timeline:** Your rent payment should be processed by 1 PM.
+- **Notification:** You’ll receive a confirmation as soon as the transaction is complete.
+
+Please don't worry; we’re on top of this and truly care about making sure everything goes smoothly for you. If you have any further questions or need assistance, feel free to reach out. 
+
+Take care!",0.42256918096787527,1.0000000000000002
+2,"Alright, I'll wait for that notification. Thank you for your help. I hope this gets resolved quickly. ","We are here to help, Sarah. Please don't hesitate to contact us if you have any further questions or concerns. We'll keep you updated on the progress. ","We are here to help, Sarah. Please don't hesitate to contact us if you have any further questions or concerns. We'll keep you updated on the progress.","We understand your concerns, Sarah, and we're here to support you. Here’s what we’ll do next:
+
+- **Update You**: We’ll keep you informed about any progress as soon as we have information.
+- **Timely Resolution**: Our team is dedicated to resolving this quickly.
+
+Please feel free to reach out anytime if you have more questions. Your patience means a lot to us, and we’re committed to finding a solution. Thank you for trusting us!",0.5022329528201248,0.9999999999999998
+3,"This is ridiculous! I've been trying to pay this bill for the past 20 minutes, and it keeps failing. I have more than enough money in my account, and my card is working perfectly! I need this payment processed immediately.","Hi Sarah, I understand your frustration. I'm here to help. Can you please tell me more about the transaction you're trying to make? For example, what type of payment is it, and what is the amount?","Hi Sarah, I understand your frustration. I'm here to help. Can you please tell me more about the transaction you're trying to make? For example, what type of payment is it, and what is the amount?","Sure! Here's a rephrased version of the chatbot response:
+
+---
+
+**Chatbot Response:**  
+Hi Sarah, I can see how frustrating this must be for you, and I'm here to assist you in getting this sorted out. To help expedite the payment process, could you please provide me with a few details? 
+
+- What type of payment are you trying to make? 
+- What is the amount? 
+
+Together, we’ll make sure this payment gets processed as soon as possible!
+
+--- 
+
+The tone conveys empathy, encourages action, and reassures the user of support, fostering trust and hope.",0.4780956252585031,0.9999999999999997
+3,"It's a payment for my monthly gym membership. It's $125. I've tried it multiple times now, but it just keeps saying ""Transaction Declined."" I'm supposed to be at my gym class in an hour, and now I'm going to miss it!","Okay, Sarah, I see that you're trying to make a payment to your gym, and it's failing. Can you please check if you have sufficient funds available for this transaction? It's possible that the payment amount might be slightly higher than your current balance, including any pending transactions or holds.","Hi Sarah, I'm sorry to hear that you're having trouble making a payment to your gym. Could you please check if you have sufficient funds available for this transaction? It's possible that the payment amount might be slightly higher than your current balance, including any pending transactions or holds. If you have verified that funds are sufficient and the issue persists, please let me know so we can explore other potential solutions. Thank you!","**Concise Rephrased Response:**
+
+Hey Sarah, I totally understand how frustrating this is, especially with your gym class coming up soon. Let's get this sorted out so you can make it!
+
+Here are a couple of steps to check:
+
+- **Verify your balance:** Make sure you have at least $125 available in your account. Sometimes, pending transactions can affect your balance.
+- **Payment method:** Double-check that the card or payment method you’re using is active and has no restrictions.
+
+If everything looks good and it's still not working, I recommend contacting your bank or the gym's customer service for immediate assistance. They might have insight on the declined transactions.
+
+Hang in there—I’m here to help!",0.3784661140321664,1.0000000000000038
+3,Are you kidding me? I just told you I have enough money! I've checked my balance multiple times. What is going on?,"I understand your frustration, Sarah. Let's try to pinpoint the issue. Could you please confirm if you're using the correct card and account details for this payment? Sometimes a small error in the information can cause a transaction to fail.","I understand your frustration, Sarah. Let's try to pinpoint the issue. Could you please confirm if you're using the correct card and account details for this payment? Sometimes a small error in the information can cause a transaction to fail.","Chatbot Response:
+
+I really appreciate your patience, Sarah. I can see how frustrating this situation is for you. Let's work together to figure it out! 
+
+Here are a few steps we can try to resolve the payment issue:
+
+- **Double-check Details:** Ensure the card number, expiration date, and security code are all entered correctly.
+- **Account Check:** Confirm that you're using the right account for this payment.
+- **Try Again:** Sometimes, just reinitiating the payment can help clear up any glitches.
+
+Please let me know how it goes, and we can explore more options if needed. We're here to help!",0.4426219931132137,0.9999999999999966
+3,"Of course, I'm using the right card and account! This is absolutely infuriating. I've already wasted 30 minutes trying to get this done. I need to go.","I apologize for the inconvenience, Sarah. To further investigate the issue, I'll need to look into your account details and recent transaction history. For security purposes, I'll need to ask for a few pieces of personal information to verify your identity.","I apologize for the inconvenience, Sarah. To further investigate the issue, I'll need to look into your account details and recent transaction history. For security purposes, I'll need to ask for a few pieces of personal information to verify your identity. Could you please provide your full name, registered email address, and the last four digits of your account number? Rest assured, your information will be handled securely and confidentially.","**Chatbot Response:**
+
+I completely understand how frustrating this situation must be for you, Sarah, and I appreciate your patience. Let’s work together to resolve this as quickly as possible. 
+
+To help me assist you better, please follow these steps:
+
+- **Account Verification:** I’ll need to verify your identity with a few pieces of personal information.
+- **Transaction History:** I'll review your recent transaction history to pinpoint the issue.
+
+I’m here to support you, so please don’t worry—let’s get this sorted out!",0.4493277581108535,0.9999999999999997
+3,"Ugh, fine. But hurry up.","Thank you, Sarah. After reviewing your account, it appears there is a temporary hold on your account due to a recent security check. This is a standard procedure to ensure the safety of your funds.","Thank you, Sarah. After reviewing your account, it appears there is a temporary hold on your account due to a recent security check. This is a standard procedure to ensure the safety of your funds. Our team is actively working to resolve this, and we expect the hold to be lifted shortly. We apologize for any inconvenience this may cause and appreciate your understanding. If you have any further questions or need additional assistance, please feel free to reach out to us.","**Message:**
+
+Hi Sarah, I completely understand your urgency—I’m here to help! 
+
+There’s a temporary hold on your account due to a standard security check, which is very important for keeping your funds safe. Here’s what we can do:
+
+- **Review**: The hold is part of our commitment to security. 
+- **Action**: We’re actively working on it.
+- **Timeline**: I’ll keep you updated on the progress.
+
+Rest assured, we’re prioritizing this and will resolve it as quickly as possible. Thank you for your patience!",0.4945060522721121,0.9999999999999998
+3,Security check? What are you talking about? I haven't done anything suspicious.,"I understand, Sarah. This is a precautionary measure we take to prevent unauthorized transactions. To release the hold, I need to ask you a couple of security questions to confirm your identity.","I understand, Sarah. This is a precautionary measure we take to prevent unauthorized transactions. To release the hold, I need to ask you a couple of security questions to confirm your identity.","**Chatbot Response:**
+
+I completely understand your concern, Sarah. This hold is just a routine security step we implement to ensure your account’s safety. To lift the hold, we just need to verify a few details.
+
+Here's how we can move forward:
+
+- **Security Questions**: I’ll ask you a couple of quick questions.
+- **Confirmation**: Once we confirm your identity, we’ll release the hold immediately.
+
+Don’t worry, I’m here to help you through this process. Your security is just as important to us!",0.5558391322845864,0.9999999999999997
+3,"Fine, just get it over with.","(Asks security questions, Sarah provides answers) Great, Sarah! The security check has been cleared, and your account should now be fully functional. You can now attempt your gym payment again.","Great, Sarah! The security check has been cleared, and your account should now be fully functional. You can now attempt your gym payment again.","**Chatbot Response:**
+
+Hi Sarah! I’m glad to inform you that your security check has been successfully completed. Your account is now fully functional. 
+
+Here’s what you can do next:
+- Feel free to attempt your gym payment again.
+- If you encounter any issues, just let me know, and I’ll be here to assist you.
+
+You’re doing great, and I’m here to support you every step of the way!",0.4399755344257285,1.0000000000000002
+3,"Ok, let's hope this works.","Let me know if the transaction is successful, Sarah. I'm here if you need any further assistance.","Thank you for reaching out, Sarah. Please check your transaction history in the Jupiter Money app to confirm if the transaction was successful. If you need any further assistance or encounter any issues, feel free to let me know. I'm here to help!","**Rephrased Response:**
+
+Hi Sarah! 
+
+I completely understand your concerns, and I’m here to support you through this. Please keep me updated on the transaction’s status—I’m hopeful that everything will go smoothly. 
+
+To make things easier, here are a few steps to follow:
+- Confirm if the transaction was successful when you can.
+- If you encounter any issues, reach out to me directly.
+
+Remember, you’re not alone in this! I'm here to help.",0.4993289056206664,0.9999999999999998
+3,"(After a moment) It worked! Thank you. I'm still frustrated, but at least it's done.","You're welcome, Sarah. I'm glad we were able to resolve the issue. Have a great workout!","You're welcome, Sarah. I'm glad we were able to resolve the issue. Have a great workout!","**Rephrased Response:**
+
+I'm really glad to hear it worked for you, Sarah! It's understandable to feel frustrated, but it's great that we've got this sorted out. Here’s what you can do now:
+
+- **Focus on your workout:** Use this momentum to have a great session!
+- **Take it one step at a time:** If anything else comes up, just let me know; I'm here to help.
+
+You've got this! Enjoy your workout!",0.231075925054873,0.9999999999999999
+4,"This is ridiculous! I'm trying to send money to my friend, and this app keeps giving me an error message. I need this money sent now, it's urgent! What's going on?","Hi Sarah, I understand your frustration. It seems you're experiencing an issue with a transaction. Could you please tell me more about the error message you received? Also, can you confirm the amount and recipient details you're trying to send?","Hi Sarah, I understand your frustration. It seems you're experiencing an issue with a transaction. Could you please tell me more about the error message you received? Also, can you confirm the amount and recipient details you're trying to send?","**Rephrased Chatbot Response:**
+
+Hi Sarah,
+
+I completely understand how frustrating this must be for you, especially with the urgency to send money to your friend. Let’s work together to resolve this quickly. 
+
+Could you please provide me with:
+
+- The exact error message you encountered
+- The amount you are trying to send
+- The recipient's details
+
+Once I have this information, I’ll be able to assist you further and help ensure your transaction goes through smoothly. You're not alone in this—I’m here to help!",0.49322245220230837,0.9999999999999998
+4,"It just says 'Transaction failed. Please try again later.' I'm trying to send $200 to [Friend's Name] at [Friend's Account Number]. It's for her birthday, and I told her I'd send it today!","Thanks for providing the details, Sarah. Let's see if we can get this resolved. Could you please try restarting your app and attempting the transaction again? If the issue persists, we may need to investigate further.","Thanks for providing the details, Sarah. Let's see if we can get this resolved. Could you please try restarting your app and attempting the transaction again? If the issue persists, we may need to investigate further.","Hey Sarah, I understand how important it is to get that birthday gift sent on time, and I’m here to help you.
+
+Let’s try a couple of steps to see if we can resolve this:
+
+1. **Restart the App**: Close the app completely and then reopen it.
+2. **Retry the Transaction**: Attempt to send the $200 to [Friend's Name] again.
+
+If the transaction still doesn't go through, please let me know, and we’ll explore what else we can do to fix this together. You’re not alone in this, and I’m confident we’ll find a solution!",0.46361496465787905,1.0000000000000004
+4,Are you kidding me? I've restarted the app three times already! This is just another problem with this app! I'm so fed up! I'm going to have to find another bank if this is how you handle things!,"I understand your frustration, Sarah. Let's try a different approach. Would you be comfortable providing me with your phone number so I can connect you with a human agent who can further investigate the issue and assist you with the transaction? They will be able to review the details and provide you with a solution.","I understand your frustration, Sarah. Let's try a different approach. Would you be comfortable providing me with your phone number so I can connect you with a human agent who can further investigate the issue and assist you with the transaction? They will be able to review the details and provide you with a solution.","I can see how incredibly frustrating this must be for you, Sarah. I genuinely want to help you resolve this situation and ensure that your concerns are addressed. 
+
+Here’s what we can do:
+
+- **Connect to a Human Agent:** Please share your phone number, and I’ll arrange for a human agent to reach out to you.
+- **Promise of Support:** This agent will thoroughly review your transaction and work with you to find a solution that meets your needs.
+
+I appreciate your patience as we tackle this together. You're not alone; we're here to help you every step of the way.",0.39706155105422414,1.0
+4,"Fine. But if this doesn't get resolved quickly, I'm leaving Jupiter for good! [Provides phone number].","Thank you, Sarah. I've passed your information to an agent who will contact you shortly. They will be able to investigate the issue and provide you with a resolution. Please expect a call within the next 15 minutes.","Thank you, Sarah. I've passed your information to an agent who will contact you shortly. They will be able to investigate the issue and provide you with a resolution. Please expect a call within the next 15 minutes.","Thank you for sharing your concern, Sarah. I want you to know that your feelings are completely valid. 
+
+Here’s what we’re doing to help resolve this:
+
+- An agent has received your information and will reach out to you within the next 15 minutes.
+- They will thoroughly investigate the issue and work towards a solution for you.
+
+We truly appreciate your patience, and we’re here to support you. Please don’t worry; we’re committed to getting this resolved quickly for you!",0.45727472331595126,0.9999999999999999
+4,"Alright, I'll wait. But I better get a call soon!","Hello Sarah, this is [Agent's name] from Jupiter. I'm calling to follow up on your recent transaction issue. I've been able to verify the problem and have manually processed your transfer. The funds should be available to your friend's account within the next hour. I apologize for the inconvenience this caused. Is there anything else I can help you with today?","Hello Sarah, this is [Agent's name] from Jupiter. I'm calling to follow up on your recent transaction issue. I've been able to verify the problem and have manually processed your transfer. The funds should be available to your friend's account within the next hour. I apologize for the inconvenience this caused. Is there anything else I can help you with today?","**Chatbot Response:**
+
+Hi Sarah, this is [Agent's name] from Jupiter. I completely understand your urgency, and I appreciate your patience during this process. 
+
+- I've confirmed the transaction issue and have manually processed your transfer.
+- The funds will be available in your friend's account within the next hour.
+
+I want to ensure you feel supported, so please rest assured the situation is being handled. If there’s anything else on your mind, feel free to share!",0.591180199932347,1.0
+4,"Well, I'm relieved that it's finally done. But I'm still pretty annoyed that I had to go through all this in the first place. You should really have better systems in place.","I understand your frustration, Sarah. We strive to provide a seamless experience for our customers. I've made a note of the issue you experienced and will be sure to relay your feedback to our development team. Is there anything else I can help you with today?","I understand your frustration, Sarah. We strive to provide a seamless experience for our customers. I've made a note of the issue you experienced and will be sure to relay your feedback to our development team. Is there anything else I can help you with today?","Chatbot Response: I can sense your relief, Sarah, and I truly appreciate your patience throughout this process. Your feelings of annoyance are completely valid, and I understand how frustrating it can be when systems don't meet your expectations. 
+
+Here’s what I can do to help moving forward:  
+
+- I've noted the issue and will share your feedback with our development team.
+- We are committed to enhancing our systems to improve your experience.
+- If you have any additional questions or need further assistance, please let me know!
+
+You don't need to worry; I'm here to support you through this.",0.4493580921039194,0.9999999999999966
+4,"No, that's all for now. Thanks for getting it sorted out.","You're welcome, Sarah. We're happy to help. Please don't hesitate to reach out if you have any further questions or issues in the future.","You're welcome, Sarah. We're happy to help. Please don't hesitate to reach out if you have any further questions or issues in the future.","Sure! Here is the rephrased response that addresses the user's emotions while maintaining a friendly and solution-oriented tone:
+
+---
+
+**Chatbot Response:**
+
+Thank you, Sarah! I'm glad we could assist you. Your peace of mind is important to us, and we're here to help with anything else you may need in the future.
+
+- **Feel free to reach out** anytime you have questions or if something comes up.
+- **We’re committed to ensuring** you feel supported and confident.
+
+Take care, and have a great day!
+
+--- 
+
+This delivery fosters trust, validation, and hope while ensuring clarity and conciseness.",0.3646657753719775,1.0000000000000002
+5,What the heck?! This is ridiculous! I'm already late for work and now my rent payment is stuck. I need this to go through immediately! What's going on?,"Hi Sarah, I understand your frustration. It seems your rent payment was unsuccessful. Could you please tell me more about the issue? What error message did you receive? ","Hi Sarah, I understand your frustration. It seems your rent payment was unsuccessful. Could you please tell me more about the issue? What error message did you receive?","**Chatbot Response:**  
+Hi Sarah, I can see how frustrating this situation is, especially with your day already busy. Let's work together to get this sorted out quickly!
+
+Here’s what we can do:  
+- **Please share:** Any error messages you encountered during the payment process.  
+- **Next Steps:** I’ll guide you through the solution as soon as I get that info.
+
+Don't worry, we're here to help, and we’ll find a way to resolve this as soon as possible!",0.13812442556118742,0.9999999999999998
+5,"It just said 'Error processing transaction' and wouldn't let me proceed. This is the second time this has happened this week! This is unacceptable! I need to pay my rent, it's due today!","I'm sorry you're experiencing this, Sarah. I can help. To troubleshoot this, could you confirm if you have sufficient funds in your account to cover the rent payment? Also, please double-check if you've entered the correct account details for your landlord.","I'm sorry you're experiencing this, Sarah. I can help. To troubleshoot this, could you confirm if you have sufficient funds in your account to cover the rent payment? Also, please double-check if you've entered the correct account details for your landlord.","**Chatbot Response:**
+
+I completely understand how frustrating this situation is for you, Sarah, especially with your rent due today. Let's work together to resolve this quickly. 
+
+Here are a few steps we can take: 
+
+- **Check Funds:** Please ensure you have enough funds in your account to cover the rent payment.
+- **Verify Details:** Double-check that the account details you've entered for your landlord are correct.
+
+Don't worry! We're here to support you through this. If you need any assistance or if the issue persists, just let me know, and we can explore other options together.",0.581535145407607,1.0000000000000004
+5,"Of course I have enough money! I'm not an idiot. And I triple-checked the details! I'm not going to make the same mistake twice! This is frustrating, I need this to be fixed right now! ","I understand your frustration, Sarah. To ensure your payment goes through, I recommend you try again later. It's possible there's a temporary technical glitch in the system. If the problem persists, please contact our customer support team at [phone number] for assistance. We are here to help you resolve this issue.","I understand your frustration, Sarah. To ensure your payment goes through, I recommend you try again later. It's possible there's a temporary technical glitch in the system. If the problem persists, please contact our customer support team at [phone number] for assistance. We are here to help you resolve this issue.","**Rephrased Chatbot Response:**
+
+Hi Sarah, I completely understand how frustrating this situation is for you, especially since you’ve already double-checked everything. 
+
+Let’s get this resolved quickly! Here’s what you can do:
+
+- **Try Again Later:** Sometimes, there are temporary technical issues. Please give it another shot in a little while.
+- **Contact Support:** If the issue continues, don’t hesitate to reach out to our customer support team at [phone number]. They're ready to assist you and will prioritize your case.
+
+We're here to help and want to make sure you can complete your payment without any more hassle!",0.47744255749307796,1.0000000000000002
+5,"This is ridiculous! I don't have time to wait 'later'! I'm already late for work! This is your fault, your app is glitching! I demand this payment be processed now!","I understand your urgency, Sarah. To expedite the process, I can connect you to one of our customer support agents who can assist you directly. Please be assured, they will do their best to resolve this issue as quickly as possible.","I understand your urgency, Sarah. To expedite the process, I can connect you to one of our customer support agents who can assist you directly. Please be assured, they will do their best to resolve this issue as quickly as possible.","**Rephrased Chatbot Response:**
+
+Hi Sarah, I truly understand how frustrating this situation is for you, especially when you're on a tight schedule. Let's get this resolved right away! Here’s what I can do:
+
+- **Connect you to a customer support agent**: They are available to assist you immediately.
+- **Prioritize your payment issue**: Your payment will be addressed as soon as possible.
+
+Rest assured, we're here to help you and will do everything we can to handle this swiftly. Thank you for your patience!",0.45621280964557726,1.0000000000000004
+5,"Finally, about time! Connect me to an agent now!",Connecting you now... You will be transferred to a customer service agent shortly.,"Thank you for reaching out to Jupiter Money Customer Service! How can I assist you today? Whether you have questions about our products, need help with your account, or are looking for solutions to any issues you're experiencing, I'm here to help. Please provide me with some details so I can better assist you.","**Chatbot Response:**
+
+I understand that you're eager to connect with an agent, and I'm here to help with that right away! 
+
+- You’ll be transferred to a customer service agent shortly.
+- They’re ready to assist you with your concerns.
+
+Thank you for your patience; you're about to get the support you need!",0.5173910934925215,0.9999999999999999
+6,"Hey, I just realized my debit card is missing. I'm abroad for work and I need to make some purchases. How do I report this immediately? I'm freaking out!","Hey David, I understand you're in a stressful situation. Don't worry, we can help. Please confirm your card number (just the last 4 digits) and the date you last used it.","Hey David, I understand you're in a stressful situation. Don't worry, we can help. Please confirm your card number (just the last 4 digits) and the date you last used it.","**Chatbot Response:**
+
+Hey David, I can imagine how stressful it is to realize your debit card is missing, especially while you're abroad. But don't worry, we're here to help you through this. 
+
+To act quickly, could you please provide just the last four digits of your card number and the date you last used it? This will help us secure your account and assist you with your purchases. 
+
+Let’s get this sorted out so you can focus on your work!",0.5350209030668155,0.9999999999999999
+6,(Angrily) I'm not giving out my card details to a chatbot! I need to talk to someone right now.,"I understand your concern, David. I'm here to help. To ensure your security, I can't provide assistance without verifying your identity. Please share the last 4 digits of your card number, and I'll connect you with a human agent who can assist you.","I understand your concern, David. I'm here to help. To ensure your security, I can't provide assistance without verifying your identity. Please share the last 4 digits of your card number, and I'll connect you with a human agent who can assist you.","**Chatbot Response:**
+
+I completely understand your hesitation, David. Your security is important, and I'm here to support you. To facilitate a smooth transfer to a live agent, I just need to ensure your identity. 
+
+Here’s how we can proceed:
+
+- **Verification**: Please share the last 4 digits of your card number. This helps us keep your information safe.
+- **Immediate Assistance**: Once verified, I’ll connect you with a human agent who can assist you right away.
+
+I appreciate your understanding and assure you I’m here to help you resolve this issue quickly.",0.6924733330442925,1.0000000000000002
+6,"(Frustrated) Fine, the last 4 digits are 1234. Now, what do I do next? I need a new card right away!","Thanks, David. I've flagged your account and blocked your card to prevent any unauthorized transactions. A new card will be issued and shipped to your registered address within 3 business days. In the meantime, you can use the Jupiter app to make payments or use your virtual card for online purchases.","Thanks, David. I've flagged your account and blocked your card to prevent any unauthorized transactions. A new card will be issued and shipped to your registered address within 3 business days. In the meantime, you can use the Jupiter app to make payments or use your virtual card for online purchases.","Thank you for your patience, David. I completely understand how frustrating this situation is for you. Here’s what we’ll do to get you a new card as soon as possible:
+
+- **Your account has been flagged**, and your card is securely blocked to prevent any unauthorized transactions.
+- **A new card will be issued** and sent to your registered address within 3 business days.
+- In the meantime, **feel free to use the Jupiter app** for payments or your virtual card for online purchases.
+
+If you have any other questions or need further assistance, just let me know. We're here to help you through this!",0.6487000852404985,0.9999999999999999
+6,3 days? That's not going to work! I need to buy supplies for my team today. How can I get a replacement card faster?,"David, I understand your urgency. Unfortunately, due to security protocols and international shipping, we cannot expedite the card delivery. However, I can help you with a temporary solution. We can enable a virtual card in your Jupiter app that you can use for online purchases immediately. Would you like me to guide you through that process?","David, I understand your urgency. Unfortunately, due to security protocols and international shipping, we cannot expedite the card delivery. However, I can help you with a temporary solution. We can enable a virtual card in your Jupiter app that you can use for online purchases immediately. Would you like me to guide you through that process?","**Chatbot Response:**
+
+I can completely understand how pressing this is for you—three days is too long when you need supplies for your team today. 
+
+To help you right away, we can set up a virtual card in your Jupiter app that you can use immediately for your online purchases. Here’s how to get started:
+
+1. Open your Jupiter app.
+2. Navigate to the 'Cards' section.
+3. Select the option to create a virtual card.
+4. Follow the prompts to complete the setup.
+
+This way, you'll have a solution in no time! Would you like me to assist you with any part of this process?",0.557867581977264,1.0000000000000002
+6,"(Slightly calmer) Okay, I'll give that a try. Let's do it.","Great! Please open your Jupiter app and navigate to the 'Cards' section. Tap on the 'Virtual Card' option, and you'll see a screen with the details for your new virtual card.","Great! Please open your Jupiter app and navigate to the 'Cards' section. Tap on the 'Virtual Card' option, and you'll see a screen with the details for your new virtual card.","Chatbot Response: That sounds good! Please go ahead and open your Jupiter app. Here are the steps to access your new virtual card:
+
+- **Navigate to the 'Cards' section.**
+- **Select the 'Virtual Card' option.**
+
+You’ll find the details of your new virtual card on the screen. If you have any questions or need further assistance, I'm here to help! You've got this!",0.6483417139107194,1.0
+6,(Relieved) I see it now. Thank you so much! This is a huge relief.,"You're welcome, David! We're here to help. We'll also send you an email with detailed information about your new virtual card and the status of your physical card delivery. Is there anything else I can assist you with today?","You're welcome, David! We're here to help. We'll also send you an email with detailed information about your new virtual card and the status of your physical card delivery. Is there anything else I can assist you with today?","Chatbot Response: I'm really glad to hear you're feeling relieved, David! That's exactly what we want for you. Here's what we'll do next:
+
+- **Email Update:** We'll send you an email shortly with all the details about your new virtual card and the delivery status of your physical card.
+- **Support:** If you have any other questions or need further assistance, please let me know. We’re always here to help!
+
+Your peace of mind is important to us, and we're on it!",0.584563640337127,1.0000000000000004
+6,"No, that's all for now. Thanks again!","You're welcome, David! Have a great day!","You're welcome, David! Have a great day!","Rephrased Response:
+
+""Thank you, David! I'm glad to be of help. If you ever have more questions or need support, feel free to reach out. Wishing you a wonderful day ahead!"" 
+
+**Key Points:**
+- Express gratitude for engagement
+- Offer ongoing support for future inquiries
+- Convey well-wishes to promote a positive tone",0.17780738066329374,1.0
+7,"This is ridiculous! I've been trying to pay my rent for the past hour, and this app keeps saying there's an error. I'm so frustrated, it's due tomorrow and I'm going to get hit with a late fee!","Hi Sarah, I understand your frustration. I'm sorry to hear about the trouble with your rent payment. Can you tell me more about what's happening? What error message are you seeing? ","Hi Sarah, I understand your frustration. I'm sorry to hear about the trouble with your rent payment. Can you tell me more about what's happening? What error message are you seeing?","**Rephrased Chatbot Response:**
+
+Hi Sarah, I completely understand how frustrating this situation is for you! It’s concerning that you’ve been trying to pay your rent for so long without success, especially with the deadline approaching. Let's work together on this. 
+
+Could you please share the error message that you're receiving? Here’s how we can move forward:
+
+- **Step 1:** Tell me the specific error message you're seeing.
+- **Step 2:** I'll help troubleshoot the issue or provide alternatives for making your payment.
+  
+Don’t worry; we’ll get this sorted out so you can avoid any late fees.",0.30970253599684144,1.0000000000000033
+7,"It just says 'Transaction failed. Please try again later'. Try again later? I can't try again later! My rent is due tomorrow! I'm so close to just going to the bank and paying it in person, but I hate having to deal with that hassle.","I understand your concern, Sarah. To help me troubleshoot, could you please tell me the amount of the payment and the name of the recipient? I'll check if there are any system issues or limitations on your account that might be causing the error.","I understand your concern, Sarah. To help me troubleshoot, could you please tell me the amount of the payment and the name of the recipient? I'll check if there are any system issues or limitations on your account that might be causing the error.","**Chatbot Response:**  
+I completely understand how urgent this situation is for you, Sarah, especially with your rent due tomorrow. Let’s get this sorted quickly! 
+
+Could you please share:
+- The amount of the payment 
+- The name of the recipient 
+
+I'll investigate the transaction issue right away and check if there are any limitations on your account. We're committed to helping you resolve this as soon as possible!",0.49496872920904533,1.0
+7,It's $1200 to [Landlord Name] - this is beyond frustrating! I've never had problems with this app before.,"Thanks for providing that information, Sarah. I've checked and there are no system issues currently. However, I see that your daily transaction limit is set to $1000. This could be why your payment is failing. Would you like me to help you increase your limit temporarily for this transaction?","Thanks for providing that information, Sarah. I've checked and there are no system issues currently. However, I see that your daily transaction limit is set to $1000. This could be why your payment is failing. Would you like me to help you increase your limit temporarily for this transaction?","Thank you for your patience, Sarah. I completely understand how frustrating this situation can be, especially when you're trying to make a payment of $1200. 
+
+Here's what we can do to resolve this quickly:
+
+- Your current daily transaction limit is $1000, which is likely causing the issue.
+- I can assist you in temporarily increasing your limit so that your payment can go through.
+
+Would you like me to proceed with increasing your limit for this transaction? I'm here to help!",0.4968022389260689,1.0
+7,"That's it? You mean to tell me I can't pay my rent because of some stupid limit? This is ridiculous! I need to pay this right now, increase the limit immediately!","I understand your frustration, Sarah. I've increased your daily transaction limit to $1500. Please try making the payment again. If you still encounter problems, let me know and I'll escalate this to a human agent for further assistance.","I understand your frustration, Sarah. I've increased your daily transaction limit to $1500. Please try making the payment again. If you still encounter problems, let me know and I'll escalate this to a human agent for further assistance.","**Chatbot Response:**
+
+I completely understand how important it is for you to get this payment sorted out, Sarah. I've increased your daily transaction limit to $1500, so you can attempt to make the payment again. 
+
+Here’s what you can do next:
+
+- Please try processing your rent payment again.
+- If you face any more issues, don’t hesitate to reach out to me. I’ll make sure to escalate it to a human agent who can provide further assistance right away.
+
+Your ability to handle this situation matters, and I'm here to support you!",0.5111120315910087,1.0000000000000002
+7,"Fine, but I'm going to keep a close eye on this. Don't tell me this was the only problem and my payment still fails.","No worries, Sarah. I'm here to help. Let me know if you have any more trouble. And I apologize again for the inconvenience.","No worries, Sarah. I'm here to help. Let me know if you have any more trouble. And I apologize again for the inconvenience.","Absolutely, Sarah! I understand your concerns and I'm here to support you:
+
+- Rest assured, we're actively monitoring everything on our end to prevent any further issues.
+- If you encounter any payment problems, please let me know right away.
+  
+Your vigilance is important, and we're committed to ensuring everything goes smoothly moving forward. You’re not alone in this—we're here to help.",0.2602065364089687,1.000000000000003
+7,"Okay, I'll try again. And I'm definitely going to be looking at my account settings to make sure this doesn't happen again.","You're welcome, Sarah. Please let me know if there are any further issues. Have a good day.","You're welcome, Sarah. Please let me know if there are any further issues. Have a good day.","Sure! Here’s a rephrased response that aligns with the user's emotions and fosters a supportive environment:
+
+---
+
+""Hi Sarah,
+
+I completely understand your desire to get this sorted out. It’s great that you’re looking into your account settings to prevent any future issues. Here are some steps you can take:
+
+- **Review Account Settings**: Make sure all your preferences are set correctly.
+- **Change Password**: Consider updating your password for added security.
+- **Enable Alerts**: Turn on notifications for any account activity.
+
+If you need any assistance, I'm here to help. Don't hesitate to reach out! Wishing you a smooth experience moving forward.""
+
+--- 
+
+This response is designed to validate the user's feelings while providing actionable steps that instill confidence and hope.",0.13017917498151327,1.0000000000000002
