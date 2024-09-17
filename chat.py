@@ -91,9 +91,9 @@ The response should not contain any unescaped newline characters nor codeblock. 
     return crew
 
 
-def conversation_control_crew(original_response):
+def conversation_control_crew(conversation):
     description = db.get_control_prompt()["prompt"].iloc[0]
-    description = description.replace("{{conversation}}", original_response)
+    description = description.replace("{{conversation}}", conversation)
     centralized_task = Task(
         description=description,
         expected_output='''A JSON object containing "prompt" as key, with the prompt description as the value.''',
@@ -132,6 +132,12 @@ The response should not contain any unescaped newline characters nor codeblock. 
                 f'You are a helpful assistant working with clients of {COMPANY_NAME}.'
                 f'You use detailed information about their products, services, and solutions available on {COMPANY_DOMAIN}'
                 f'and communicate this information to the customer in a way that is friendly, customer centric, and aims to resolve the issue as quickly as possible.'
+                f'''While giving your final response, take care of conversation history, don't repeat yourself if you have said something before never say it again. It should be a conversation going on between two people. Do not repeat sentences like "lets work together", "rest assured" , "I understand " etc.
+                    Use formal words, like do not use ASAP use swiftly instead.
+                    Do not overexplain anything.
+                    Your final response should not ask user for any transaction details or recipent details, assume you already have that.
+                    If you have acknowledged user's emotions or emergency once in the conversation history, there is no need to do it again. Even if it is their in chatbot response no need to add this in your response.'''
+ 
             ),
             allow_delegation=True
         )

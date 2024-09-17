@@ -140,6 +140,49 @@ Reflect the user's emotions and concerns to build rapport and demonstrate unders
 
 
 
+def rephrase_sprinklr_with_history(sprinklr_input, generated_prompt, tactics_prompt, conversation_history):
+    # Create a list of message objects for each part of the conversation history
+    messages = [{"role": "system", "content": "You are an assistant that rephrases text."}]
+
+    # Add conversation history as alternating 'user' and 'assistant' messages
+    for entry in conversation_history:
+        messages.append({"role": "user", "content": f"User: {entry['user']}"})
+        messages.append({"role": "assistant", "content": f"Response: {entry['response']}"})
+
+    # Add the current user emotion and Sprinklr input to the message sequence
+    messages.append({"role": "user", "content": f"Chatbot Response: {sprinklr_input}"})
+    messages.append({"role": "user", "content": f"User's emotions: {generated_prompt}"})
+
+    # Include the rephrasing instructions
+    messages.append({"role": "user", "content": f'''
+        Rephrase the chatbot's response to address the user's emotions in a way that fosters trust, validation, and hope, while reducing feelings of anger or fear. 
+        Separate content from delivery, focusing on what needs to be communicated and how it should be conveyed. 
+        Ensure the message is clear, concise, and actionable to minimize cognitive overload for the user.
+        Maintain a conversational and friendly tone, and avoid justifying or explaining any inconvenience caused to the user.
+        {tactics_prompt}
+If you have acknowledged user's emotions or emergency once in the conversation history, there is no need to do it again. Even if it is their in chatbot response no need to add this in your response.
+
+
+Important points to remember:
+While giving your final response, take care of conversation history, don't repeat yourself if you have said something before never say it again. It should be a conversation going on between two people. Do not repeat sentences like "lets work together", "rest assured" , "I understand " etc.
+Use formal words, like do not use ASAP use swiftly instead.
+Do not overexplain anything.
+Your final response should not ask user for any transaction details or recipent details, assume you already have that.
+
+    '''})
+
+    # Call the OpenAI API with the constructed messages
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=messages
+    )
+    
+    rephrased_output = response.choices[0].message.content
+    return rephrased_output
+
+
+
+
 
 def information_crew():
 
