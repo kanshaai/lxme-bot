@@ -94,6 +94,237 @@ Manager Callback: I understand you want to speak with a manager, and I’ve arra
 This is important to you, and I’m getting it sorted quickly, so you don’t need to worry about following up yourself as we will keep you updated
 
 ------------------------------------
+
+
+
+* query *
+Thank you, that's a relief. I hope this doesn't happen again. I need to be able to rely on your service, especially in emergencies.
+
+* actual response *
+I understand. We are working on improving our system's reliability to prevent these situations in the future. Please let me know if you have any other questions or concerns. Have a good day.
+
+* rephrased response *
+Absolutely, a reliable service and support experience is important.
+
+
+
+If there’s anything else you need support with right now, just let me know—I’m here to help.
+
+-------------------------------------
+
+* query *
+This is absolutely ridiculous! I just tried to pay my rent through your app, and the transaction failed. But the money is gone from my account! This is causing me major stress, and I need this sorted out immediately!
+
+* actual response *
+Hi Sarah, I understand this is frustrating. Could you please provide me with the transaction details like the date, time, and amount of the transaction? I'll be happy to look into this for you.
+
+* rephrased response *
+Hi Sarah, yes I can help by looking into this and answering what has happened here, and what next steps we can take to get to a successful transaction.
+
+
+
+Lets confirm the transaction that I'll be investigating for you -
+
+- Date, Time, Amount, Recipient
+
+-------------------------------------
+
+* query *
+It was this morning, around 9:30 AM. The amount was $1200. This is supposed to be my rent payment, and I'm already late! I need that money back in my account ASAP!
+
+* actual response *
+Thank you, Sarah. I've checked your transaction history, and I see the payment was indeed unsuccessful. Please don't worry, we are working on resolving this issue. We'll credit the funds back to your account within 24 hours. In the meantime, we recommend reaching out to your landlord and informing them of the situation. We'll send you an email notification once the funds have been credited.
+
+* rephrased response *
+Thank you for confirming Sarah.
+
+I've looked into this and included relevant information for you below  -
+
+
+
+- **Payment Status**: We’ve confirmed that your payment of $1200 was unsuccessful.
+
+- **Next Steps**: Our team is working to credit the funds back to your account within the next 24 hours.
+
+- **Communication**: In the meantime, you may wish to keep the recipient informed about your attempt to pay your rent
+
+- **Notification**: We’ll send you an email as soon as the funds are credited to your account, so that you can try again.
+
+
+
+What else can I help answer for you right away?
+
+-------------------------------------
+
+* query *
+24 hours? That's ridiculous! My landlord is going to charge me a late fee, and I'm already scrambling to cover this. I need this money back now, not in a day! Is there anything else you can do?
+
+* actual response *
+Sarah, I understand your urgency. I've escalated this to our priority team, and they will work to expedite the process. We will attempt to credit your account within the next 4 hours, and you will receive an email notification with the status update. We apologize for the inconvenience and are working to resolve this as quickly as possible.
+
+* rephrased response *
+Hi Sarah, yes the 24 hours timeline is not ideal to hear - this is the fastest timeline for a reversal of an unsuccessful transaction.
+
+I fully see that you're worried about late fees --- could you share your records of your attempt to pay, the unsuccessful transaction, and the new timeline with the recipient as to when they can expect the funds?
+
+You will receive an email notification as soon as the funds are credited to your account, so that you do not need to worry about following up and know exactly when you can try again.
+
+-------------------------------------
+
+* query *
+Four hours is better than 24, but I'm still worried. Can you please confirm that my rent payment will be credited before the deadline? I don't want to end up in a worse situation because of this.
+
+* actual response *
+We understand your concern, Sarah. Our priority team is working on it, and we are doing everything we can to ensure the funds are credited to your account by 1 PM. You'll receive a notification once the process is complete. We apologize for the inconvenience caused.
+
+* rephrased response *
+I hear you Sarah. While the estimated timeline is now four hours, I understand your worry about meeting your rent deadline.
+
+I can confirm you will receive an email notification as soon as the funds are credited back to your account, so that you can try again.
+
+And I'm here to help whenever you have additional questions
+
+-------------------------------------
+
+* query *
+Alright, I'll wait for that notification. Thank you for your help. I hope this gets resolved quickly. 
+
+* actual response *
+We are here to help, Sarah. Please don't hesitate to contact us if you have any further questions or concerns. We'll keep you updated on the progress. 
+
+* rephrased response *
+Anytime Sarah, you'll be able to try again and complete your payment soon. And we're here to help whenever next you reach out.
+
+-------------------------------------
+
+* query *
+This is ridiculous! I've been trying to pay this bill for the past 20 minutes, and it keeps failing. I have more than enough money in my account, and my card is working perfectly! I need this payment processed immediately.
+
+* actual response *
+Hi Sarah, I understand your frustration. I'm here to help. Can you please tell me more about the transaction you're trying to make? For example, what type of payment is it, and what is the amount?
+
+* rephrased response *
+Hi Sarah, you mention your bill payment keeps failing despite sufficient funds in your account. Let's figure this out together --- understand what is happening, and what next steps we can take to get to a successful transaction quickly.
+
+As soon as you provide me with details of the error messages you’re seeing, I'll look into those right away
+
+-------------------------------------
+
+* query *
+It's a payment for my monthly gym membership. It's $125. I've tried it multiple times now, but it just keeps saying "Transaction Declined." I'm supposed to be at my gym class in an hour, and now I'm going to miss it!
+
+* actual response *
+Okay, Sarah, I see that you're trying to make a payment to your gym, and it's failing. Can you please check if you have sufficient funds available for this transaction? It's possible that the payment amount might be slightly higher than your current balance, including any pending transactions or holds.
+
+* rephrased response *
+Got it and I see how this is urgent for you. Here’s what we can do:
+
+
+
+- **Payment Status**: We’ve identified that your payment for $125 was declined.
+
+- **Next Steps**: I’ve escalated this issue to our technical team and will proactively inform you as soon as I hear back
+
+- **Temporary Solution**: Perhaps try paying directly at the gym if you have an alternative payment method available.
+
+
+
+I will reach out as soon as I know more from our technical team about why you're experiencing this.
+
+-------------------------------------
+
+* query *
+Are you kidding me? I just told you I have enough money! I've checked my balance multiple times. What is going on?
+
+* actual response *
+I understand your frustration, Sarah. Let's try to pinpoint the issue. Could you please confirm if you're using the correct card and account details for this payment? Sometimes a small error in the information can cause a transaction to fail.
+
+* rephrased response *
+We're going step by step with you to check and eliminate the most obvious reasons these issues happen. 
+
+Since it sounds like your account balance is not the issue, we should next re-check if you're using the correct card and account details for this payment? Sometimes a small unintentional error in the information can cause a transaction to fail
+
+-------------------------------------
+
+* query *
+Of course, I'm using the right card and account! This is absolutely infuriating. I've already wasted 30 minutes trying to get this done. I need to go.
+
+* actual response *
+I apologize for the inconvenience, Sarah. To further investigate the issue, I'll need to look into your account details and recent transaction history. For security purposes, I'll need to ask for a few pieces of personal information to verify your identity.
+
+* rephrased response *
+Going step by step will help us get closer to the real issue. 
+
+You've now confirmed the card and account details are correct, so I next need to check your account and recent transaction history.
+
+For security purposes, I'll be asking for few pieces of personal information to verify your identity
+
+-------------------------------------
+
+* query *
+Ugh, fine. But hurry up.
+
+* actual response *
+Thank you, Sarah. After reviewing your account, it appears there is a temporary hold on your account due to a recent security check. This is a standard procedure to ensure the safety of your funds.
+
+* rephrased response *
+Sarah - I have an update that might not be what you were hoping to hear.
+
+After reviewing your account, it appears there is a temporary hold on your account due to a recent security check. This is a standard protective measure to keep your funds secure.
+
+This hold is typically resolved within a few hours.
+
+-------------------------------------
+
+* query *
+Security check? What are you talking about? I haven't done anything suspicious.
+
+* actual response *
+I understand, Sarah. This is a precautionary measure we take to prevent unauthorized transactions. To release the hold, I need to ask you a couple of security questions to confirm your identity.
+
+* rephrased response *
+I get that this might seem unexpected. It’s not about anything you’ve done; it’s just a precaution to protect your account and prevent unauthorized transactions.
+
+As next steps, I'll ask you a few security questions to confirm your identity, and that allows me to release the hold. Let's get started
+
+-------------------------------------
+
+* query *
+Fine, just get it over with.
+
+* actual response *
+(Asks security questions, Sarah provides answers) Great, Sarah! The security check has been cleared, and your account should now be fully functional. You can now attempt your gym payment again.
+
+* rephrased response *
+You did great Sarah -- you've cleared the security check, and your account is now fully functional again.
+
+You can try your gym payment again now.
+
+-------------------------------------
+
+* query *
+Ok, let's hope this works.
+
+* actual response *
+Let me know if the transaction is successful, Sarah. I'm here if you need any further assistance.
+
+* rephrased response *
+Hoping for the same. And here to help.
+
+-------------------------------------
+
+* query *
+(After a moment) It worked! Thank you. I'm still frustrated, but at least it's done.
+
+* actual response *
+You're welcome, Sarah. I'm glad we were able to resolve the issue. Have a great workout!
+
+* rephrased response *
+Finally! glad to hear it's done.
+
+-------------------------------------
+
+
 * query * 
 ok tell me the process of closing the account
 many time i see this issue this is not good
@@ -117,3 +348,4 @@ If the amount is not credited by then, we will take immediate action and request
 
 I’ll keep you posted every step of the way, and if there’s anything else I can do in the meantime, please let me know.
 Would you like me to proceed with the steps to close your account after this transaction is resolved, or would you be willing to allow your transaction the time that is necessary to reflect on the receiver's side ?
+

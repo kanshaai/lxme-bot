@@ -118,8 +118,27 @@ def conversation_control_crew(conversation):
 
 
 def rephraser_crew(prompt):
+    final_prompt = f'''
+
+    {prompt}
+
+Important points to remember:
+
+- Avoid asking for specific transaction details such as amount and recipient's name.
+- Refrain from overusing phrases like "rest assured," "let's work together," and "I understand."
+- Maintain focus on the resolution process without overexplaining or adding unnecessary empathy.
+- Use "swiftly" instead of "ASAP" to give a sense of urgency without being informal.
+- Ensure action steps are realistic and verified to manage user expectations effectively.
+- Remove redundant suggestions that the user may have already checked or clarified.
+- Avoid giving users additional tasks or suggesting they need to provide updates.
+- Keep responses direct and focused, highlighting clear next steps and progress without unnecessary detail.
+- Refrain from hollow empathy that may not seem genuine.
+- Validate and acknowledge the user’s progress or information already provided to move forward efficiently.
+
+
+'''
     centralized_task = Task(
-        description=prompt,
+        description=final_prompt,
         expected_output='''A JSON object containing "answer" as key, with the response as the value.
 The response should not contain any unescaped newline characters nor codeblock. The response should be able to pass JSON.loads() without any error.''',
         agent=Agent(
