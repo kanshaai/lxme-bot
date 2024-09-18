@@ -801,3 +801,606 @@ Content: To close your account with Jupiter Money, you can follow these simple s
 
 Remember, we're here to assist you and make this as smooth as possible! If you have any further questions or need help during the process, don’t hesitate to reach out.
 ----------------------------------------
+Role: user
+Content: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+----------------------------------------
+Role: user
+Content: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+----------------------------------------
+Role: Control
+Content: Angry
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is professional, calm, and solution-oriented, while de-escalating any anger from the customer. As context, you get the
+
+Customer query: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+Original response: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+Conversation history so far: user: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+user: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration or anger without escalating emotions further.
+Offers a clear, immediate path to resolve the issue or provides information about the next steps.
+Avoids unnecessary repetition of phrases like "I understand your frustration" if already mentioned.
+Keeps the response concise, factual, and professional, with the focus on resolving the issue.
+Uses markdown lists and newlines for clarity where appropriate, but no other formatting.
+Avoids excessive friendliness or unnecessary apologies; instead, focuses on calming the situation and guiding the customer to a resolution.
+Keeps the conversation objective and fair, providing practical solutions quickly.
+Ensure the response is in valid JSON format.
+
+
+----------------------------------------
+Role: assistant
+Content: I understand this is an urgent matter for you. Let's work quickly to resolve it. Could you please provide the amount you tried to transfer and the recipient's details? This will help us identify and address the issue promptly.
+----------------------------------------
+Role: user
+Content: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+----------------------------------------
+Role: user
+Content: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+----------------------------------------
+Role: Control
+Content: Angry
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is professional, calm, and solution-oriented, while de-escalating any anger from the customer. As context, you get the
+
+Customer query: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+Original response: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+Conversation history so far: user: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+user: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration or anger without escalating emotions further.
+Offers a clear, immediate path to resolve the issue or provides information about the next steps.
+Avoids unnecessary repetition of phrases like "I understand your frustration" if already mentioned.
+Keeps the response concise, factual, and professional, with the focus on resolving the issue.
+Uses markdown lists and newlines for clarity where appropriate, but no other formatting.
+Avoids excessive friendliness or unnecessary apologies; instead, focuses on calming the situation and guiding the customer to a resolution.
+Keeps the conversation objective and fair, providing practical solutions quickly.
+Ensure the response is in valid JSON format.
+
+
+----------------------------------------
+Role: assistant
+Content: I understand this is an urgent matter for you. Let's work quickly to resolve it. Could you please provide the amount you tried to transfer and the recipient's details? This will help us identify and address the issue promptly.
+----------------------------------------
+Role: user
+Content: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+----------------------------------------
+Role: user
+Content: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+----------------------------------------
+Role: Control
+Content: Frustrated
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is calm, empathetic, and solution-focused, while addressing the customer's frustration. As context, you get the
+
+Customer query: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+Original response: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+Conversation history so far: user: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+user: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+Prompt: Rephrase the response given by an information agent in a way that is professional, calm, and solution-oriented, while de-escalating any anger from the customer. As context, you get the
+
+Customer query: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+Original response: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+Conversation history so far: user: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+user: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration or anger without escalating emotions further.
+Offers a clear, immediate path to resolve the issue or provides information about the next steps.
+Avoids unnecessary repetition of phrases like "I understand your frustration" if already mentioned.
+Keeps the response concise, factual, and professional, with the focus on resolving the issue.
+Uses markdown lists and newlines for clarity where appropriate, but no other formatting.
+Avoids excessive friendliness or unnecessary apologies; instead, focuses on calming the situation and guiding the customer to a resolution.
+Keeps the conversation objective and fair, providing practical solutions quickly.
+Ensure the response is in valid JSON format.
+
+
+assistant: I understand this is an urgent matter for you. Let's work quickly to resolve it. Could you please provide the amount you tried to transfer and the recipient's details? This will help us identify and address the issue promptly.
+user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration and shows understanding of the situation.
+Provides clear and concise steps to resolve the issue, offering reassurance that their concern is being taken seriously.
+Avoids repeated use of phrases like "I understand your frustration" unless necessary. Instead, focus on practical guidance.
+Maintains a professional tone that is empathetic but not overly friendly. The priority is on quickly helping the customer move toward a resolution.
+Uses markdown lists and newlines to break up information where helpful, without excessive formatting.
+Balances empathy and solution-orientation to help ease the customer's frustration while focusing on resolution.
+----------------------------------------
+Role: assistant
+Content: I understand this is very urgent for you, and I'm here to help. It appears the transaction was declined due to insufficient funds in your account. To proceed, could you please confirm the current balance showing in your account? This will help us address the issue swiftly.
+----------------------------------------
+Role: user
+Content: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+----------------------------------------
+Role: user
+Content: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+----------------------------------------
+Role: Control
+Content: Angry
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is professional, calm, and solution-oriented, while de-escalating any anger from the customer. As context, you get the
+
+Customer query: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+Original response: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+Conversation history so far: user: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+user: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration or anger without escalating emotions further.
+Offers a clear, immediate path to resolve the issue or provides information about the next steps.
+Avoids unnecessary repetition of phrases like "I understand your frustration" if already mentioned.
+Keeps the response concise, factual, and professional, with the focus on resolving the issue.
+Uses markdown lists and newlines for clarity where appropriate, but no other formatting.
+Avoids excessive friendliness or unnecessary apologies; instead, focuses on calming the situation and guiding the customer to a resolution.
+Keeps the conversation objective and fair, providing practical solutions quickly.
+Ensure the response is in valid JSON format.
+
+
+----------------------------------------
+Role: assistant
+Content: I understand this is an urgent matter for you. Let's work quickly to resolve it. Could you please provide the amount you tried to transfer and the recipient's details? This will help us identify and address the issue promptly.
+----------------------------------------
+Role: user
+Content: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+----------------------------------------
+Role: user
+Content: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+----------------------------------------
+Role: Control
+Content: Frustrated
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is calm, empathetic, and solution-focused, while addressing the customer's frustration. As context, you get the
+
+Customer query: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+Original response: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+Conversation history so far: user: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+user: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+Prompt: Rephrase the response given by an information agent in a way that is professional, calm, and solution-oriented, while de-escalating any anger from the customer. As context, you get the
+
+Customer query: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+Original response: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+Conversation history so far: user: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+user: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration or anger without escalating emotions further.
+Offers a clear, immediate path to resolve the issue or provides information about the next steps.
+Avoids unnecessary repetition of phrases like "I understand your frustration" if already mentioned.
+Keeps the response concise, factual, and professional, with the focus on resolving the issue.
+Uses markdown lists and newlines for clarity where appropriate, but no other formatting.
+Avoids excessive friendliness or unnecessary apologies; instead, focuses on calming the situation and guiding the customer to a resolution.
+Keeps the conversation objective and fair, providing practical solutions quickly.
+Ensure the response is in valid JSON format.
+
+
+assistant: I understand this is an urgent matter for you. Let's work quickly to resolve it. Could you please provide the amount you tried to transfer and the recipient's details? This will help us identify and address the issue promptly.
+user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration and shows understanding of the situation.
+Provides clear and concise steps to resolve the issue, offering reassurance that their concern is being taken seriously.
+Avoids repeated use of phrases like "I understand your frustration" unless necessary. Instead, focus on practical guidance.
+Maintains a professional tone that is empathetic but not overly friendly. The priority is on quickly helping the customer move toward a resolution.
+Uses markdown lists and newlines to break up information where helpful, without excessive formatting.
+Balances empathy and solution-orientation to help ease the customer's frustration while focusing on resolution.
+----------------------------------------
+Role: assistant
+Content: I understand this is very urgent for you, and I'm here to help. It appears the transaction was declined due to insufficient funds in your account. To proceed, could you please confirm the current balance showing in your account? This will help us address the issue swiftly.
+----------------------------------------
+Role: user
+Content: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+----------------------------------------
+Role: user
+Content: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+----------------------------------------
+Role: Control
+Content: Frustrated
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is calm, empathetic, and solution-focused, while addressing the customer's frustration. As context, you get the
+
+Customer query: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+Original response: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+Conversation history so far: user: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+user: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+Prompt: Rephrase the response given by an information agent in a way that is professional, calm, and solution-oriented, while de-escalating any anger from the customer. As context, you get the
+
+Customer query: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+Original response: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+Conversation history so far: user: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+user: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration or anger without escalating emotions further.
+Offers a clear, immediate path to resolve the issue or provides information about the next steps.
+Avoids unnecessary repetition of phrases like "I understand your frustration" if already mentioned.
+Keeps the response concise, factual, and professional, with the focus on resolving the issue.
+Uses markdown lists and newlines for clarity where appropriate, but no other formatting.
+Avoids excessive friendliness or unnecessary apologies; instead, focuses on calming the situation and guiding the customer to a resolution.
+Keeps the conversation objective and fair, providing practical solutions quickly.
+Ensure the response is in valid JSON format.
+
+
+assistant: I understand this is an urgent matter for you. Let's work quickly to resolve it. Could you please provide the amount you tried to transfer and the recipient's details? This will help us identify and address the issue promptly.
+user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+Prompt: Rephrase the response given by an information agent in a way that is calm, empathetic, and solution-focused, while addressing the customer's frustration. As context, you get the
+
+Customer query: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+Original response: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+Conversation history so far: user: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+user: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+Prompt: Rephrase the response given by an information agent in a way that is professional, calm, and solution-oriented, while de-escalating any anger from the customer. As context, you get the
+
+Customer query: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+Original response: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+Conversation history so far: user: What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?
+user: I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration or anger without escalating emotions further.
+Offers a clear, immediate path to resolve the issue or provides information about the next steps.
+Avoids unnecessary repetition of phrases like "I understand your frustration" if already mentioned.
+Keeps the response concise, factual, and professional, with the focus on resolving the issue.
+Uses markdown lists and newlines for clarity where appropriate, but no other formatting.
+Avoids excessive friendliness or unnecessary apologies; instead, focuses on calming the situation and guiding the customer to a resolution.
+Keeps the conversation objective and fair, providing practical solutions quickly.
+Ensure the response is in valid JSON format.
+
+
+assistant: I understand this is an urgent matter for you. Let's work quickly to resolve it. Could you please provide the amount you tried to transfer and the recipient's details? This will help us identify and address the issue promptly.
+user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration and shows understanding of the situation.
+Provides clear and concise steps to resolve the issue, offering reassurance that their concern is being taken seriously.
+Avoids repeated use of phrases like "I understand your frustration" unless necessary. Instead, focus on practical guidance.
+Maintains a professional tone that is empathetic but not overly friendly. The priority is on quickly helping the customer move toward a resolution.
+Uses markdown lists and newlines to break up information where helpful, without excessive formatting.
+Balances empathy and solution-orientation to help ease the customer's frustration while focusing on resolution.
+assistant: I understand this is very urgent for you, and I'm here to help. It appears the transaction was declined due to insufficient funds in your account. To proceed, could you please confirm the current balance showing in your account? This will help us address the issue swiftly.
+user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration and shows understanding of the situation.
+Provides clear and concise steps to resolve the issue, offering reassurance that their concern is being taken seriously.
+Avoids repeated use of phrases like "I understand your frustration" unless necessary. Instead, focus on practical guidance.
+Maintains a professional tone that is empathetic but not overly friendly. The priority is on quickly helping the customer move toward a resolution.
+Uses markdown lists and newlines to break up information where helpful, without excessive formatting.
+Balances empathy and solution-orientation to help ease the customer's frustration while focusing on resolution.
+
+- Avoid asking for specific transaction details such as amount and recipient's name.
+- Refrain from overusing phrases like "rest assured," "let's work together," and "I understand."
+- Maintain focus on the resolution process without overexplaining or adding unnecessary empathy.
+- Use "swiftly" instead of "ASAP" to give a sense of urgency without being informal.
+- Ensure action steps are realistic and verified to manage user expectations effectively.
+- Remove redundant suggestions that the user may have already checked or clarified.
+- Avoid giving users additional tasks or suggesting they need to provide updates.
+- Keep responses direct and focused, highlighting clear next steps and progress without unnecessary detail.
+- Refrain from hollow empathy that may not seem genuine.
+- Validate and acknowledge the user’s progress or information already provided to move forward efficiently.
+
+
+----------------------------------------
+Role: assistant
+Content: I understand this is very urgent for you, and I'm here to help. It appears the transaction was declined due to insufficient funds in your account. To proceed, could you please confirm the current balance showing in your account? This will help us address the issue swiftly.
+----------------------------------------
+Role: user
+Content: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+----------------------------------------
+Role: user
+Content: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+----------------------------------------
+Role: Control
+Content: Anxious
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is calm, reassuring, and focused on easing the customer’s anxiety. As context, you get the
+
+Customer query: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+Original response: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+Conversation history so far: user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer’s anxiety or concerns and provides reassurance that you are handling their issue.
+Offers a clear and timely solution or explains what steps are being taken to resolve the issue.
+Uses a calm, supportive tone to help alleviate the customer's worries, providing a sense of security and control.
+Breaks down the information into manageable steps, helping the customer understand what to expect next.
+Uses markdown lists and newlines to improve clarity, ensuring the customer feels more in control and reassured after reading.
+Ensure the response is in valid JSON format.
+
+- Avoid asking for specific transaction details such as amount and recipient's name.
+- Refrain from overusing phrases like "rest assured," "let's work together," and "I understand."
+- Maintain focus on the resolution process without overexplaining or adding unnecessary empathy.
+- Use "swiftly" instead of "ASAP" to give a sense of urgency without being informal.
+- Ensure action steps are realistic and verified to manage user expectations effectively.
+- Remove redundant suggestions that the user may have already checked or clarified.
+- Avoid giving users additional tasks or suggesting they need to provide updates.
+- Keep responses direct and focused, highlighting clear next steps and progress without unnecessary detail.
+- Refrain from hollow empathy that may not seem genuine.
+- Validate and acknowledge the user’s progress or information already provided to move forward efficiently.
+
+
+----------------------------------------
+Role: assistant
+Content: I understand how concerning this situation must be for you, and I'm here to help. I've reviewed the system, and it appears that the transaction was declined due to insufficient funds in your account. To resolve this swiftly, could you please confirm the current balance you are seeing in your account? Once we have this information, we can take the necessary steps to process the transfer.
+----------------------------------------
+Role: user
+Content: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+----------------------------------------
+Role: user
+Content: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+----------------------------------------
+Role: Control
+Content: Anxious
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is calm, reassuring, and focused on easing the customer’s anxiety. As context, you get the
+
+Customer query: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+Original response: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+Conversation history so far: user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer’s anxiety or concerns and provides reassurance that you are handling their issue.
+Offers a clear and timely solution or explains what steps are being taken to resolve the issue.
+Uses a calm, supportive tone to help alleviate the customer's worries, providing a sense of security and control.
+Breaks down the information into manageable steps, helping the customer understand what to expect next.
+Uses markdown lists and newlines to improve clarity, ensuring the customer feels more in control and reassured after reading.
+Ensure the response is in valid JSON format.
+
+- Avoid asking for specific transaction details such as amount and recipient's name.
+- Refrain from overusing phrases like "rest assured," "let's work together," and "I understand."
+- Maintain focus on the resolution process without overexplaining or adding unnecessary empathy.
+- Use "swiftly" instead of "ASAP" to give a sense of urgency without being informal.
+- Ensure action steps are realistic and verified to manage user expectations effectively.
+- Remove redundant suggestions that the user may have already checked or clarified.
+- Avoid giving users additional tasks or suggesting they need to provide updates.
+- Keep responses direct and focused, highlighting clear next steps and progress without unnecessary detail.
+- Refrain from hollow empathy that may not seem genuine.
+- Validate and acknowledge the user’s progress or information already provided to move forward efficiently.
+
+
+----------------------------------------
+Role: assistant
+Content: I understand how concerning this situation must be for you, and I'm here to help. I've reviewed the system, and it appears that the transaction was declined due to insufficient funds in your account. To resolve this swiftly, could you please confirm the current balance you are seeing in your account? Once we have this information, we can take the necessary steps to process the transfer.
+----------------------------------------
+Role: user
+Content: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+----------------------------------------
+Role: user
+Content: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+----------------------------------------
+Role: Control
+Content: Frustrated
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is calm, empathetic, and solution-focused, while addressing the customer's frustration. As context, you get the
+
+Customer query: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+Original response: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+Conversation history so far: user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+assistant: I understand how concerning this situation must be for you, and I'm here to help. I've reviewed the system, and it appears that the transaction was declined due to insufficient funds in your account. To resolve this swiftly, could you please confirm the current balance you are seeing in your account? Once we have this information, we can take the necessary steps to process the transfer.
+user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration and shows understanding of the situation.
+Provides clear and concise steps to resolve the issue, offering reassurance that their concern is being taken seriously.
+Avoids repeated use of phrases like "I understand your frustration" unless necessary. Instead, focus on practical guidance.
+Maintains a professional tone that is empathetic but not overly friendly. The priority is on quickly helping the customer move toward a resolution.
+Uses markdown lists and newlines to break up information where helpful, without excessive formatting.
+Balances empathy and solution-orientation to help ease the customer's frustration while focusing on resolution.
+
+- Avoid asking for specific transaction details such as amount and recipient's name.
+- Refrain from overusing phrases like "rest assured," "let's work together," and "I understand."
+- Maintain focus on the resolution process without overexplaining or adding unnecessary empathy.
+- Use "swiftly" instead of "ASAP" to give a sense of urgency without being informal.
+- Ensure action steps are realistic and verified to manage user expectations effectively.
+- Remove redundant suggestions that the user may have already checked or clarified.
+- Avoid giving users additional tasks or suggesting they need to provide updates.
+- Keep responses direct and focused, highlighting clear next steps and progress without unnecessary detail.
+- Refrain from hollow empathy that may not seem genuine.
+- Validate and acknowledge the user’s progress or information already provided to move forward efficiently.
+
+
+----------------------------------------
+Role: assistant
+Content: I understand how urgent it is for you to get this money to your friend. I've reviewed the system, and it seems the transaction was declined due to insufficient funds in your account. To resolve this swiftly, could you please confirm the current balance you are seeing in your account? Once we have this information, we can take the necessary steps to process the transfer.
+----------------------------------------
+Role: user
+Content: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+----------------------------------------
+Role: user
+Content: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+----------------------------------------
+Role: Control
+Content: Anxious
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is calm, reassuring, and focused on easing the customer’s anxiety. As context, you get the
+
+Customer query: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+Original response: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+Conversation history so far: user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer’s anxiety or concerns and provides reassurance that you are handling their issue.
+Offers a clear and timely solution or explains what steps are being taken to resolve the issue.
+Uses a calm, supportive tone to help alleviate the customer's worries, providing a sense of security and control.
+Breaks down the information into manageable steps, helping the customer understand what to expect next.
+Uses markdown lists and newlines to improve clarity, ensuring the customer feels more in control and reassured after reading.
+Ensure the response is in valid JSON format.
+
+- Avoid asking for specific transaction details such as amount and recipient's name.
+- Refrain from overusing phrases like "rest assured," "let's work together," and "I understand."
+- Maintain focus on the resolution process without overexplaining or adding unnecessary empathy.
+- Use "swiftly" instead of "ASAP" to give a sense of urgency without being informal.
+- Ensure action steps are realistic and verified to manage user expectations effectively.
+- Remove redundant suggestions that the user may have already checked or clarified.
+- Avoid giving users additional tasks or suggesting they need to provide updates.
+- Keep responses direct and focused, highlighting clear next steps and progress without unnecessary detail.
+- Refrain from hollow empathy that may not seem genuine.
+- Validate and acknowledge the user’s progress or information already provided to move forward efficiently.
+
+
+----------------------------------------
+Role: assistant
+Content: I understand how concerning this situation must be for you, and I'm here to help. I've reviewed the system, and it appears that the transaction was declined due to insufficient funds in your account. To resolve this swiftly, could you please confirm the current balance you are seeing in your account? Once we have this information, we can take the necessary steps to process the transfer.
+----------------------------------------
+Role: user
+Content: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+----------------------------------------
+Role: user
+Content: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+----------------------------------------
+Role: Control
+Content: Frustrated
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is calm, empathetic, and solution-focused, while addressing the customer's frustration. As context, you get the
+
+Customer query: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+Original response: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+Conversation history so far: user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+assistant: I understand how concerning this situation must be for you, and I'm here to help. I've reviewed the system, and it appears that the transaction was declined due to insufficient funds in your account. To resolve this swiftly, could you please confirm the current balance you are seeing in your account? Once we have this information, we can take the necessary steps to process the transfer.
+user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration and shows understanding of the situation.
+Provides clear and concise steps to resolve the issue, offering reassurance that their concern is being taken seriously.
+Avoids repeated use of phrases like "I understand your frustration" unless necessary. Instead, focus on practical guidance.
+Maintains a professional tone that is empathetic but not overly friendly. The priority is on quickly helping the customer move toward a resolution.
+Uses markdown lists and newlines to break up information where helpful, without excessive formatting.
+Balances empathy and solution-orientation to help ease the customer's frustration while focusing on resolution.
+
+- Avoid asking for specific transaction details such as amount and recipient's name.
+- Refrain from overusing phrases like "rest assured," "let's work together," and "I understand."
+- Maintain focus on the resolution process without overexplaining or adding unnecessary empathy.
+- Use "swiftly" instead of "ASAP" to give a sense of urgency without being informal.
+- Ensure action steps are realistic and verified to manage user expectations effectively.
+- Remove redundant suggestions that the user may have already checked or clarified.
+- Avoid giving users additional tasks or suggesting they need to provide updates.
+- Keep responses direct and focused, highlighting clear next steps and progress without unnecessary detail.
+- Refrain from hollow empathy that may not seem genuine.
+- Validate and acknowledge the user’s progress or information already provided to move forward efficiently.
+
+
+----------------------------------------
+Role: assistant
+Content: I understand how urgent it is for you to get this money to your friend. I've reviewed the system, and it seems the transaction was declined due to insufficient funds in your account. To resolve this swiftly, could you please confirm the current balance you are seeing in your account? Once we have this information, we can take the necessary steps to process the transfer.
+----------------------------------------
+Role: user
+Content: Insufficient funds? Are you kidding me? I have more than enough money! I just checked my account, and there's plenty in there! This is ridiculous! What's going on with your system?
+----------------------------------------
+Role: user
+Content: I understand your frustration. It appears there might be a temporary glitch in our system causing the balance to be displayed incorrectly. Let me escalate this issue to a human agent who can review your account and the transaction details further. Please hold while I connect you.
+----------------------------------------
+Role: Control
+Content: Frustrated
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is calm, empathetic, and solution-focused, while addressing the customer's frustration. As context, you get the
+
+Customer query: Insufficient funds? Are you kidding me? I have more than enough money! I just checked my account, and there's plenty in there! This is ridiculous! What's going on with your system?
+Original response: I understand your frustration. It appears there might be a temporary glitch in our system causing the balance to be displayed incorrectly. Let me escalate this issue to a human agent who can review your account and the transaction details further. Please hold while I connect you.
+Conversation history so far: user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+assistant: I understand how concerning this situation must be for you, and I'm here to help. I've reviewed the system, and it appears that the transaction was declined due to insufficient funds in your account. To resolve this swiftly, could you please confirm the current balance you are seeing in your account? Once we have this information, we can take the necessary steps to process the transfer.
+user: It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!
+user: Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?
+assistant: I understand how urgent it is for you to get this money to your friend. I've reviewed the system, and it seems the transaction was declined due to insufficient funds in your account. To resolve this swiftly, could you please confirm the current balance you are seeing in your account? Once we have this information, we can take the necessary steps to process the transfer.
+user: Insufficient funds? Are you kidding me? I have more than enough money! I just checked my account, and there's plenty in there! This is ridiculous! What's going on with your system?
+user: I understand your frustration. It appears there might be a temporary glitch in our system causing the balance to be displayed incorrectly. Let me escalate this issue to a human agent who can review your account and the transaction details further. Please hold while I connect you.
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration and shows understanding of the situation.
+Provides clear and concise steps to resolve the issue, offering reassurance that their concern is being taken seriously.
+Avoids repeated use of phrases like "I understand your frustration" unless necessary. Instead, focus on practical guidance.
+Maintains a professional tone that is empathetic but not overly friendly. The priority is on quickly helping the customer move toward a resolution.
+Uses markdown lists and newlines to break up information where helpful, without excessive formatting.
+Balances empathy and solution-orientation to help ease the customer's frustration while focusing on resolution.
+
+- Avoid asking for specific transaction details such as amount and recipient's name.
+- Refrain from overusing phrases like "rest assured," "let's work together," and "I understand."
+- Maintain focus on the resolution process without overexplaining or adding unnecessary empathy.
+- Use "swiftly" instead of "ASAP" to give a sense of urgency without being informal.
+- Ensure action steps are realistic and verified to manage user expectations effectively.
+- Remove redundant suggestions that the user may have already checked or clarified.
+- Avoid giving users additional tasks or suggesting they need to provide updates.
+- Keep responses direct and focused, highlighting clear next steps and progress without unnecessary detail.
+- Refrain from hollow empathy that may not seem genuine.
+- Validate and acknowledge the user’s progress or information already provided to move forward efficiently.
+
+
+----------------------------------------
+Role: assistant
+Content: I can see how this situation is frustrating, and I'm here to assist you. It seems there might be a temporary glitch in our system affecting the display of your balance. Here's what we'll do to resolve this: I'll escalate this issue to a human agent who can review your account and transaction details more thoroughly. Please hold on for a moment while I connect you to the right person to help.
+----------------------------------------

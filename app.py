@@ -4,10 +4,11 @@ from chat import render_chat
 from chat_with_tactics import render_chat_tactics
 
 from mvp_with_tactics import render_chat_mvp
+from playground import render_chat_playground
 
 
 #st.selectbox("Page", ["Prompts", "Chat", "Example 1", "Example 2", "Example 3"], key="page")
-st.selectbox("Page", ["Prompts", "Control prompt", "Chat", "Chat with tactics","MVP with tactics"], key="page")
+st.selectbox("Page", ["Prompts", "Control prompt", "Chat", "Chat with tactics","MVP with tactics","Playground for Team"], key="page")
 st.cache_data.clear()
 
 if "create_prompt" not in st.session_state:
@@ -50,7 +51,9 @@ def render_prompt():
         st.write(f"**Author:** {prompt['author'].iloc[0]}")
         st.write(f"**Created at:** {prompt['created_at'].iloc[0]}")
         st.write("### Prompt")
-        st.write(prompt["prompt"].iloc[0])
+        st.text_area("**Prompt**", prompt["prompt"].iloc[0], height=800, key="prompt_input")
+        st.button("Save Prompt", on_click=lambda: db.update_prompt())
+        
         st.text_area("**Description**", prompt["describe"].iloc[0], height=100, key="description_input")
         st.button("Save Description", on_click=lambda: db.update_description())
 
@@ -80,3 +83,6 @@ if st.session_state.page == "Chat with tactics":
 
 if st.session_state.page == "MVP with tactics":
     render_chat_mvp()
+
+if st.session_state.page == "Playground for Team":
+    render_chat_playground()

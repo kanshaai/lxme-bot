@@ -51,6 +51,13 @@ def update_description():
         session.commit()
 
 
+def update_prompt():
+    with open_connection().session as session:
+        query = text("UPDATE Prompts SET prompt = :prompt WHERE name = :name")
+        session.execute(query, {"prompt": st.session_state.prompt_input, "name": st.session_state.selected_prompt})
+        session.commit()
+
+
 def get_control_prompt():
     connection = open_connection()
     response = connection.query("SELECT * FROM Prompts WHERE name IS 'Conversation control'")
