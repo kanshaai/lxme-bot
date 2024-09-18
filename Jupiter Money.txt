@@ -1404,3 +1404,52 @@ Balances empathy and solution-orientation to help ease the customer's frustratio
 Role: assistant
 Content: I can see how this situation is frustrating, and I'm here to assist you. It seems there might be a temporary glitch in our system affecting the display of your balance. Here's what we'll do to resolve this: I'll escalate this issue to a human agent who can review your account and transaction details more thoroughly. Please hold on for a moment while I connect you to the right person to help.
 ----------------------------------------
+Role: user
+Content: Insufficient funds? Are you kidding me? I have more than enough money! I just checked my account, and there's plenty in there! This is ridiculous! What's going on with your system?
+----------------------------------------
+Role: user
+Content: It sounds like you're in a difficult situation, and I want to help resolve this swiftly. There may be a temporary issue with the system affecting your transaction. I'll connect you with a human agent right away who can look into your account and assist you further. Please hold on for a moment.
+----------------------------------------
+Role: Control
+Content: Angry
+----------------------------------------
+Role: Prompt
+Content: Rephrase the response given by an information agent in a way that is professional, calm, and solution-oriented, while de-escalating any anger from the customer. As context, you get the
+
+Customer query: Insufficient funds? Are you kidding me? I have more than enough money! I just checked my account, and there's plenty in there! This is ridiculous! What's going on with your system?
+Original response: It sounds like you're in a difficult situation, and I want to help resolve this swiftly. There may be a temporary issue with the system affecting your transaction. I'll connect you with a human agent right away who can look into your account and assist you further. Please hold on for a moment.
+Conversation history so far: user: Insufficient funds? Are you kidding me? I have more than enough money! I just checked my account, and there's plenty in there! This is ridiculous! What's going on with your system?
+user: It sounds like you're in a difficult situation, and I want to help resolve this swiftly. There may be a temporary issue with the system affecting your transaction. I'll connect you with a human agent right away who can look into your account and assist you further. Please hold on for a moment.
+
+If you feel you need additional information to appropriately answer the query, which is not available in the original response, you can ask the information agent for help. The information agent searches the web to retrieve relevant information. Use the information agent only if necessary and focus on resolving the issue efficiently.
+
+Respond in JSON format with one key: 'answer'. The 'answer' key should contain a rephrased response that:
+
+Acknowledges the customer's frustration or anger without escalating emotions further.
+Offers a clear, immediate path to resolve the issue or provides information about the next steps.
+Avoids unnecessary repetition of phrases like "I understand your frustration" if already mentioned.
+Keeps the response concise, factual, and professional, with the focus on resolving the issue.
+Uses markdown lists and newlines for clarity where appropriate, but no other formatting.
+Avoids excessive friendliness or unnecessary apologies; instead, focuses on calming the situation and guiding the customer to a resolution.
+Keeps the conversation objective and fair, providing practical solutions quickly.
+Ensure the response is in valid JSON format.
+
+
+
+- Avoid asking for specific transaction details such as amount and recipient's name.
+- Refrain from overusing phrases like "rest assured," "let's work together," and "I understand."
+- Maintain focus on the resolution process without overexplaining or adding unnecessary empathy.
+- Use "swiftly" instead of "ASAP" to give a sense of urgency without being informal.
+- Ensure action steps are realistic and verified to manage user expectations effectively.
+- Remove redundant suggestions that the user may have already checked or clarified.
+- Avoid giving users additional tasks or suggesting they need to provide updates.
+- Keep responses direct and focused, highlighting clear next steps and progress without unnecessary detail.
+- Refrain from hollow empathy that may not seem genuine.
+- Validate and acknowledge the user’s progress or information already provided to move forward efficiently.
+- If you have acknowledged user's emotions once in the conversation history, no need to do it again and again
+
+
+----------------------------------------
+Role: assistant
+Content: I understand your frustration regarding the insufficient funds message despite having enough money in your account. There might be a temporary issue with our system affecting your transaction. I'm going to connect you with a human agent immediately who can review your account and help resolve this issue. Please hold on for a moment.
+----------------------------------------
