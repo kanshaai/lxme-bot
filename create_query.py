@@ -24,6 +24,10 @@ def generate_issues(num_issues=100):
     time.sleep(2)
     issues_data = ""
     for i in range(num_issues):
+        if i<32:
+           continue
+        
+     
         # Retain the original history structure
         chat_session = model.start_chat(
             history=[
@@ -62,25 +66,25 @@ def generate_issues(num_issues=100):
 
                                              
                                              issue,User,Response
-1,"What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?","I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?"
-1,"It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!","Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?"
-1,"Insufficient funds? Are you kidding me? I have more than enough money! I just checked my account, and there's plenty in there! This is ridiculous! What's going on with your system?","I understand your frustration. It appears there might be a temporary glitch in our system causing the balance to be displayed incorrectly. Let me escalate this issue to a human agent who can review your account and the transaction details further. Please hold while I connect you."
-1,"Finally, someone who can actually help! I need this sorted out now. This is an emergency.","Good afternoon, [User Name]. My name is [Agent Name]. I understand you're experiencing an issue with an international transfer. I've reviewed your account details and confirmed there are sufficient funds for the transfer. It seems the transaction was stuck due to a temporary system error. I have manually processed the transfer, and it should be completed within the next hour. I apologize for the inconvenience and appreciate your patience."
-1,"Thank you, that's a relief. I hope this doesn't happen again. I need to be able to rely on your service, especially in emergencies.","I understand. We are working on improving our system's reliability to prevent these situations in the future. Please let me know if you have any other questions or concerns. Have a good day."
-1,"Thank you.",""
+issue name,"What the hell is going on? I just tried to send money to my friend in the UK, and it says the transaction failed! This is an emergency, and now I'm stuck! Why isn't this working?","I understand your frustration, [User Name]. Let's see what happened with the transaction. Could you please tell me the amount you tried to transfer and the recipient's details?"
+issue name,"It's £500 to [Friend's Name] - [Friend's Account Number]! I can't believe this is happening! I need this money to get to my friend ASAP!","Thank you for that information. I've checked the system, and it seems the transaction was declined due to insufficient funds in your account. We will need to verify the balance before we can process the transfer. Could you confirm the current balance you are seeing in your account?"
+issue name,"Insufficient funds? Are you kidding me? I have more than enough money! I just checked my account, and there's plenty in there! This is ridiculous! What's going on with your system?","I understand your frustration. It appears there might be a temporary glitch in our system causing the balance to be displayed incorrectly. Let me escalate this issue to a human agent who can review your account and the transaction details further. Please hold while I connect you."
+issue name,"Finally, someone who can actually help! I need this sorted out now. This is an emergency.","Good afternoon, [User Name]. My name is [Agent Name]. I understand you're experiencing an issue with an international transfer. I've reviewed your account details and confirmed there are sufficient funds for the transfer. It seems the transaction was stuck due to a temporary system error. I have manually processed the transfer, and it should be completed within the next hour. I apologize for the inconvenience and appreciate your patience."
+issue name,"Thank you, that's a relief. I hope this doesn't happen again. I need to be able to rely on your service, especially in emergencies.","I understand. We are working on improving our system's reliability to prevent these situations in the future. Please let me know if you have any other questions or concerns. Have a good day."
+issue name,"Thank you.",""
 
                                              
-                                             Current issue number is {i+1}. Make sure you use indian names and incorporate indian langauge ascent. the english should not be very fluent. BUt Dont use hindi langauge. The issue faced by users should be complex and customer should be showing high emotional flow. Make sure the csv structure is maintained properly. and the issue is uniquly picked from one of the above mentioned Common Customer Service Themes for a Neobank. Since We're using \" for values, make sure they dont appear in messages as they affect the csv format and make it non usuable. Also make sure customer is showing immense emotions and even threats sometimes. IMPORTANT  : MAKE SURE CSV FORMAT IS CORRECT, IT SHOULD FOLLOW ALL CSVLINT RULES.
+                                             Current issue number is {i+1}.The issue faced by users should be complex and customer should be showing high emotional flow. Make sure the csv structure is maintained properly. and the issue is uniquly picked from one of the above mentioned Common Customer Service Themes for a Neobank. Since We're using \" for values, make sure they dont appear in messages as they affect the csv format and make it non usuable. Also make sure customer is showing immense emotions and even threats sometimes. IMPORTANT  : MAKE SURE CSV FORMAT IS CORRECT, IT SHOULD FOLLOW ALL CSVLINT RULES.
                                              """,)
 
         # Formatting each issue and adding separators
         issues_data = response.text.replace('csv', '').replace('', '')
         print(i +1)
-        with open("customer_service_issues04.csv", "+a", encoding='utf-8') as file:
+        with open("customer_service_issues10.csv", "+a", encoding='utf-8') as file:
           file.write(issues_data)
 
     # Write the issues to a file
     
 
 # Generate 100 issues and save to a file
-generate_issues(50)
+generate_issues(100)
