@@ -1,22 +1,45 @@
 from flask import Flask, request, jsonify, render_template_string
 import os
-from openai import OpenAI
+import google.generativeai as genai
 
-client = OpenAI()
+# Configure the Gemini API
+genai.configure(api_key='AIzaSyDTtlEtTf3fEUxXYyOU1-n_a2EZ8cNh6yc')
+
+# Set up generation configuration for Gemini
+generation_config = {
+    "temperature": 0.2,
+    "top_p": 0.95,
+    "top_k": 64,
+    "max_output_tokens": 8192,
+    "response_mime_type": "text/plain",
+}
+
+# Create the model session
+model = genai.GenerativeModel(
+    model_name="gemini-1.5-pro",
+    generation_config=generation_config,
+)
 
 app = Flask(__name__)
 
 def get_completion(prompt):
-    completion = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant for axi (axi.com) support."},
-        {
-            "role": "user",
-            "content": prompt
-        }
-    ])
-    return completion.choices[0].message
+    chat_session = model.start_chat(
+        history=[
+            {
+                "role": "user",
+                "parts": ["You are a helpful assistant for axi (axi.com) support."],
+            },
+            {
+                "role": "model",
+                "parts": ["Okay, I'm ready to assist! How can I help you today?"],
+            },
+        ]
+    )
+    
+    # Send the user input to the Gemini model
+    response = chat_session.send_message(prompt)
+    
+    return response.text
 
 @app.route("/", methods=['GET'])
 def home():
@@ -45,8 +68,10 @@ def chat():
     if not user_input:
         return jsonify({'error': 'No prompt provided'}), 400
     
+    # Get the response from the Gemini model
     response_text = get_completion(user_input)
-    return jsonify({'response': str(response_text.content)})
+    
+    return jsonify({'response': response_text})
 
 if __name__ == "__main__":
     app.run(debug=True)
