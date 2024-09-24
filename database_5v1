@@ -1,0 +1,51 @@
+import pandas as pd
+from dotenv import load_dotenv
+from pathlib import Path
+import db
+import os
+from openai import OpenAI
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Set up the environment keys
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
+
+# Initialize the OpenAI client
+client = OpenAI(api_key = os.getenv("OPENAI_API_KEY"))
+
+def rephraser(user_message, original_response):
+    response =client.chat.completions.create(
+        model="ft:gpt-4o-mini-2024-07-18:kansha::A9cedKjP",
+        messages=[
+           
+
+{"role": "user", "content": f''' User query : {user_message}
+                                 original response: {original_response}
+Make this response perfect and just give the new response as output nothing else so i can just add it to a file directly
+
+ 
+'''}
+        ]
+    )
+    response = response.choices[0].message.content
+    
+    return response
+
+
+
+
+df = pd.read_csv('Full rephrased - New Feedbacks (19 Sep Thurs).csv')
+for index, row in df.iterrows():
+    try:
+        rephrase = rephraser(row["User"], row["Response"])
+        df.at[index, 'rephrased_5v1'] = rephrase
+        df.to_csv('Full rephrased - Sheet14.csv', index=False)
+        print(f'{index} done')
+    except:
+        continue
+
+        
+            
+
