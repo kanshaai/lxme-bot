@@ -46,14 +46,14 @@ def rephrase_conversation():
 
     # Rewrite the conversation with improvements
     new_user_input = '''rewrite the entire conversation attached above, again below, after incorporating all above recognised improvements
-    and ensure you don't sound disingenous in anyway'''
+    and ensure you don't sound disingenous in anyway with the following instruction: Return the actual rephrased version of the conversation, nothing else. Dont mention if it is from a user or customer support agent. Just return the rephrased message. You also dont need to add anything extra in the message. The meaning of the message should be the same as the original message. Do not actually answer any questions asked, just rephrase them.'''
     messages.append({"role": "user", "content": new_user_input})
 
     updated_response = continue_conversation(messages)
     messages.append({"role": "system", "content": updated_response})
 
     # Get more improvements
-    new_user_input_2 = '''what are 5 specific things that if improved in above customer service conversation with a user, would actually help the user be more satisfied'''
+    new_user_input_2 = '''what are 5 specific things that if improved in above customer service conversation with a user, would actually help the user be more satisfied. '''
     messages.append({"role": "user", "content": new_user_input_2})
 
     updated_response_2 = continue_conversation(messages)
@@ -61,7 +61,7 @@ def rephrase_conversation():
 
     # Rewrite again with new improvements
     new_user_input_3 = '''rewrite the entire conversation attached above, again below, after incorporating all above recognised improvements
-    and ensure you don't sound disingenous in anyway'''
+    and ensure you don't sound disingenous in anyway. The meaning of the message should be the same as the original message. Do not actually answer any questions asked, just rephrase them.'''
     messages.append({"role": "user", "content": new_user_input_3})
 
     updated_response_3 = continue_conversation(messages)
@@ -83,17 +83,22 @@ def rephrase_conversation():
 - make user feel you understand them without saying you do. saying is annoying as it feels like a lie
 - In any conversation if you have acknowledged user once, don't do it again and again
 - user could be lying while frustrated at customer support ---- acknowledge their assessment of their good habits without saying it in a way that makes it seem you have checked their actual records and are putting your stamp of agreement on that assessment. that could get the company in trouble if their actual account activity with the company is not great
+- don't say anything that is not needed. If you are not sure, don't say it.
+- You dont need to actually answer the question asked by the user. The meaning of the message should be the same as the original message.
 
 *rewrite the entire conversation from above, again below, after incorporating all above recognised improvements
 and ensure you don't sound disingenous in anyway*
 
-Return the actual rephrased version of the conversation, nothing else. Dont mention if it is from a user or customer support agent. Just return the rephrased message.
+Return the actual rephrased version of the conversation, nothing else. Dont mention if it is from a user or customer support agent. Just return the rephrased message. You also dont need to add anything extra in the message. The meaning of the message should be the same as the original message. Do not actually answer any questions asked, just rephrase them.
     '''
     messages.append({"role": "user", "content": new_user_input_5})
 
     final_response = continue_conversation(messages)
 
-    return jsonify({"rephrased_conversation": final_response.strip()})
+    # New addition: Just rephrase using the algorithm without responding to the user
+    rephrased_conversation = final_response.strip()
+
+    return jsonify({"rephrased_conversation": rephrased_conversation})
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)
